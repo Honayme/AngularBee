@@ -1,0 +1,88 @@
+<main>
+  <app-login-register></app-login-register>
+  <section id="news" class="home-section">
+    <div class="container">
+      <div class="row">
+        <div class="col s12 center title beetobee-white-text">
+          <h1>Votre accélérateur de compétences</h1>
+          <p class="light center vert-padding"><strong class="beetobee-yellow-text">BeeToBee</strong> vous propose une
+            <strong>plateforme dédiée</strong> aux formations entre étudiants à Ynov Aix-en-Provence. Que vous soyez
+            <strong>en demande</strong> ou bien <strong>force de proposition</strong>, vous y trouverez les fonctionnalités nécessaire pour monter collectivement en compétences. Un espace dédié aux
+            <strong>Certifications</strong> regroupe nos dernières informations sur les technologies qui vous intéressent.
+          </p>
+        </div>
+        <div class="col s12"></div>
+        <div class="row beetobee-white-text">
+          <div class="col s12 l4 vert-padding informations">
+            <div class="center card-ribbon">
+              <div class="hexagon beetobee-red-dark-bg"></div>
+              <i class="material-icons beetobee-white">equalizer</i>
+              <h2 class="promo-caption">Formations tous niveaux</h2>
+              <p class="light center vert-padding">Organisées par les étudiants, les sessions de formations ne font <strong>aucune distinction</strong> de votre filière ou votre niveau d'étude.</p>
+            </div>
+          </div>
+          <div class="col s12 l4 vert-padding informations">
+            <div class="center card-ribbon">
+              <div class="hexagon beetobee-red-dark-bg"></div>
+              <i class="material-icons beetobee-white-text">priority_high</i>
+              <h2 class="promo-caption">Informations sur demande</h2>
+              <p class="light center vert-padding">Besoin d’en savoir plus sur la <strong>Certification</strong> de votre choix ? Un rédacteur rédige pour vous des contenus d’informations.</p>
+            </div>
+          </div>
+          <div class="col s12 l4 vert-padding informations">
+            <div class="center card-ribbon">
+              <div class="hexagon beetobee-red-dark-bg"></div>
+              <i class="material-icons beetobee-white-text">phonelink</i>
+              <h2 class="promo-caption">Service multiplateformes</h2>
+              <p class="light center vert-padding">Notre service vous est proposé sur <strong>beetobee.fr</strong>, mais est également disponible sur <strong>l’Apple Store</strong> et le <strong>Play Store</strong>.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="training" class="home-section">
+    <div class="container valign-wrapper">
+      <div class="row">
+        <div class="col s12 l6 center beetobee-white-text">
+          <h1>Formations</h1>
+          <p>BeeToBee vous permet de participer gratuitement à des formations organisées par des étudiants. Voici
+            quelques exemples de formations que nous vous proposons, sentez-vous libres de vous inscrire
+            pour monter en compétences.</p>
+          <a [routerLink]="['/formations']" class="btn waves waves-effect beetobee-red-dark-bg">Nos formations</a>
+        </div>
+        <div class="col s12 l6">
+          <div class="row">
+            <div class="col s12 center">
+              <div class="card-panel">
+                <img src="assets/img/utils/formations.png" alt="Formations" class="" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="certifications" class="home-section">
+    <div class="container valign-wrapper">
+      <div class="row">
+        <div class="col s12 l6 center">
+          <div class="row">
+            <div class="col s12">
+              <div class="card-panel">
+                <img src="assets/img/utils/certifications.png" alt="Certifications" class="" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col s12 l6 center beetobee-white-text">
+          <h1>Certifications</h1>
+          <p>BeeToBee vous permet de participer gratuitement à des formations organisées par des étudiants. Voici
+            quelques exemples de formations que nous vous proposons, sentez-vous libres de vous inscrire
+            pour monter en compétences.</p>
+          <a [routerLink]="['/certifications']" class="btn waves waves-effect beetobee-yellow-bg">Nos certifications</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

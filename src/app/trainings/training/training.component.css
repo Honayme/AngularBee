@@ -1,0 +1,43 @@
+/* training */
+
+
+.chip {
+  background-color: inherit;
+}
+
+.chip > img {
+  position: relative;
+}
+
+/*CARD*/
+.card-title {
+  font-size: 22px;
+}
+
+.card-image {
+  max-height: 290px;
+}
+
+.training-details {
+  font-weight: bold;
+}
+
+.card-action a.activator {
+  margin-right: 0 !important;
+}
+
+.card-action a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating):hover {
+  color: var(--beetobee-blue-electrik);
+}
+
+.card-reveal .card-action {
+  position: absolute !important;
+  /*position: relative !important;*/
+  left: 0;
+  width: 100%;
+}
+
+.card-reveal i.material-icons {
+  line-height: 20px;
+}
+

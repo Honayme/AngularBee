@@ -1,0 +1,130 @@
+.drawer {
+  display: block;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  background: #fff;
+  max-width: 320px;
+  height: 100vh;
+  border-color: rgba(0,0,0,0.14);
+  transition: transform .3s ease-out;
+  will-change: transform;
+  z-index : 99999;
+}
+
+.drawer-is-right-docked {
+  border-left: 1px solid var(--beetobee-yellow);
+  -webkit-transform: translateX(100%);
+  transform: translateX(100%);
+}
+
+.drawer-is-open {
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+}
+
+.search-panel {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+#search-drawer {
+  width: 256px;
+}
+
+.drawer-backdrop {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 79;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .3s ease-out;
+  will-change: opacity;
+}
+
+.search-panel-content {
+  height: 100%;
+  overflow-y: hidden;
+  padding: 20px 20px 0 24px;
+  position: relative;
+}
+
+.search-panel-category-content {
+  margin-bottom: 40px;
+}
+
+.search-panel-category-content .select-wrapper {
+  margin-top: 30px;
+}
+
+.search-panel-category-content .select-wrapper input {
+  color: var(--beetobee-white);
+}
+
+.search-panel-category-content ul li:hover, .search-panel-category-content ul li.active, .search-panel-category-content ul li.active.selected {
+  background-color: var(--beetobee-purple-dark);
+}
+
+.search-panel-category-content ul li:hover span, .search-panel-category-content ul li.active span {
+  color: var(--beetobee-yellow);
+}
+
+.search-panel-category-content ul li span {
+  color: var(--beetobee-blue-dark);
+}
+
+.search-panel-category-content .select-wrapper span.caret {
+  color: var(--beetobee-white);
+}
+
+.search-panel-categories-content-label {
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0 0 25px 0;
+}
+
+.search-panel label {
+  transition: color .3s ease-out;
+}
+
+.search-panel input[type="checkbox"].filled-in:checked + label {
+  color: var(--beetobee-red-dark);
+}
+
+.search-panel input[type="checkbox"].filled-in:checked + label:after {
+  border: 2px solid var(--beetobee-red-dark);
+  background-color: var(--beetobee-red-dark);
+}
+
+/*TODO Put an equivalent margin on each part of reset button, add hover like the original web site*/
+.search-panel-clear-container {
+  width: 255px;
+  border-top: 1px solid var(--beetobee-yellow);
+  height: 46px;
+  position: relative;
+  bottom: -230px;
+  left: -24px;
+}
+
+.search-panel-clear-container button {
+  margin: 10px;
+}
+
+@media screen and (max-width: 940px){
+  .drawer.drawer-is-open {
+    z-index: 100;
+    box-shadow: 0 8px 10px -5px rgba(0,0,0,0.2), 0 16px 24px 2px rgba(0,0,0,0.14), 0 6px 30px 5px rgba(0,0,0,0.12);
+  }
+
+  .drawer.drawer-is-open + .drawer-backdrop {
+    z-index: 99;
+    opacity: .5;
+    visibility: visible;
+  }
+}

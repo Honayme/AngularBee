@@ -1,0 +1,36 @@
+<!-- Modal for ask a training-->
+<div id="modal-ask-for-training" class="modal modal-fixed-footer">
+  <div class="modal-content">
+    <h4 class="beetobee-purple-dark-text">Demander une formation</h4>
+    <p class="beetobee-red-dark-text">Vous voulez nous demander une formation ? Nous sommes ravis de vous annoncer que
+      ce formulaire est
+      là pour ça ! Veuillez remplir ce formulaire afin que nos petites abeilles s'occupent en retour,
+      de nous le transmettre.</p>
+    <div class="vert-padding"></div>
+    <div class="row">
+      <div class="input-field col s6">
+        <i class="material-icons prefix">assignment</i>
+        <input id="training-name" name="training-name" type="text" class="validate">
+        <label for="training-name">Nom de la formation souhaitée <span class="beetobee-red-dark-text">*</span></label>
+      </div>
+      <div class="input-field col s6">
+        <i class="material-icons prefix">email</i>
+        <input id="training-email" name="training-email" type="email" class="validate">
+        <label for="training-email">Votre email <span class="beetobee-red-dark-text">*</span></label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <i class="material-icons prefix">comment</i>
+        <textarea id="waiting" class="materialize-textarea"></textarea>
+        <label for="waiting">Description des attentes <span class="tooltipped" data-position="top"
+                                                            data-tooltip="Soyez diligent comme une abeille !">*</span></label>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a href="#"
+       class="modal-action modal-close waves-effect beetobee-red-dark-bg btn-flat beetobee-white-text">Annuler</a>
+    <a id="sendAsk" class="modal-action waves-effect beetobee-blue-dark-bg btn-flat beetobee-white-text">Envoyer</a>
+  </div>
+</div>

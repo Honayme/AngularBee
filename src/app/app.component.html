@@ -1,20 +1,80 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<header id="header">
+  <nav class="beetobee-blue-dark-bg navbar-fixed">
+    <div class="nav-wrapper">
+      <a [routerLink]="['/home']" class="brand-logo"><i class="icon-beetobee-logo"></i>BeeToBee</a>
+      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+      <form id="search-menu">
+        <div class="input-field">
+          <input id="search-input" type="search" required>
+          <label class="label-icon" for="search-input"><i class="material-icons">search</i></label>
+          <i class="material-icons">close</i>
+        </div>
+      </form>
+      <ul class="top-nav right hide-on-med-and-down">
+        <li class="active"><a [routerLink]="['/home']">Accueil</a></li>
+        <li><a [routerLink]="['/formations']" class="connected">Formations</a></li>
+        <li><a [routerLink]="['/certifications']">Certifications</a></li>
+        <li><a [routerLink]="['']" class="disconnected" data-overlay="access" id="modal-register">Inscription</a></li>
+        <li><a [routerLink]="['']" class="disconnected" data-overlay="access" id="modal-login">Connexion</a></li>
+        <li><a [routerLink]="['/profil']"><i class="material-icons connected">person</i></a></li>
+        <li><a class="disconnect"><i class="material-icons connected">power_settings_new</i></a></li>
+        <li class="search-menu"><a href="#"><i class="material-icons">search</i></a></li>
+        <!--TODO n'afficher la flèche que sur la page certificatiion-->
+        <li id="toggle-arrow" class="toggle-drawer">
+          <a (click)="activeToggle()" href="#" class="tooltipped waves-orange" data-tooltip="Ouvrir / Cacher les filtres" data-position="bottom"><i class="material-icons">chevron_right</i></a>
+        </li>
+      </ul>
+      <ul class="side-nav" id="mobile-demo">
+        <li class="active"><a [routerLink]="['/home']" class="beetobee-purple-dark-text">Accueil</a></li>
+        <li><a [routerLink]="['/formations']" class="beetobee-purple-dark-text connected">Formations</a></li>
+        <li><a [routerLink]="['/certifications']" class="beetobee-purple-dark-text">Certifications</a></li>
+        <li><a [routerLink]="['']" class="beetobee-purple-dark-text disconnected" data-overlay="access" id="modal-register">Inscription</a></li>
+        <li><a [routerLink]="['']" class="beetobee-purple-dark-text disconnected" data-overlay="access" id="modal-login">Connexion</a></li>
+        <li><a [routerLink]="['/profil']" class="beetobee-purple-dark-text connected">Profil</a></li>
+        <li><a class="beetobee-purple-dark-text connected disconnect connected">Déconnexion</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
 
+<router-outlet></router-outlet>
+
+<footer id="footer" class="page-footer beetobee-purple-dark-bg">
+  <div class="container vert-padding beetobee-yellow-text center">
+    <div class="row">
+      <div class="col l4 s12">
+        <h3>BeeToBee</h3>
+        <ul>
+          <li><a [routerLink]="['/team']" class="beetobee-white-text">Notre équipe</a></li>
+          <li><a [routerLink]="['/contact']" class="beetobee-white-text">Nous contacter</a></li>
+        </ul>
+      </div>
+      <div class="col l4 s12">
+        <h3>Informations</h3>
+        <ul>
+          <li><a [routerLink]="['/cgu']" class="beetobee-white-text">Conditions Générales d'Utilisation</a></li>
+        </ul>
+      </div>
+      <div class="col l4 s12">
+        <h3>Suivez-nous !</h3>
+        <ul>
+          <li><a href="https://www.facebook.com/beetobeeformations/" class="beetobee-white-text">Facebook</a></li>
+          <li><a href="https://twitter.com/BeeToBee_France" class="beetobee-white-text">Twitter</a></li>
+          <li><a href="https://www.instagram.com/beetobeeformation/?hl=fr" class="beetobee-white-text">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-copyright beetobee-white-text beetobee-red-dark-bg">
+    <div class="container">
+      <div class="row">
+        <div class="col s12 m6 center">
+          <p>© 2017 Copyright</p>
+        </div>
+        <div class="col s12 m6 m3 center">
+          <p><i class="icon-beetobee-logo hide-on-med-and-down"></i>BeeToBee - Butinons le savoir !</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

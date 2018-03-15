@@ -1,0 +1,28 @@
+<main class="training">
+  <section id="news" class="template-section">
+
+    <div class="container" id="formations">
+      <!--TODO Faire un composant formation et itérer ici avec un Ngfor-->
+      <app-training></app-training>
+    </div>
+
+    <div class="container">
+      <div id="add-training" class="fixed-action-btn">
+        <a (click)="openModalAdd()" routerLink="['']" class="btn-floating btn-large waves-effect waves-light beetobee-blue-elec-bg tooltipped" data-position="left"
+           data-tooltip="Ajouter une formation"><i class="material-icons">group_add</i></a>
+      </div>
+      <div id="ask-for-training" class="fixed-action-btn">
+        <a (click)="openModalAsk()" routerLink="['']" class="btn-floating btn-large waves-effect waves-light beetobee-red-dark-bg tooltipped"
+        data-position="left" data-tooltip="Demander une formation"><i class="material-icons">add</i></a>
+      </div>
+
+      <!-- TODO put them in fixed -->
+      <!-- Modal for ask a training-->
+      <app-ask-training></app-ask-training>
+
+      <!-- Modal for add a training-->
+      <app-add-training></app-add-training>
+
+    </div><!--fin de container-->
+  </section>
+</main>

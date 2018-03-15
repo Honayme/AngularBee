@@ -1,0 +1,28 @@
+/* ---- Native ---- */
+
+body {
+  background-color: var(--beetobee-blue-dark);
+  color: var(--beetobee-white);
+}
+
+h2 {
+  font-size: 35px;
+  margin-top: 0;
+}
+
+h3 {
+  font-size: 25px;
+  color: var(--beetobee-red-dark);
+}
+
+a {
+  color: var(--beetobee-blue-electrik);
+}
+
+footer {
+  border-top: 1px solid var(--beetobee-yellow);
+}
+
+/* ---- Id ---- */
+
+/* ---- Class ---- */

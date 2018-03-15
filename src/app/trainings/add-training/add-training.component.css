@@ -1,0 +1,17 @@
+.modal .modal-footer .btn-flat {
+  cursor: pointer;
+  margin: 6px 10px;
+}
+
+.modal-content{
+  background: url('../../../assets/img/utils/bee-flying.png') 92% 21% no-repeat;
+  background-size: 20% 20%;
+}
+
+.input-field i.prefix {
+  color: var(--beetobee-blue-dark);
+}
+
+.input-field i.active, .profile .input-field img.active {
+  color: var(--beetobee-yellow);
+}

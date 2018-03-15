@@ -1,14 +1,62 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html id="beetobee" lang="fr">
 <head>
   <meta charset="utf-8">
-  <title>AngularBeeV2</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>BeeToBee</title>
+  <meta name="description" content="Des formations par des étudiants pour les étudiants">
+  <!--&lt;!&ndash; Import Google Icon Font &ndash;&gt;-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--&lt;!&ndash; Import materialize.css &ndash;&gt;-->
+  <!--<link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css" media="screen" />-->
+  <!--&lt;!&ndash; Import custom css &ndash;&gt;-->
+  <!--<link type="text/css" rel="stylesheet" href="assest/css/register-login.css" />-->
+  <!-- définit l'URL de base à utiliser pour recomposer toutes les URL relatives contenues dans un document-->
   <base href="/">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <!--&lt;!&ndash; Favicons adaptative for iOS, Android and Windows products &ndash;&gt;-->
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/img/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./assets/img/favicons/favicon-16x16.png">
+  <link rel="manifest" href="./assets/img/favicons/manifest.json">
+  <link rel="mask-icon" href="./assets/img/favicons/safari-pinned-tab.svg" color="#48c3f1">
+  <meta name="msapplication-TileColor" content="#48c3f1">
+  <meta name="msapplication-TileImage" content="assest/img/favicons/mstile-144x144.png">
+  <meta name="theme-color" content="#48c3f1">
 </head>
-<body>
+<body class="home">
+  <!--TODO Modal login & register are confuse
+      TODO Search a plugin for a nice scroll bar
+      TODO integrate Navigation menu responsive way
+      TODO Contact Page
+      TODO Profil Page
+      TODO Trainings Page, Find a way to well organize the footer in order to don't overid it when we display the toggle and don't give it a fixed margin like now
+      TODO Certification Page, Find a way to well organize the footer in order to don't overid it when we display the toggle
+      TODO Global, add the active underline on the nav menu
+      TODO Global, check why the anchor when we click on a router link is to close from the footer when we originally scroll down before click, like home > scroll down > click on CGU, see where is the anchor
+      TODO Set UP the node part with model and Controller
+      TODO Make the model and migrations with sequelize in order re-create the signin, priority to the user
+      TODO Check if there is role and how we can assign it to a new user and also if there is role's permission and how can we isolate some part of the app with them.
+      TODO Import the node mailer module and make the contact field works with it-->
+
   <app-root></app-root>
+
+
+  <!--Import jQuery before materialize.js-->
+  <!--<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>-->
+
+  <!--plugin in to make animation when scroll down-->
+  <!--<script src="assest/js/wow.min.js"></script>-->
+
+  <!--plugin in to easely handle cookie-->
+  <!--<script type="text/javascript" src="assest/js/js-cookie.js"></script>-->
+
+  <!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>-->
+  <!--<script type="text/javascript" src="assest/js/script.js"></script>-->
+  <!--<script type="text/javascript" src="assest/js/login-register.js"></script>-->
+  <!--<script type="text/javascript" src="assest/js/global.js"></script>-->
+  <!--<script type="text/javascript" src="assest/js/home.js"></script>-->
 </body>
 </html>

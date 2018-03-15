@@ -1,0 +1,25 @@
+/* ---- Native ---- */
+section {
+  height: 62.5vh;
+  background-size: cover;
+  border-bottom: 5px solid var(--beetobee-red-dark);
+}
+
+/* ---- Class ---- -*/
+
+.training #ask-for-training {
+  bottom: 300px !important;
+}
+
+.training #add-training {
+  bottom: 370px !important;
+}
+
+
+
+
+
+
+
+
+

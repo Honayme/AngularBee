@@ -1,0 +1,146 @@
+/*---------------------------------/
+/              MAIN                 /
+/---------------------------------*/
+main {
+  flex: 1 0 auto;
+  margin-top: 64px;
+}
+
+/* ---- Native ---- */
+
+section {
+  min-height: 100vh;
+  background-size: cover;
+  border-bottom: 5px solid var(--beetobee-red-dark);
+}
+
+/* ---- Class ---- */
+
+.home-section .container {
+  min-height: 100vh;
+}
+
+.home-section button {
+  margin-top: 20px;
+}
+
+/* ---- Id ---- */
+
+#training img, #certifications img {
+  max-width: 100%;
+  height: auto;
+}
+
+#training .card-panel, #certifications .card-panel {
+  background-color: transparent;
+  box-shadow: none;
+  overflow: hidden;
+}
+
+/* news */
+/*TODO The css rules for #news are the same in the homme.component.css, weird to have 2 id, need a refactoring*/
+
+#news {
+  background-image: url('../../assets/img/sections/news.jpg');
+}
+
+#news .title p {
+  font-size: 18px;
+  margin: 30px 0;
+}
+
+#news .btn {
+  margin: 40px 0;
+}
+
+#news i.material-icons {
+  font-size: 5rem;
+  position: relative;
+  top: -60px;
+}
+
+#news .informations .card-ribbon {
+  position: relative;
+  background: url('../../assets/img/utils/ribbon.png') 0 0 no-repeat;
+  background-size: 100% 100%;
+  padding: 24px;
+  max-width: 350px;
+  min-height: 550px;
+  margin: auto;
+  margin-bottom: 40px;
+  transition: all .2s ease-out;
+  will-change: width;
+}
+
+#news h2 {
+  font-size: 28.5px;
+  margin-top: 0;
+}
+
+/* training */
+
+#training {
+  background-image: url('../../assets/img/sections/training.jpg');
+}
+
+/* certifications */
+
+#certifications {
+  background-image: url('../../assets/img/sections/certifications.jpg');
+}
+
+/* tutorials */
+
+#tutorials {
+  background-image: url('../../assets/img/sections/tutorials.jpg');
+}
+
+/* ---- Override Materialize ---- */
+
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating) {
+  will-change: color;
+}
+
+#formations .card .card-action a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating):hover {
+  color: var(--beetobee-blue-electrik);
+}
+
+/* ---- Media Queries ---- */
+
+h1 {
+  font-size: 5vh !important;
+}
+
+
+/* ---- Design ---- */
+
+.hexagon {
+  position: absolute;
+  height: 70px;
+  width: 120px;
+  top: -35px;
+  left: 50%;
+  margin-left: -60px;
+}
+
+.hexagon:before,
+.hexagon:after {
+  content: "";
+  position: absolute;
+  border-left: 60px solid transparent;
+  border-right: 60px solid transparent;
+}
+
+.hexagon:before {
+  bottom: 100%;
+  border-bottom: 35px solid var(--beetobee-red-dark);
+  left: 0;
+}
+
+.hexagon:after {
+  top: 100%;
+  border-top: 35px solid var(--beetobee-red-dark);
+  left: 0;
+}
+
+

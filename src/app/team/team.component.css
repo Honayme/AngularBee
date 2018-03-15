@@ -1,0 +1,63 @@
+
+:root {
+  --yellow: #ffc600;
+  --black: #272727;
+}
+
+/*.albums {*/
+
+  /*background-size: 340px, auto;*/
+  /*min-height: calc(100vh - 100px);*/
+  /*background: white;*/
+  /*letter-spacing: -1px;*/
+/*}*/
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0 0 5px 0;
+}
+
+.albums {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 20px;
+  background-image: url("../../assets/img/team/newImage/topography.svg"), linear-gradient(110deg, #f93d66, #6d47d9);
+  background-size: 340px, auto;
+  min-height: calc(100vh - 100px);
+  letter-spacing: -1px;
+}
+
+.album {
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 10px;
+  align-items: center;
+  color: white;
+}
+
+.album__artwork {
+  width: 100%;
+}
+
+.albums img {
+  justify-self: center;
+  width: 220px;
+  height: 220px;
+
+}
+
+.album__details {
+  align-self: flex-start;
+}
+
+.album__artist {
+  font-size: 20px;
+  color: black;
+}

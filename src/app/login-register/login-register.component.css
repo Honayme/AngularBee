@@ -1,0 +1,397 @@
+/* ---- Login + Register ---- */
+
+.materialContainer {
+  display: none;
+}
+
+.button button.active-check i.materialContainer-check, .button button.active-close i.materialContainer-close {
+  display: inline-block;
+  opacity: 1;
+  transition: opacity .3s ease-out;
+}
+
+
+/* ---- Class ---- */
+
+.materialContainer {
+  max-width: 460px;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  z-index: 998;
+  height: 700px;
+}
+
+.materialContainer .box {
+  position: relative;
+  top: 0;
+  opacity: 1;
+  float: left;
+  padding: 60px 50px 40px 50px;
+  width: 100%;
+  border-radius: 10px;
+  transform: scale(1);
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+  z-index: 5;
+}
+
+.materialContainer .box.back {
+  transform: scale(.95);
+  -webkit-transform: scale(.95);
+  -ms-transform: scale(.95);
+  top: -20px;
+  opacity: .8;
+  z-index: -1;
+}
+
+.materialContainer .box:before {
+  content: "";
+  width: 100%;
+  height: 30px;
+  border-radius: 10px;
+  position: absolute;
+  top: -10px;
+  background: rgba(255, 255, 255, .6);
+  left: 0;
+  transform: scale(.95);
+  -webkit-transform: scale(.95);
+  -ms-transform: scale(.95);
+  z-index: -1;
+}
+
+.materialContainer .title:before {
+  background: var(--beetobee-white);
+}
+
+.materialContainer .title {
+  width: 100%;
+  float: left;
+  line-height: 46px;
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  position: relative;
+}
+
+.materialContainer .overbox .title:before {
+  content: "";
+  width: 5px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: -50px;
+  background: var(--beetobee-purple-dark);
+}
+
+.materialContainer .input, .materialContainer .input label, .materialContainer .input input, .materialContainer .input .spin, .materialContainer .button,
+.materialContainer .button button .button.login button i.fa, .materialContainer .material-button .shape:before, .materialContainer .material-button .shape:after,
+.materialContainer .button.login button {
+  transition: 300ms cubic-bezier(.4, 0, .2, 1);
+  -webkit-transition: 300ms cubic-bezier(.4, 0, .2, 1);
+  -ms-transition: 300ms cubic-bezier(.4, 0, .2, 1);
+}
+
+.materialContainer .material-button, .materialContainer .alt-2, .materialContainer .material-button .shape, .materialContainer .alt-2 .shape, .materialContainer .box {
+  transition: 400ms cubic-bezier(.4, 0, .2, 1);
+  -webkit-transition: 400ms cubic-bezier(.4, 0, .2, 1);
+  -ms-transition: 400ms cubic-bezier(.4, 0, .2, 1);
+}
+
+.materialContainer .input, .materialContainer .input label, .materialContainer .input input, .materialContainer .input .spin, .materialContainer .button, .materialContainer .button button {
+  width: 100%;
+  float: left;
+}
+
+.materialContainer .input, .materialContainer .button {
+  margin-top: 30px;
+  height: 70px;
+}
+
+.materialContainer .input, .materialContainer .input input, .materialContainer .button, .materialContainer .button button {
+  position: relative;
+}
+
+.materialContainer .input input {
+  height: 60px;
+  top: 10px;
+  border: none;
+  background: transparent;
+}
+
+.materialContainer .input input, .materialContainer .input label, .materialContainer .button button {
+  font-size: 24px;
+  color: rgba(0, 0, 0, .3);
+  font-weight: 300;
+}
+
+.materialContainer .input:before,.materialContainer .input .spin {
+  width: 100%;
+  height: 1px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.materialContainer .input:before {
+  content: "";
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 3;
+}
+
+.materialContainer .input .spin {
+  z-index: 4;
+  width: 0;
+}
+
+.materialContainer .overbox .input:before {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.materialContainer .input label {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  z-index: 2;
+  cursor: pointer;
+  line-height: 60px;
+}
+
+.materialContainer .input label.active {
+  color: var(--beetobee-yellow);
+}
+
+.materialContainer .button.login button,.materialContainer .button button {
+  width: 100%;
+  height: 68px;
+  left: 0;
+  background-color: transparent;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  font-weight: 900;
+  font-size: 18px;
+  color: rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.materialContainer .button.login {
+  margin-top: 30px;
+}
+
+.materialContainer .button {
+  margin-top: 20px;
+}
+
+.materialContainer .button button {
+  border: 1px solid transparent;
+  transition: 300ms cubic-bezier(.4, 0, .2, 1);
+  -webkit-transition: 300ms cubic-bezier(.4, 0, .2, 1);
+  -ms-transition: 300ms cubic-bezier(.4, 0, .2, 1);
+}
+
+.button button:hover {
+  border: 1px solid var(--beetobee-white);
+  transition: 300ms cubic-bezier(.4, 0, .2, 1);
+  -webkit-transition: 300ms cubic-bezier(.4, 0, .2, 1);
+  -ms-transition: 300ms cubic-bezier(.4, 0, .2, 1);
+}
+
+.materialContainer .button.login button.active {
+  border: 1px solid transparent;
+}
+
+.materialContainer .button.login button.active span {
+  opacity: 0;
+  transform: scale(0);
+  -webkit-transform: scale(0);
+  -ms-transform: scale(0);
+}
+
+.materialContainer .button.login button.active i.fa {
+  opacity: 1;
+  transform: scale(1) rotate(-0deg);
+  -webkit-transform: scale(1) rotate(-0deg);
+  -ms-transform: scale(1) rotate(-0deg);
+}
+
+.materialContainer .button.login button i.fa {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  line-height: 60px;
+  transform: scale(0) rotate(-45deg);
+  -webkit-transform: scale(0) rotate(-45deg);
+  -ms-transform: scale(0) rotate(-45deg);
+}
+
+.materialContainer .button.login button.active:hover {
+  border: 1px solid transparent;
+}
+
+.materialContainer .button.login button:hover {
+  border-color: var(--beetobee-blue-electrik);
+}
+
+.materialContainer .button.register button {
+  border: 1px solid var(--beetobee-white);
+}
+
+.materialContainer .button.register button:hover {
+  border-color: var(--beetobee-purple-dark);
+}
+
+.materialContainer .button.register button.active {
+  border: 1px solid transparent;
+}
+
+.materialContainer .button {
+  margin: 40px 0;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.materialContainer .button button {
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+}
+
+.materialContainer .pass-forgot {
+  width: 100%;
+  float: left;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.4);
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.materialContainer .pass-forgot:hover {
+  color: var(--beetobee-blue-electrik);
+}
+
+.materialContainer .overbox {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: inherit;
+  border-radius: 10px;
+  padding: 60px 50px 40px 50px;
+}
+
+.materialContainer .overbox .title,.materialContainer .overbox .button,.materialContainer .overbox .input {
+  z-index: 111;
+  position: relative;
+  display: none;
+}
+
+.materialContainer .overbox .title {
+  width: 80%;
+}
+
+.materialContainer .overbox .input {
+  margin-top: 20px;
+}
+
+.materialContainer .overbox .material-button,.materialContainer .overbox .material-button .shape,.materialContainer .overbox .alt-2,.materialContainer .overbox .alt-2 .shape {
+  display: block;
+}
+
+.materialContainer .material-button,.materialContainer .alt-2 {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  position: absolute;
+  top: 40px;
+  right: -35px;
+  cursor: pointer;
+  z-index: 100;
+  transform: translate(0%, 0%);
+  -webkit-transform: translate(0%, 0%);
+  -ms-transform: translate(0%, 0%);
+}
+
+.materialContainer .material-button .shape, .materialContainer .alt-2 .shape {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.materialContainer .alt-2 .shape.active {
+  right: 5%;
+}
+
+.materialContainer .alt-2 .shape.active {
+  right: 9%;
+}
+
+.materialContainer .material-button .shape:before, .materialContainer .alt-2 .shape:before, .materialContainer .material-button .shape:after, .materialContainer .alt-2 .shape:after {
+  content: "";
+  background: var(--beetobee-white);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(360deg);
+  -webkit-transform: translate(-50%, -50%) rotate(360deg);
+  -ms-transform: translate(-50%, -50%) rotate(360deg);
+}
+
+.materialContainer .material-button .shape:before, .materialContainer .alt-2 .shape:before {
+  width: 20px;
+  height: 3px;
+}
+
+.materialContainer .material-button .shape:after, .materialContainer .alt-2 .shape:after {
+  height: 20px;
+  width: 3px;
+}
+
+.materialContainer .material-button.active, .materialContainer .alt-2.active {
+  top: 46%;
+  right: 50%;
+  transform: translate(50%, -50%) rotate(0deg);
+  -webkit-transform: translate(50%, -50%) rotate(0deg);
+  -ms-transform: translate(50%, -50%) rotate(0deg);
+}
+
+.materialContainer .click-effect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  transform: scale(6);
+  will-change: transform;
+}
+
+.materialContainer .materialContainer-beetobee {
+  display: block;
+  text-align: center;
+  margin-top: -30px;
+  margin-bottom: 30px;
+  position: relative;
+  z-index: 999;
+}
+
+.materialContainer .materialContainer-beetobee::before {
+  font-size: 120px;
+}
+
+.materialContainer .materialContainer-check, .materialContainer .materialContainer-close {
+  display: none;
+  line-height: 64px;
+  font-size: 32px;
+}
+
+/* ---- Media Queries ---- */
+
+@media screen and (max-width: 400px){
+  .materialContainer .alt-2 .shape.active {
+    right: 9%;
+  }
+}

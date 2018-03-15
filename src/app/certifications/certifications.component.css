@@ -1,0 +1,34 @@
+/*TODO the footer is 10px taller than the original web site*/
+
+#main {
+  display: flex;
+  width: 100%;
+  min-height: calc(100vh - 354px );
+  flex-direction: column;
+  transition: width .3s ease-out;
+}
+
+/*TODO Find a way to remove this class in the all project except if it's triggerd from certification
+TODO Maybe NgClass*/
+
+.layout-drawer-is-open
+{
+  width: calc(100% - 256px) !important;
+}
+
+.layout-drawer-is-close
+{
+  width: 100% !important;
+}
+
+.container h2 {
+  font-size: 12px;
+}
+
+
+
+/*toggle, il faut qu'une classe soit mise sur le nav et le footer uniquement quand on arrive sur l page certification
+réduire leur largeur de 256px*/
+
+/*https://stackoverflow.com/questions/34645315/how-to-apply-css-class-to-a-component-element-when-its-created-by-router-outlet*/
+/*https://alligator.io/angular/styles-between-components-angular/*/

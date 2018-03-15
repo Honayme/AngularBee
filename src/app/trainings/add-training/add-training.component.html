@@ -1,0 +1,73 @@
+<!-- Modal for add a training-->
+<div id="modal-add-training" class="modal modal-fixed-footer">
+  <div class="modal-content">
+    <h4 class="beetobee-purple-dark-text">Ajouter une formation</h4>
+    <p class="beetobee-red-dark-text">Vous voulez nous ajouter une formation ? Nous sommes ravis de vous annoncer que ce formulaire est
+      là pour ça ! Veuillez remplir ce formulaire afin que nos petites abeilles s'occupent en retour,
+      de créer votre formation et de trouver des participants.</p>
+    <div class="vert-padding"></div>
+    <div class="row">
+      <div class="input-field col s6">
+        <i class="material-icons prefix">assignment</i>
+        <input id="formationTitle" name="formationTitle" type="text" class="validate">
+        <label for="formationTitle">Nom de la formation <span class="beetobee-red-dark-text">*</span></label>
+      </div>
+      <div class="input-field col s6">
+        <i class="material-icons prefix">today</i>
+        <input id="formationDate" name="formationDate" type="text" pattern="(0[1-9]|1[0-9]|2[0-9]|3[01])/(0[1-9]|1[012])/[0-9]{4}"
+               class="validate">
+        <label for="formationDate">Date (jj/mm/aaaa) <span class="beetobee-red-dark-text">*</span></label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <i class="material-icons prefix">timer</i>
+        <input id="formationDuration" name="formationDuration" type="number" class="validate">
+        <label for="formationDuration">Durée (min) <span class="beetobee-red-dark-text">*</span></label>
+      </div>
+      <div class="input-field col s6">
+        <i class="material-icons prefix">access_time</i>
+        <input id="formationTime" name="formationTime" type="text" pattern="([01]?[0-9]|2[0-3]):[0-5][0-9]" class="validate">
+        <label for="formationTime">Heure de début (hh:mm) <span class="beetobee-red-dark-text">*</span></label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <i class="material-icons prefix">event_seat</i>
+        <input id="formationSeats" name="formationSeats" type="number" class="validate">
+        <label for="formationSeats">Places disponibles <span class="beetobee-red-dark-text">*</span></label>
+      </div>
+      <div class="input-field col s6">
+        <i class="material-icons prefix">turned_in</i>
+        <select id="formationTheme">
+          <option value="" disabled selected>Choisissez un thème</option>
+          <option value="2">Informatique</option>
+          <option value="3">Management</option>
+          <option value="4">Design</option>
+        </select>
+        <label for="formationTheme">Thématique <span class="beetobee-red-dark-text">*</span></label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <i class="material-icons prefix">location_on</i>
+        <input id="formationLocation" name="formationLocation" type="text" class="validate">
+        <label for="formationLocation">Lieu <span class="beetobee-red-dark-text">*</span></label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <i class="material-icons prefix">comment</i>
+        <textarea id="formationDescription" class="materialize-textarea"></textarea>
+        <label for="formationDescription">Description <span class="tooltipped" data-position="top" data-tooltip="Soyez diligent comme une abeille !">*</span></label>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="modal-action modal-close waves-effect beetobee-red-dark-bg btn-flat beetobee-white-text">Annuler</button>
+    <button id="addFormation" class="modal-action waves-effect beetobee-blue-dark-bg btn-flat beetobee-white-text">Envoyer</button>
+  </div>
+
+  <!-- Modal Structure -->
+
+</div>
