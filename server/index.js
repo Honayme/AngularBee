@@ -1,10 +1,11 @@
 'use strict';
 //TODO It's like this one is for the root of my server folder, so i'll just need to call create and start function in the server.js in da root of ma pwoject ratafarie
 const //Dependencies
-      express = require('express'),
-      path = require('path'),
-      http = require('http'),
-      bodyParser = require('body-parser');
+      express     = require('express'),
+      path        = require('path'),
+      http        = require('http'),
+      bodyParser  = require('body-parser'),
+      mysql       = require('mysql');
 
 module.exports = () => {
     let server = express(),
@@ -33,6 +34,21 @@ module.exports = () => {
 
         //Set up routes by deferring that responsibility to the index.js within the routes folder.
         routes.init(server);
+
+        let connection = mysql.createConnection({
+          host     :  config.hostname,
+          user     :  config.user,
+          password :  config.password
+        });
+
+        connection.connect( (error) => {
+          if(error){
+            console.log('Error Connexion to database');
+          }else{
+            console.log('Connected to Database');
+          }
+        });
+
     };
 
     start = () => {

@@ -3,7 +3,10 @@
 let localConfig = {
   hostname: 'localhost',
   port: 3000,
-  // viewDir: './app/views'
+  host: '',
+  user: 'root',
+  password: '',
+  database: 'btb_dev'
 };
 
 module.exports = localConfig;
