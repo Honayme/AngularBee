@@ -126,3 +126,23 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 *	**@class** : Marque une variable ou une fonction en tant que classe. 
 *	**@constructs** : Enregistre qu'une méthode met en place des données d'instances. Si une telle méthode existe, la classe y est document ici.  
 ---
+
+* **btb** = « cd /home/BeetoBee/ » (Répertoire où se trouve l’application)
+* **restart** = « forever stopall && btb && forever start Web/bin/www » (redémarrer l’application)
+*	**startall** = « btb && forever start Web/bin/www » (se placer dans le repertoire de l’application et démarrer l’application)
+*	**update** = « forever stop all && btb && git pull && startall && cd .. && myadmin && btb » (mettre à jour l’application)
+*	**myadmin** = « forever start /usr/lib/node_modules/express-admin/app.js /home/espress-admin/config »
+*	**testWS** = « update && forever stopall && myadmin && node Web/bin/www
+*	**stopapp** = « forever stopall »
+
+---
+*	**g** =  « git »
+*	**gl** = « git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit » (Affichage git log stylisé et donc bien plus clair » 
+*	**dracarys** = « git reset –hard && git clean -df » (revient au dernière modification depuis le dernier commit )
+*	**ll** = « ls -lsha » (liste détaillée des fichiers)
+*	**..** = « cd  ../ » 
+*	**…** = « cd ../../ »
+*	**….** = « cd ../../../ »
+*	**…..** = « cd ../../../../ »
+
+
