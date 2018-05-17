@@ -1,41 +1,92 @@
 'use strict';
 
-const
-  users = [{
-    id: 1,
-    surname: 'thomas',
-    name: 'mirabile',
-    ability: [
-      'dev',
-      'lead'
-    ]
-  }];
+//TODO http://docs.sequelizejs.com/manual/tutorial/querying.html#operators deprecated String
+//TODO ES6 import : import bcrypt from 'bcrypt';
+const bcrypt          = require('bcrypt'),
+      jwtHelper       = require('../../helpers/jwtHelper'),
+      models          = require('../../database/models'),
+      asyncLib        = require('async'),
+      EMAIL_REGEX     = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+      PASSWORD_REGEX  = /^(?=.*\d).{4,8}$/;
 
-function signin(){
+let register,
+    login,
+    getUserProfile,
+    updateUserProfile;
 
-}
+register = (req, res) => {
 
-function getUsers(req, res) {
-  console.log("Get Users");
-  res.json(users);
-}
+  let username   = req.body.username,
+    email      = req.body.email,
+    password   = req.body.password;
 
-function getUsersWithId(req, res) {
-  let id = req.params.id || 0,
-    result = {};
-
-  for (let i = 0; i < users.length; i++) {
-    if (users[i].id == id) {
-      result = users[i];
-      break;
-    }
+  if (email == null || username == null || password == null) {
+    return res.status(400).json({'error': 'missing parameters'})
   }
 
-  res.json(result);
-}
+  if (username.length >= 15 || username.length <= 4) {
+    return res.status(400).json({'error': 'Username must contain min 4 and max 15 letters'})
+  }
 
-module.exports = {
-  getUsers: getUsers,
-  getUsersWithId: getUsersWithId,
-  signin: signin,
+  if (!EMAIL_REGEX.test(email)) {
+    return res.status(400).json({'error': 'Email is not valid'})
+  }
+
+  if (!PASSWORD_REGEX.test(password)) {
+    return res.status(400).json({'error': 'Password must be between 4 and 8 digits long and include at least one numeric digit. '})
+  }
+
+
+  asyncLib.waterfall([
+    //1st function
+    function (done) {
+      models.User.findOne({
+        attributes: ['email'],
+        where: {email: email}
+      })
+        .then(function (userFound) {
+          done(null, userFound);
+        })
+        .catch(function (err) {
+          console.log("1st function :" + err);
+          return res.status(500).json({'error': 'unable to verify user'});
+        });
+    },
+    //2nd function
+    function (userFound, done) {
+      if (!userFound) {
+        bcrypt.hash(password, 5, function (err, bcryptedPassword) {
+          done(null, userFound, bcryptedPassword);
+        });
+      } else {
+        return res.status(409).json({'error': 'user already exist'});
+      }
+    },
+    //3rd function
+    function (userFound, bcryptedPassword, done) {
+      models.User.create({
+        email: email,
+        username: username,
+        password: bcryptedPassword
+      })
+        .then(function (newUser) {
+          done(newUser);
+          console.log("New user has been created");
+        })
+        .catch(function (err) {
+          console.log("3rd function " + err);
+          return res.status(500).json({'error': 'cannot add user'});
+        });
+    }
+  ], function (newUser) {
+    if (newUser) {
+      return res.status(201).json({
+        'userId': newUser.id,
+        'bcryptedPassword': newUser.password
+      });
+    } else {
+      console.log("error when adding a user" + err);
+      return res.status(500).json({'error': 'cannot add user'});
+    }
+  });
 };
