@@ -93,3 +93,11 @@ register = (req, res) => {
     }
   });
 };
+
+
+module.exports = {
+  register,
+  // login,
+  // getUserProfile,
+  // updateUserProfile
+};
