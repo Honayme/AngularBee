@@ -3,8 +3,8 @@
 //TODO http://docs.sequelizejs.com/manual/tutorial/querying.html#operators deprecated String
 //TODO ES6 import : import bcrypt from 'bcrypt';
 const bcrypt          = require('bcrypt'),
-      jwtHelper       = require('../../helpers/jwtHelper'),
-      models          = require('../../database/models'),
+      jwtUtils       = require('../../utils/jwtHelper'),
+      models          = require('../../models/models'),
       asyncLib        = require('async'),
       EMAIL_REGEX     = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
       PASSWORD_REGEX  = /^(?=.*\d).{4,8}$/;
@@ -16,15 +16,16 @@ let register,
 
 register = (req, res) => {
 
-  let username   = req.body.username,
-    email      = req.body.email,
-    password   = req.body.password;
+  let firstname   = req.body.firstname,
+      lastname   = req.body.lastname,
+      email      = req.body.email,
+      password   = req.body.password;
 
-  if (email == null || username == null || password == null) {
+  if (email == null || firstname == null || password == null || lastname) {
     return res.status(400).json({'error': 'missing parameters'})
   }
 
-  if (username.length >= 15 || username.length <= 4) {
+  if (firstname.length >= 15 || firstname.length <= 4) {
     return res.status(400).json({'error': 'Username must contain min 4 and max 15 letters'})
   }
 
@@ -66,8 +67,10 @@ register = (req, res) => {
     function (userFound, bcryptedPassword, done) {
       models.User.create({
         email: email,
-        username: username,
-        password: bcryptedPassword
+        firstname: firstname,
+        lastname: lastname,
+        password: bcryptedPassword,
+        birthdate : ''
       })
         .then(function (newUser) {
           done(newUser);
