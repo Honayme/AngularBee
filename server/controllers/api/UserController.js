@@ -11,8 +11,12 @@ const
     ]
   }];
 
+function signin(){
+
+}
 
 function getUsers(req, res) {
+  console.log("Get Users");
   res.json(users);
 }
 
@@ -32,5 +36,6 @@ function getUsersWithId(req, res) {
 
 module.exports = {
   getUsers: getUsers,
-  getUsersWithId: getUsersWithId
+  getUsersWithId: getUsersWithId,
+  signin: signin,
 };
