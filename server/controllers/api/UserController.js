@@ -21,7 +21,7 @@ register = (req, res) => {
       email      = req.body.email,
       password   = req.body.password;
 
-  if (email == null || firstname == null || password == null || lastname) {
+  if (email == null || firstname == null || password == null || lastname == null) {
     return res.status(400).json({'error': 'missing parameters'})
   }
 
@@ -70,7 +70,6 @@ register = (req, res) => {
         firstname: firstname,
         lastname: lastname,
         password: bcryptedPassword,
-        birthdate : ''
       })
         .then(function (newUser) {
           done(newUser);
@@ -94,10 +93,63 @@ register = (req, res) => {
   });
 };
 
+login = (req, res) => {
+  let email = req.body.email,
+    password = req.body.password;
+
+  if (email == null || password == null) {
+    return res.status(400).json({'error': 'missing paramaters'})
+  }
+
+  asyncLib.waterfall([
+      //1st function
+      function (done) {
+        models.User.findOne({
+          where: {email: email}
+        })
+          .then(function (userFound) {
+            done(null, userFound);
+            console.log("Done of the first function" + done);
+          })
+          .catch(function (err) {
+            console.log("1st function" + err);
+            return res.status(500).json({'error': 'unable to verify user'});
+          });
+      },
+      //2nd function
+      function (userFound, done) {
+        if (userFound) {
+          bcrypt.compare(password, userFound.password, function (errBycrypt, resBycrypt) {
+            done(null, userFound, resBycrypt);
+          });
+        } else {
+          return res.status(404).json({'error': 'user not exist in DB'});
+        }
+      },
+      //3rd function
+      function (userFound, resBycrypt, done) {
+        if (resBycrypt) {
+          done(userFound);
+        } else {
+          return res.status(403).json({'error': 'invalid password'});
+        }
+      }
+    ], function (userFound) {
+      if (userFound) {
+        return res.status(201).json({
+          'userId': userFound.id,
+          'token': jwtHelper.generateUserToken(userFound)
+        });
+      } else {
+        return res.status(500).json({'error': 'cannot log on user'});
+      }
+    }
+  )
+};
 
 module.exports = {
   register,
-  // login,
+  login,
   // getUserProfile,
   // updateUserProfile
 };
