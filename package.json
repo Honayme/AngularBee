@@ -24,6 +24,7 @@
     "@angular/router": "^5.2.9",
     "angular2-materialize": "^15.1.10",
     "async": "^2.6.0",
+    "bcrypt": "^2.0.1",
     "body-parser": "^1.18.2",
     "core-js": "^2.4.1",
     "express": "^4.16.3",
