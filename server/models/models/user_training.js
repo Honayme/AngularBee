@@ -5,7 +5,24 @@ module.exports = (sequelize, DataTypes) => {
     training_id: DataTypes.INTEGER
   }, {});
   user_training.associate = function(models) {
-    // associations can be defined here
+
+    models.Training.belongsToMany(models.Training, {
+      through: models.user_training,
+      foreignKey : 'trainingId',
+      otherKey: 'userId'});
+
+    models.User.belongsToMany(models.User, {
+      through: models.user_training,
+      foreignKey : 'trainingId',
+      otherKey: 'userId'});
+
+    models.User.belongsTo(models.User, {
+      foreignKey : 'userId',
+      as: 'user'});
+
+    models.Training.belongsTo(models.Training, {
+      foreignKey : 'trainingId',
+      as: 'training'});
   };
   return user_training;
 };
