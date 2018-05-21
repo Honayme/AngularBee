@@ -25,7 +25,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       birthdate: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.DATE
       },
       profilePicture: {

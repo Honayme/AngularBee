@@ -3,7 +3,7 @@
 //TODO http://docs.sequelizejs.com/manual/tutorial/querying.html#operators deprecated String
 //TODO ES6 import : import bcrypt from 'bcrypt';
 const bcrypt          = require('bcrypt'),
-      jwtUtils       = require('../../utils/jwtHelper'),
+      jwtUtils        = require('../../utils/jwtHelper'),
       models          = require('../../models/models'),
       asyncLib        = require('async'),
       EMAIL_REGEX     = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
@@ -95,7 +95,9 @@ register = (req, res) => {
 
 login = (req, res) => {
   let email = req.body.email,
-    password = req.body.password;
+      password = req.body.password;
+
+  console.log(password);
 
   if (email == null || password == null) {
     return res.status(400).json({'error': 'missing paramaters'})
@@ -109,10 +111,9 @@ login = (req, res) => {
         })
           .then(function (userFound) {
             done(null, userFound);
-            console.log("Done of the first function" + done);
           })
           .catch(function (err) {
-            console.log("1st function" + err);
+            console.log("1st function " + err);
             return res.status(500).json({'error': 'unable to verify user'});
           });
       },
@@ -131,6 +132,7 @@ login = (req, res) => {
         if (resBycrypt) {
           done(userFound);
         } else {
+          console.log(resBycrypt);
           return res.status(403).json({'error': 'invalid password'});
         }
       }
@@ -138,7 +140,7 @@ login = (req, res) => {
       if (userFound) {
         return res.status(201).json({
           'userId': userFound.id,
-          'token': jwtHelper.generateUserToken(userFound)
+          'token': jwtUtils.generateUserToken(userFound)
         });
       } else {
         return res.status(500).json({'error': 'cannot log on user'});
