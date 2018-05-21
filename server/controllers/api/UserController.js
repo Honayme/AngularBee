@@ -174,11 +174,21 @@ getUserProfile = (req, res) =>{
 
 updateUserProfile = (req, res) => {
   // Getting auth header
-  let headerAuth  = req.headers['authorization'];
-  let userId      = jwtUtils.getUserId(headerAuth);
+  let headerAuth  = req.headers['authorization'],
+      userId      = jwtUtils.getUserId(headerAuth);
 
   // Params
-  let email = req.body.email;
+  let email = req.body.email,
+   firstname = req.body.firstname,
+   lastname = req.body.lastname,
+   birthdate = req.body.birthdate,
+   profilePicture = req.body.profilePicture,
+   country = req.body.country,
+   city = req.body.city;
+
+  if (!EMAIL_REGEX.test(email)) {
+    return res.status(400).json({'error': 'Email is not valid'})
+  }
 
   asyncLib.waterfall([
     function(done) {
@@ -189,13 +199,20 @@ updateUserProfile = (req, res) => {
         done(null, userFound);
       })
         .catch(function(err) {
+          console.log(err);
           return res.status(500).json({ 'error': 'unable to verify user' });
         });
     },
     function(userFound, done) {
       if(userFound) {
         userFound.update({
-          email: (email ? email : userFound.email)
+          email: (email ? email : userFound.email),
+          firstname: (firstname ? firstname : userFound.firstname),
+          lastname: (lastname ? lastname : userFound.lastname),
+          birthdate: (birthdate ? birthdate : userFound.birthdate),
+          profilePicture: (profilePicture ? profilePicture : userFound.profilePicture),
+          country: (country ? country : userFound.country),
+          city: (city ? city : userFound.city)
         }).then(function() {
           done(userFound);
         }).catch(function(err) {
