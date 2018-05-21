@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {HomeComponent} from "./home/home.component";
-import {TrainingsComponent} from "./trainings/trainings.component";
-import {CguComponent} from "./cgu/cgu.component";
-import {TeamComponent} from "./team/team.component";
-import {ContactComponent} from "./contact/contact.component";
-import {CertificationsComponent} from "./certifications/certifications.component";
 import {ProfileComponent} from "./profile/profile.component";
+import {TrainingsComponent} from "./trainings/pages/trainings-page/trainings.component";
+import {CguComponent} from "./core/cgu/cgu.component";
+import {TeamComponent} from "./core/team/team.component";
+import {ContactComponent} from "./core/contact/contact.component";
+import {CertificationsComponent} from "./certifications/pages/certifications-page/certifications.component";
+import {HomeComponent} from "./core/home/home.component";
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
