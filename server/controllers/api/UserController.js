@@ -149,9 +149,32 @@ login = (req, res) => {
   )
 };
 
+getUserProfile = (req, res) =>{
+  // Getting auth header
+  let headerAuth  = req.headers['authorization'];
+  let userId      = jwtUtils.getUserId(headerAuth);
+
+  if (userId < 0)
+    return res.status(400).json({ 'error': 'wrong token' });
+
+  models.User.findOne({
+    // attributes: [ 'id', 'email', 'username'],
+    where: { id: userId }
+  }).then(function(user) {
+    if (user) {
+      res.status(201).json(user);
+    } else {
+      res.status(404).json({ 'error': 'user not found' });
+    }
+  }).catch(function(err) {
+    console.log(err);
+    res.status(500).json({ 'error': 'cannot fetch user' });
+  });
+};
+
 module.exports = {
   register,
   login,
-  // getUserProfile,
+  getUserProfile,
   // updateUserProfile
 };
