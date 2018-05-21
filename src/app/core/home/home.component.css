@@ -41,7 +41,7 @@ section {
 /*TODO The css rules for #news are the same in the homme.component.css, weird to have 2 id, need a refactoring*/
 
 #news {
-  background-image: url('../../assets/img/sections/news.jpg');
+  background-image: url('../../../assets/img/sections/news.jpg');
 }
 
 #news .title p {
@@ -61,7 +61,7 @@ section {
 
 #news .informations .card-ribbon {
   position: relative;
-  background: url('../../assets/img/utils/ribbon.png') 0 0 no-repeat;
+  background: url('../../../assets/img/utils/ribbon.png') 0 0 no-repeat;
   background-size: 100% 100%;
   padding: 24px;
   max-width: 350px;
@@ -80,19 +80,19 @@ section {
 /* training */
 
 #training {
-  background-image: url('../../assets/img/sections/training.jpg');
+  background-image: url('../../../assets/img/sections/training.jpg');
 }
 
 /* certifications */
 
 #certifications {
-  background-image: url('../../assets/img/sections/certifications.jpg');
+  background-image: url('../../../assets/img/sections/certifications.jpg');
 }
 
 /* tutorials */
 
 #tutorials {
-  background-image: url('../../assets/img/sections/tutorials.jpg');
+  background-image: url('../../../assets/img/sections/tutorials.jpg');
 }
 
 /* ---- Override Materialize ---- */

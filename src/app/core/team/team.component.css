@@ -25,7 +25,7 @@ h6 {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-gap: 20px;
-  background-image: url("../../assets/img/team/newImage/topography.svg"), linear-gradient(110deg, #f93d66, #6d47d9);
+  background-image: url("../../../assets/img/team/newImage/topography.svg"), linear-gradient(110deg, #f93d66, #6d47d9);
   background-size: 340px, auto;
   min-height: calc(100vh - 100px);
   letter-spacing: -1px;
