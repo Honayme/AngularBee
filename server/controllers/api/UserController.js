@@ -158,7 +158,7 @@ getUserProfile = (req, res) =>{
     return res.status(400).json({ 'error': 'wrong token' });
 
   models.User.findOne({
-    // attributes: [ 'id', 'email', 'username'],
+    attributes: [ 'id', 'email', 'firstname', 'lastname', 'birthdate', 'profilePicture', 'country', 'city', 'level'],
     where: { id: userId }
   }).then(function(user) {
     if (user) {
@@ -172,9 +172,53 @@ getUserProfile = (req, res) =>{
   });
 };
 
+updateUserProfile = (req, res) => {
+  // Getting auth header
+  let headerAuth  = req.headers['authorization'];
+  let userId      = jwtUtils.getUserId(headerAuth);
+
+  // Params
+  let email = req.body.email;
+
+  asyncLib.waterfall([
+    function(done) {
+      models.User.findOne({
+        attributes: ['id', 'email'],
+        where: { id: userId }
+      }).then(function (userFound) {
+        done(null, userFound);
+      })
+        .catch(function(err) {
+          return res.status(500).json({ 'error': 'unable to verify user' });
+        });
+    },
+    function(userFound, done) {
+      if(userFound) {
+        userFound.update({
+          email: (email ? email : userFound.email)
+        }).then(function() {
+          done(userFound);
+        }).catch(function(err) {
+          console.log("2nd function during the update " + err);
+          res.status(500).json({ 'error': 'cannot update user' });
+        });
+      } else {
+        res.status(404).json({ 'error': 'user not found' });
+      }
+    },
+  ], function(userFound) {
+    if (userFound) {
+      return res.status(201).json(userFound);
+    } else {
+      return res.status(500).json({ 'error': 'cannot update user profile' });
+    }
+  });
+
+};
+
 module.exports = {
   register,
   login,
   getUserProfile,
-  // updateUserProfile
+  updateUserProfile
 };
