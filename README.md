@@ -68,7 +68,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
     │  │   │   
     │  │   └── api
     │  │       ├─ CertificationsController.js
-    │  │       ├─ UserController.js
+    │  │       ├─ userController.js
     │  │       ├─ TrainingController.js
     │  │       └── ...                   
     │  ├── models ------------------------------------------- #Modèle de l'API
