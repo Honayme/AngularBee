@@ -1,14 +1,14 @@
 'use strict';
 
-const bcrypt     = require('bcrypt'),
+const
       jwtUtils   = require('../../utils/jwtHelper'),
       models     = require('../../models/models'),
       asyncLib   = require('async');
 
 let createTraining,
     getAllTraining,
-    getDetailTraining;
-    // getUserTraining,
+    getDetailTraining,
+    getUserTraining;
     // updateTraining,
     // deleteTraining;
 createTraining = (req, res) => {
@@ -84,11 +84,11 @@ getAllTraining = (req, res) =>{
       model: models.User,
       attributes: [ 'firstname' ]
     }]
-  }).then(function(advert) {
-    if (advert) {
-      res.status(200).json(advert);
+  }).then(function(training) {
+    if (training) {
+      res.status(200).json(training);
     } else {
-      res.status(404).json({ "error": "no advert found" });
+      res.status(404).json({ "error": "no training found" });
     }
   }).catch(function(err) {
     console.log(err);
@@ -103,7 +103,7 @@ getDetailTraining= (req, res) => {
   let order   = req.query.order;
 
 
-  models.Advert.findAll({
+  models.Training.findAll({
     order:      [(order != null) ? order.split(':') : ['name', 'ASC']],
     attributes: (fields !== '*' && fields != null) ? fields.split(',') : null,
     limit:      (!isNaN(limit)) ? limit : null,
@@ -112,11 +112,11 @@ getDetailTraining= (req, res) => {
       model: models.User,
       attributes: [ 'firstname' ]
     }]
-  }).then(function(advert) {
-    if (advert) {
-      res.status(200).json(advert);
+  }).then(function(training) {
+    if (training) {
+      res.status(200).json(training);
     } else {
-      res.status(404).json({ "error": "no advert found" });
+      res.status(404).json({ "error": "no Training found" });
     }
   }).catch(function(err) {
     console.log(err);
@@ -125,8 +125,55 @@ getDetailTraining= (req, res) => {
 };
 
 
+getUserTraining = (req, res) => {
+  let headerAuth = req.headers['authorization'];
+  let userId     = jwtUtils.getUserId(headerAuth);
+
+  let fields  = req.query.fields;
+
+  asyncLib.waterfall([
+    function(done) {
+      models.User.findOne({
+        where: { id: userId }
+      })
+        .then(function(userFound) {
+          done(null, userFound);
+        })
+        .catch(function(err) {
+          console.log("1st function when try to find user "+err);
+          return res.status(500).json({ 'error': 'unable to verify user' });
+        });
+    },
+    function(userFound, done) {
+      if (userFound) {
+        models.Training.findAll({
+          attributes: (fields !== '*' && fields != null) ? fields.split(',') : null,
+          where: {userId: userId},
+          include: [{
+            model: models.User,
+            attributes: ['firstname']
+          }]
+        })
+          .then(function (userTrainingFound) {
+            done(userTrainingFound);
+          });
+      } else {
+        res.status(404).json({'error': 'user not found'});
+      }
+    }
+  ], function(userTrainingFound) {
+    if (userTrainingFound) {
+      return res.status(201).json(userTrainingFound);
+    } else {
+      return res.status(500).json({ 'error': 'cannot find the required Training' });
+    }
+  });
+};
+
+
 module.exports = {
   createTraining,
   getAllTraining,
-  getDetailTraining
+  getDetailTraining,
+  getUserTraining
 };

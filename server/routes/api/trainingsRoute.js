@@ -11,6 +11,7 @@ let router = express.Router();
 router.post('/create', trainingController.createTraining);
 router.get('/all', trainingController.getAllTraining);
 router.get('/detail', trainingController.getDetailTraining);
+router.get('/trainingUser', trainingController.getUserTraining);
 // router.put('/profile', userController.updateUserProfile);
 
 
