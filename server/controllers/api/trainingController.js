@@ -6,8 +6,8 @@ const bcrypt     = require('bcrypt'),
       asyncLib   = require('async');
 
 let createTraining,
-    getAllTraining;
-    // getDetailTraining,
+    getAllTraining,
+    getDetailTraining;
     // getUserTraining,
     // updateTraining,
     // deleteTraining;
@@ -96,8 +96,37 @@ getAllTraining = (req, res) =>{
   });
 };
 
+getDetailTraining= (req, res) => {
+  let fields  = req.query.fields;
+  let limit   = parseInt(req.query.limit);
+  let offset  = parseInt(req.query.offset);
+  let order   = req.query.order;
+
+
+  models.Advert.findAll({
+    order:      [(order != null) ? order.split(':') : ['name', 'ASC']],
+    attributes: (fields !== '*' && fields != null) ? fields.split(',') : null,
+    limit:      (!isNaN(limit)) ? limit : null,
+    offset:     (!isNaN(offset)) ? offset : null,
+    include: [{
+      model: models.User,
+      attributes: [ 'firstname' ]
+    }]
+  }).then(function(advert) {
+    if (advert) {
+      res.status(200).json(advert);
+    } else {
+      res.status(404).json({ "error": "no advert found" });
+    }
+  }).catch(function(err) {
+    console.log(err);
+    res.status(500).json({ "error": "invalid fields" });
+  });
+};
+
 
 module.exports = {
   createTraining,
-  getAllTraining
+  getAllTraining,
+  getDetailTraining
 };
