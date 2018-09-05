@@ -1,12 +1,11 @@
 'use strict';
 
 let localConfig = {
-  hostname: 'localhost',
-  port: 3000,
-  host: '',
+  hostname: process.env.DB_HOST,
+  port: process.env.PORT,
   user: 'root',
-  password: '',
-  database: 'btb_dev'
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DATABASE
 };
 
 module.exports = localConfig;
