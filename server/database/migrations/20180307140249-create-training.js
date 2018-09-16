@@ -41,6 +41,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
+      totalSeat: {
+        allowNull: false,
+        type: Sequelize.INTEGER
+      },
       availableSeat: {
         allowNull: false,
         type: Sequelize.INTEGER

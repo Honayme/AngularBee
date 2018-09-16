@@ -1,7 +1,7 @@
 
 const bCrypt = require('bcrypt-nodejs'),
       passport = require('passport'),
-      user = require('../../models/models/user');
+      user = require('../../database/models/user');
 
 
 

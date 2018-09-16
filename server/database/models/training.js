@@ -7,11 +7,12 @@ module.exports = (sequelize, DataTypes) => {
     date: DataTypes.DATE,
     hour: DataTypes.TIME,
     place: DataTypes.STRING,
+    totalSeat: DataTypes.INTEGER,
     availableSeat: DataTypes.INTEGER
   }, {});
   Training.associate = function(models) {
     // associations can be defined here
-    models.Training.belongsTo(models.User, {
+    Training.belongsTo(models.User, {
       foreignKey: {
         allowNull: false
       }

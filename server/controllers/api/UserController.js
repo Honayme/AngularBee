@@ -3,8 +3,8 @@
 //TODO http://docs.sequelizejs.com/manual/tutorial/querying.html#operators deprecated String
 //TODO ES6 import : import bcrypt from 'bcrypt';
 const bcrypt          = require('bcrypt'),
-      jwtUtils        = require('../../utils/jwtHelper'),
-      models          = require('../../models/models'),
+      jwtUtils        = require('../../helpers/jwtHelper'),
+      models          = require('../../database/models'),
       asyncLib        = require('async'),
       EMAIL_REGEX     = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
       PASSWORD_REGEX  = /^(?=.*\d).{4,8}$/;
@@ -17,9 +17,9 @@ let register,
 register = (req, res) => {
 
   let firstname   = req.body.firstname,
-      lastname   = req.body.lastname,
-      email      = req.body.email,
-      password   = req.body.password;
+      lastname    = req.body.lastname,
+      email       = req.body.email,
+      password    = req.body.password;
 
   if (email == null || firstname == null || password == null || lastname == null) {
     return res.status(400).json({'error': 'missing parameters'})
