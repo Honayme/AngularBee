@@ -3,7 +3,9 @@
 const
   jwtHelper   = require('../../helpers/jwtHelper'),
   models     = require('../../database/models'),
-  asyncLib   = require('async');
+  asyncLib   = require('async'),
+  unsubscribe = 0,
+  subscribe    = 1;
 
 let subscribeTraining,
     unsubscribeTraining;
@@ -21,7 +23,7 @@ subscribeTraining = (req, res) =>{
   if(trainingId <=0){
     return res.status(400).json({'error': 'invalid parameters'});
   }
-
+//TODO if availiable sit are less or equal to 0 don't retire 1 sit
   asyncLib.waterfall([
     function(done) {
       models.Training.findOne({
@@ -72,16 +74,27 @@ subscribeTraining = (req, res) =>{
     },
     function(trainingFound, userFound, userAlreadyParticipate, done){
       if(!userAlreadyParticipate){
-        trainingFound.addUser(userFound)
-          .then(function (userAlreadyParticipate){
-            done(null, trainingFound, userFound, userAlreadyParticipate);
+        trainingFound.addUser(userFound, { isSubscribe: subscribe })
+          .then(function (alreadyParticipate){
+            done(null, trainingFound, userFound);
           })
           .catch(function (err){
             console.log(err);
             return res.status(500).json({ 'error' : 'unable to set user participation'});
           })
-      }else{
-        res.status(409).json({'error': 'the user has already subscribe to the training'})
+      }else {
+        if (userAlreadyParticipate.isSubscribe === unsubscribe || userAlreadyParticipate.isSubscribe === null) {
+          userAlreadyParticipate.update({
+            isSubscribe: subscribe,
+          }).then(function() {
+            done(null, trainingFound, userFound);
+          }).catch(function(err) {
+            console.log(err);
+            res.status(500).json({ 'error': 'cannot update user reaction' });
+          });
+        } else {
+          res.status(409).json({ 'error': 'user already participate ' });
+        }
       }
     },
     function(trainingFound, userFound, done){
@@ -168,7 +181,7 @@ unsubscribeTraining = (req, res) => {
       function(trainingFound, userFound, userAlreadyParticipate, done){
         if(userAlreadyParticipate){
           userAlreadyParticipate.destroy()
-            .then(function (){
+            .then(function (doNotParticipate){
               done(null, trainingFound, userFound);
             })
             .catch(function (err){
@@ -176,7 +189,7 @@ unsubscribeTraining = (req, res) => {
               return res.status(500).json({ 'error' : 'cannot remove user participation'});
             })
         }else{
-          res.status(409).json({'error': 'the user has already subscribe to the training'})
+          res.status(409).json({'error': 'the user has already unsubscribe to the training'})
         }
       },
       function(trainingFound, userFound, done){

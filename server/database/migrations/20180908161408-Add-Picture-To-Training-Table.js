@@ -12,3 +12,5 @@ module.exports = {
       return queryInterface.removeColumn('picture');
   }
 };
+
+//TODO Make a one time migration for training table

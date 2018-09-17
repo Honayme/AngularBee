@@ -15,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
           key: 'id'
         }
       },
+    isSubscribe: DataTypes.INTEGER
   }, {});
   Participate.associate = function(models) {
     // associations can be defined here

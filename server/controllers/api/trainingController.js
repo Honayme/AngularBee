@@ -17,6 +17,7 @@ createTraining = (req, res) => {
   let headerAuth  = req.headers['authorization'];
   let userId      = jwtHelper.getUserId(headerAuth);
 
+  //TODO Get the picture
   //Param
   let name          = req.body.name,
       description   = req.body.description,
@@ -24,8 +25,8 @@ createTraining = (req, res) => {
       date          = req.body.date,
       hour          = req.body.hour,
       place         = req.body.place,
-      totalSeat     = req.body.totalSeat,
-      availableSeat = req.body.availableSeat;
+      totalSeat     = req.body.totalSeat;
+
 
   if (name == null || description == null || duration == null || date == null || hour == null || place == null || totalSeat == null ) {
     return res.status(400).json({'error': 'missing parameters'})
@@ -69,7 +70,7 @@ createTraining = (req, res) => {
           date          : date,
           hour          : hour,
           place         : place,
-          availableSeat : availableSeat,
+          availableSeat : totalSeat,
           totalSeat     : totalSeat,
           UserId        : userFound.id
         })
@@ -198,14 +199,14 @@ updateTraining = (req, res) => {
   let userId      = jwtHelper.getUserId(headerAuth);
 
   // Params
-  let id = req.body.id;
-  let name = req.body.name;
-  let description = req.body.description;
-  let duration = req.body.duration;
-  let date = req.body.date;
-  let hour = req.body.hour;
-  let place = req.body.place;
-  let totalSeat = req.body.totalSeat;
+  let id = req.body.id,
+      name = req.body.name,
+      description = req.body.description,
+      duration = req.body.duration,
+      date = req.body.date,
+      hour = req.body.hour,
+      place = req.body.place,
+      totalSeat = req.body.totalSeat;
   // let availableSeat = req.body.availableSeat;
 
   if (name == null || description == null || duration == null || date == null || hour == null || place == null || totalSeat == null ) {
@@ -229,6 +230,7 @@ updateTraining = (req, res) => {
   }
 
   //TODO Can't fix date before now
+  //TODO What if some people subscribe to the training before you update it
 
   asyncLib.waterfall([
     function(done) {
