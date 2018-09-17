@@ -23,7 +23,6 @@ subscribeTraining = (req, res) =>{
   if(trainingId <=0){
     return res.status(400).json({'error': 'invalid parameters'});
   }
-//TODO if availiable sit are less or equal to 0 don't retire 1 sit
   asyncLib.waterfall([
     function(done) {
       models.Training.findOne({
@@ -73,8 +72,8 @@ subscribeTraining = (req, res) =>{
       }
     },
     function(trainingFound, userFound, userAlreadyParticipate, done){
-      if(!userAlreadyParticipate){
-        trainingFound.addUser(userFound, { isSubscribe: subscribe })
+      if(!userAlreadyParticipate && trainingFound.availableSeat > 0){
+        trainingFound.addUser(userFound)
           .then(function (alreadyParticipate){
             done(null, trainingFound, userFound);
           })
@@ -83,30 +82,21 @@ subscribeTraining = (req, res) =>{
             return res.status(500).json({ 'error' : 'unable to set user participation'});
           })
       }else {
-        if (userAlreadyParticipate.isSubscribe === unsubscribe || userAlreadyParticipate.isSubscribe === null) {
-          userAlreadyParticipate.update({
-            isSubscribe: subscribe,
-          }).then(function() {
-            done(null, trainingFound, userFound);
-          }).catch(function(err) {
-            console.log(err);
-            res.status(500).json({ 'error': 'cannot update user reaction' });
-          });
-        } else {
-          res.status(409).json({ 'error': 'user already participate ' });
-        }
+        res.status(409).json({ 'error': 'user already participate or there is no more available seat' });
       }
     },
     function(trainingFound, userFound, done){
-      trainingFound.update({
-        availableSeat: trainingFound.availableSeat - 1,
-      }).then(function(){
-        console.log(trainingFound);
-        done(trainingFound);
-      }).catch(function(err){
-        console.log(err);
-        res.status(500).json({ 'error': 'can\'t update the training\'s available seat'});
-      });
+      if(trainingFound.availableSeat > 0){
+        trainingFound.update({
+          availableSeat: trainingFound.availableSeat - 1,
+        }).then(function(){
+          done(trainingFound);
+        }).catch(function(err){
+          res.status(500).json({ 'error': 'can\'t update the training\'s available seat'});
+        });
+      }else{
+        res.status(409).json({ 'error': 'There is no more available seat' });
+      }
     },
   ], function(trainingFound) {
       if(trainingFound){

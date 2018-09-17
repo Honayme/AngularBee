@@ -25,7 +25,8 @@ createTraining = (req, res) => {
       date          = req.body.date,
       hour          = req.body.hour,
       place         = req.body.place,
-      totalSeat     = req.body.totalSeat;
+      totalSeat     = req.body.totalSeat,
+      picture       = req.body.picture;
 
 
   if (name == null || description == null || duration == null || date == null || hour == null || place == null || totalSeat == null ) {
@@ -72,6 +73,7 @@ createTraining = (req, res) => {
           place         : place,
           availableSeat : totalSeat,
           totalSeat     : totalSeat,
+          picture       : picture,
           UserId        : userFound.id
         })
           .then(function(newTraining){
@@ -199,15 +201,15 @@ updateTraining = (req, res) => {
   let userId      = jwtHelper.getUserId(headerAuth);
 
   // Params
-  let id = req.body.id,
-      name = req.body.name,
+  let id          = req.body.id,
+      name        = req.body.name,
       description = req.body.description,
-      duration = req.body.duration,
-      date = req.body.date,
-      hour = req.body.hour,
-      place = req.body.place,
-      totalSeat = req.body.totalSeat;
-  // let availableSeat = req.body.availableSeat;
+      duration    = req.body.duration,
+      date        = req.body.date,
+      hour        = req.body.hour,
+      place       = req.body.place,
+      totalSeat   = req.body.totalSeat,
+      picture     = req.body.picture;
 
   if (name == null || description == null || duration == null || date == null || hour == null || place == null || totalSeat == null ) {
     return res.status(400).json({'error': 'missing parameters'})
@@ -257,7 +259,7 @@ updateTraining = (req, res) => {
           hour: (hour ? hour : trainingFound.hour),
           place: (place ? place : trainingFound.place),
           totalSeat: (totalSeat ? totalSeat : trainingFound.totalSeat),
-          // availableSeat: (availableSeat ? availableSeat : trainingFound.availableSeat),
+          picture: (picture ? picture : trainingFound.picture),
         }).then(function() {
           done(trainingFound);
         }).catch(function(err) {

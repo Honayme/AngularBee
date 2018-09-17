@@ -8,7 +8,8 @@ module.exports = (sequelize, DataTypes) => {
     hour: DataTypes.TIME,
     place: DataTypes.STRING,
     totalSeat: DataTypes.INTEGER,
-    availableSeat: DataTypes.INTEGER
+    availableSeat: DataTypes.INTEGER,
+    picture: DataTypes.STRING,
   }, {});
   Training.associate = function(models) {
     // associations can be defined here
