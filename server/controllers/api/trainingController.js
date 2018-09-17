@@ -3,7 +3,8 @@
 const
       jwtHelper   = require('../../helpers/jwtHelper'),
       models     = require('../../database/models'),
-      asyncLib   = require('async');
+      asyncLib   = require('async'),
+      moment     = require('moment');
 
 let createTraining,
     getAllTraining,
@@ -63,7 +64,7 @@ createTraining = (req, res) => {
         })
     },
     function(userFound, done){
-      if(userFound){
+      if(userFound && moment(date, "YYYYMMDD").fromNow() > moment().format()){
         models.Training.create({
           name          : name,
           description   : description,
@@ -80,7 +81,7 @@ createTraining = (req, res) => {
             done(newTraining);
           });
       } else {
-        res.status(404).json({'error' : 'user not found'});
+        res.status(404).json({'error' : 'user not found or the date is before now'});
       }
     },
   ], function(newTraining){
@@ -231,9 +232,6 @@ updateTraining = (req, res) => {
     return res.status(400).json({'error': 'description must contain min 10 and max 500 letters'})
   }
 
-  //TODO Can't fix date before now
-  //TODO What if some people subscribe to the training before you update it
-
   asyncLib.waterfall([
     function(done) {
       models.Training.findOne({
@@ -250,7 +248,10 @@ updateTraining = (req, res) => {
         });
     },
     function(trainingFound, done) {
-      if(trainingFound) {
+    console.log(moment(date, "YYYYMMDD").fromNow() > moment().format());
+      if(trainingFound
+        && trainingFound.totalSeat - trainingFound.availableSeat <= totalSeat
+        && moment(date, "YYYYMMDD").fromNow() > moment().format()) {
         trainingFound.update({
           name: (name ? name : trainingFound.name),
           description: (description ? description : trainingFound.description),
@@ -259,6 +260,7 @@ updateTraining = (req, res) => {
           hour: (hour ? hour : trainingFound.hour),
           place: (place ? place : trainingFound.place),
           totalSeat: (totalSeat ? totalSeat : trainingFound.totalSeat),
+          availableSeat: (totalSeat ? totalSeat - (trainingFound.totalSeat - trainingFound.availableSeat ) : trainingFound.availableSeat),
           picture: (picture ? picture : trainingFound.picture),
         }).then(function() {
           done(trainingFound);
@@ -267,7 +269,7 @@ updateTraining = (req, res) => {
           res.status(500).json({ 'error': 'cannot update advert' });
         });
       } else {
-        res.status(404).json({ 'error': 'advert not found' });
+        res.status(404).json({ 'error': 'advert not found or new number of total seat don\'t fit the actual available seat or date is before now'  });
       }
     },
   ], function(trainingFound) {
