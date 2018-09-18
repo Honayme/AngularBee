@@ -18,7 +18,7 @@ export class LoginRegisterComponent implements OnInit {
               private router: Router) { }
 
   postRegister() {
-    this.authService.registerUser(this.loginData);
+    this.authService.registerUser(this.registerData);
     this.router.navigate(['/home']);
   }
 
