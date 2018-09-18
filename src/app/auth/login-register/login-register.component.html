@@ -1,19 +1,19 @@
-<div class="materialContainer" data-access>
+<div id="loginResgiterModal" class="materialContainer" data-access>
   <div class="box beetobee-white-bg">
     <i class="icon-beetobee-logo beetobee-blue-elec-text materialContainer-beetobee"></i>
     <div class="title beetobee-blue-elec-text">CONNEXION</div>
     <div class="input">
       <label for="email">Email</label>
-      <input class="no-border beetobee-purple-dark-text" type="email" name="email" id="email">
+      <input [(ngModel)] = "loginData.email" class="no-border beetobee-purple-dark-text" type="email" name="email" id="email" required autofocus>
       <span class="spin beetobee-yellow-bg beetobee-purple-dark-text"></span>
     </div>
     <div class="input">
       <label for="pass">Mot de passe</label>
-      <input class="no-border beetobee-purple-dark-text" type="password" name="pass" id="pass">
+      <input [(ngModel)] = "loginData.password" class="no-border beetobee-purple-dark-text" type="password" name="pass" id="pass" required >
       <span class="spin beetobee-yellow-bg beetobee-purple-dark-text"></span>
     </div>
     <div class="button login">
-      <button class="beetobee-blue-elec-text">
+      <button (click)="postLogin()" class="beetobee-blue-elec-text">
         <span class="materialContainer-action">GO</span>
         <i class="material-icons materialContainer-check beetobee-white-text">check</i>
         <i class="material-icons materialContainer-close">close</i>
@@ -27,22 +27,22 @@
     <div class="title beetobee-purple-dark-text">INSCRIPTION</div>
     <div class="input">
       <label class="beetobee-white-text" for="regmail">Email *</label>
-      <input class="no-border beetobee-white-text" type="email" name="regmail" id="regmail" required>
+      <input [(ngModel)] = "registerData.email" class="no-border beetobee-white-text" type="email" name="regmail" id="regmail" required autofocus>
       <span class="spin beetobee-white-bg"></span>
     </div>
     <div class="input">
       <label class="beetobee-white-text" for="regfirstname">Prénom *</label>
-      <input class="no-border beetobee-white-text" type="text" name="regfirstname" id="regfirstname" required>
+      <input [(ngModel)] = "registerData.firstname" class="no-border beetobee-white-text" type="text" name="regfirstname" id="regfirstname" required>
       <span class="spin beetobee-white-bg"></span>
     </div>
     <div class="input">
       <label class="beetobee-white-text" for="regname">Nom *</label>
-      <input class="no-border beetobee-white-text" type="text" name="regname" id="regname" required>
+      <input [(ngModel)] = "registerData.lastname" class="no-border beetobee-white-text" type="text" name="regname" id="regname" required>
       <span class="spin beetobee-white-bg"></span>
     </div>
     <div class="input">
       <label class="beetobee-white-text" for="regpass">Mot de passe *</label>
-      <input class="no-border beetobee-white-text" type="password" name="regpass" id="regpass" required>
+      <input [(ngModel)] = "registerData.password" class="no-border beetobee-white-text" type="password" name="regpass" id="regpass" required>
       <span class="spin beetobee-white-bg"></span>
     </div>
     <div class="input">
@@ -51,7 +51,7 @@
       <span class="spin beetobee-white-bg"></span>
     </div>
     <div class="button register">
-      <button class="white-text">
+      <button (click)="postRegister()" class="white-text">
         <span class="materialContainer-action">Valider</span>
         <i class="material-icons materialContainer-check">check</i>
         <i class="material-icons materialContainer-close">close</i>

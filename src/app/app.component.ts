@@ -124,7 +124,7 @@ export class AppComponent {
 
       return overlay;
     }
-
+    //TODO Use key code for validate form with enter
     // Detect "esc" key pressed
     $(document).on('keydown', function (e) {
       let keycode = e.which || e.keyCode;

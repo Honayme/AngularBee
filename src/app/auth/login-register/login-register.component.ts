@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-// import {$} from "../login-register1/login-register.component";
+import {AuthService} from '../auth.service';
+import {Router} from '@angular/router';
 
-declare var $:any;
+declare var $: any ;
 
 @Component({
   selector: 'app-login-register',
@@ -10,7 +11,21 @@ declare var $:any;
 })
 export class LoginRegisterComponent implements OnInit {
 
-  constructor() { }
+  registerData = {};
+  loginData = {};
+
+  constructor(private authService: AuthService,
+              private router: Router) { }
+
+  postRegister() {
+    this.authService.registerUser(this.loginData);
+    this.router.navigate(['/home']);
+  }
+
+  postLogin() {
+    this.authService.logInUser(this.loginData);
+    this.router.navigate(['/home']);
+  }
 
   ngOnInit() {
 
