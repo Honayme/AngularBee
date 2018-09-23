@@ -37,4 +37,3 @@ module.exports = {
   getUserId
 };
 
-//TODO Rename utils and not Helper cuz this is something different

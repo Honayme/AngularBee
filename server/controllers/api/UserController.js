@@ -84,7 +84,8 @@ register = (req, res) => {
     if (newUser) {
       return res.status(201).json({
         'userId': newUser.id,
-        'bcryptedPassword': newUser.password
+        'bcryptedPassword': newUser.password,
+        'token': jwtUtils.generateUserToken(newUser)
       });
     } else {
       console.log("error when adding a user" + err);

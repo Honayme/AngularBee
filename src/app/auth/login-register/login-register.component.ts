@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../auth.service';
 import {Router} from '@angular/router';
+import {MaterializeAction, MaterializeDirective} from 'angular2-materialize';
 
 declare var $: any ;
 
@@ -19,15 +20,30 @@ export class LoginRegisterComponent implements OnInit {
 
   postRegister() {
     this.authService.registerUser(this.registerData);
+    $(document).ready(function(){
+      $('#loginRegister').modal('close');
+      $('.overlay').css({
+        opacity : '0'
+      });
+    });
     this.router.navigate(['/home']);
   }
 
   postLogin() {
     this.authService.logInUser(this.loginData);
+    $(document).ready(function(){
+      $('#loginRegister').modal('close');
+      $('.overlay').css({
+        opacity : '0'
+      });
+    });
     this.router.navigate(['/home']);
   }
 
   ngOnInit() {
+    $(document).ready(function(){
+      $('#loginRegister').modal();
+    });
 
     $('.materialContainer').on('click', function () {
       let body = $('body');
@@ -180,7 +196,7 @@ export class LoginRegisterComponent implements OnInit {
     });
 
     // $('.modal').modal({
-    //   dismissible: true, // Modal can be dismissed by clicking outside of the modal
+    //   dismissible: false, // Modal can be dismissed by clicking outside of the modal
     //   opacity: .5, // Opacity of modal background
     //   inDuration: 300, // Transition in duration
     //   outDuration: 200 // Transition out duration

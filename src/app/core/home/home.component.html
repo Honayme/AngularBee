@@ -49,7 +49,7 @@
           <p>BeeToBee vous permet de participer gratuitement à des formations organisées par des étudiants. Voici
             quelques exemples de formations que nous vous proposons, sentez-vous libres de vous inscrire
             pour monter en compétences.</p>
-          <a [routerLink]="['/formations']" class="btn waves waves-effect beetobee-red-dark-bg">Nos formations</a>
+          <a *ngIf="authService.isAuthenticated" [routerLink]="['/formations']" class="btn waves waves-effect beetobee-red-dark-bg">Nos formations</a>
         </div>
         <div class="col s12 l6">
           <div class="row">
@@ -80,7 +80,7 @@
           <p>BeeToBee vous permet de participer gratuitement à des formations organisées par des étudiants. Voici
             quelques exemples de formations que nous vous proposons, sentez-vous libres de vous inscrire
             pour monter en compétences.</p>
-          <a [routerLink]="['/certifications']" class="btn waves waves-effect beetobee-yellow-bg">Nos certifications</a>
+          <a *ngIf="authService.isAuthenticated" [routerLink]="['/certifications']" class="btn waves waves-effect beetobee-yellow-bg">Nos certifications</a>
         </div>
       </div>
     </div>
