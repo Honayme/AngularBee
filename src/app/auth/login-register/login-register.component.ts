@@ -102,8 +102,11 @@ export class LoginRegisterComponent implements OnInit {
         }, 800);
 
         $(this).parent().removeClass('material-button');
+        $('#buttonregister').removeAttr('disabled');
+        $('#buttonlogin').attr('disabled', 'disabled');
       } else {
         $('#buttonlogin').removeAttr('disabled');
+        $('#buttonregister').attr('disabled', 'disabled');
 
         $(_this).css({
           'width': '100%',

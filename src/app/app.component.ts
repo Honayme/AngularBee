@@ -47,6 +47,7 @@ export class AppComponent {
 
     // Show up the register form when the user click on the register link
     $('#modal-register').on('click', function () {
+      $('.materialContainer').find('.material-button-register').trigger('click');
       if (!registerBox.hasClass('active')) {
         let overlayId = $(this).attr('data-overlay'),
             overlay = $('#' + overlayId),
@@ -71,8 +72,9 @@ export class AppComponent {
 
     // Show up the login form when the user click on the login link
     $('#modal-login').on('click', function () {
-      if (registerBox.hasClass('active')) {
-        registerBox.trigger('click');
+
+      if ($('.materialContainer').find('.material-button-register').hasClass('active')) {
+        $('.materialContainer').find('.material-button-register').trigger('click');
       } else {
         let overlayId = $(this).attr('data-overlay'),
           overlay = $('#' + overlayId),
