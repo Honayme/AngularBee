@@ -85,10 +85,6 @@ nav .button-collapse i {
 
 /* ---- Special ---- */
 
-.no-events {
-  pointer-events: none;
-}
-
 .template-section {
   padding: 50px 0;
 }
@@ -128,7 +124,7 @@ input.no-border {
 
 
 /*---------------------------------/
-/              NAV                 /
+/              FOOTER                 /
 /---------------------------------*/
 /*TODO there is a kind of overlay when the toggle in certification is activated*/
 

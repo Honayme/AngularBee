@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-declare var $:any;
+import {AuthService} from './auth/auth.service';
+
+declare var $: any ;
 
 
 @Component({
@@ -12,7 +14,7 @@ export class AppComponent {
   title = 'app';
 
 
-  constructor() {
+  constructor(public authService: AuthService) {
 
   }
 
@@ -32,9 +34,6 @@ export class AppComponent {
     // footer.removeClass("layout-drawer-is-open");
 
 
-    let registerLink = $('#modal-register'),
-        loginLink = $('#modal-login');
-
     let materialContainer = $('.materialContainer'),
         registerBox = materialContainer.find('.material-button-register'),
         shapeElement = materialContainer.find('.shape');
@@ -47,7 +46,7 @@ export class AppComponent {
     });
 
     // Show up the register form when the user click on the register link
-    registerLink.on('click', function () {
+    $('#modal-register').on('click', function () {
       if (!registerBox.hasClass('active')) {
         let overlayId = $(this).attr('data-overlay'),
             overlay = $('#' + overlayId),
@@ -70,8 +69,8 @@ export class AppComponent {
       }
     });
 
-    // Show up the login form when the user click on the register link
-    loginLink.on('click', function () {
+    // Show up the login form when the user click on the login link
+    $('#modal-login').on('click', function () {
       if (registerBox.hasClass('active')) {
         registerBox.trigger('click');
       } else {
@@ -124,14 +123,13 @@ export class AppComponent {
 
       return overlay;
     }
-    //TODO Use key code for validate form with enter
+
     // Detect "esc" key pressed
     $(document).on('keydown', function (e) {
       let keycode = e.which || e.keyCode;
+      let overlay = $('.overlay');
 
       if (keycode === 27) {
-        let overlay = $('.overlay');
-
         if (overlay.length && (materialContainer.find(':animated').addBack().length === 1)) {
           overlay.trigger('click');
         } else {
@@ -140,25 +138,31 @@ export class AppComponent {
           }, 400);
         }
       }
-    });
 
-    //TODO Maybe unify this
-    // Add key event on "enter" when you login
-    materialContainer.find('.box .input input').on('keydown', function (e) {
-      let keyCode = e.which || e.keyCode;
-
-      if (keyCode === 13) {
-        materialContainer.find('.login button').trigger('click');
+      if (keycode === 13) {
+        if (overlay.length && (materialContainer.find(':animated').addBack().length === 1)) {
+          if ( $('.materialContainer').find('#buttonlogin').prop('disable') === false){
+            $('.materialContainer').find('#buttonlogin').trigger('click');
+          }
+        } else {
+          setTimeout(function () {
+            $('.materialContainer').find('#buttonlogin').trigger('click');
+          }, 400);
+        }
       }
-    });
-    // Add key event on "enter" when you register
-    materialContainer.find('.overbox .input input').on('keydown', function (e) {
-      let keyCode = e.which || e.keyCode;
 
-      if (keyCode === 13) {
-        materialContainer.find('.register button').trigger('click');
+      if (keycode === 13) {
+        if (overlay.length && (materialContainer.find(':animated').addBack().length === 1)) {
+          $('.materialContainer').find('#buttonregister').trigger('click');
+        } else {
+          setTimeout(function () {
+            $('.materialContainer').find('#buttonregister').trigger('click');
+          }, 400);
+        }
       }
-    });
+
+    });//KeyDown
+
 
     // Avoid all links with "#" to send user to the top of the page
     $('a[href="#"]').on('click', function (e) {
