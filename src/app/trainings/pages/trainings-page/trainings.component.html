@@ -2,8 +2,21 @@
   <section id="news" class="template-section">
 
     <div class="container" id="formations">
-      <!--TODO Faire un composant formation et itérer ici avec un Ngfor-->
-      <app-training></app-training>
+      <div class="row">
+        <div *ngFor="let training of trainings" class="col s12 m6">
+          <div class="card">
+            <div class="card-image" >
+              <!--<img *ngIf="training.picture" [src]=sanitize.bypassSecurityTrustUrl(adver.picture)>-->
+              <img src="https://picsum.photos/200/100?image=0">
+              <span class="card-title">{{training.name}}</span>
+              <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+            </div>
+            <div class="card-content">
+              <p>{{training.description}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="container">

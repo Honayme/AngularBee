@@ -25,6 +25,7 @@ import { TrainingComponent } from './trainings/pages/training-page/training.comp
 import { SearchFiltersComponent } from './certifications/components/search-filters/search-filters.component';
 import {AuthService} from './auth/auth.service';
 import {AuthInterceptorService} from './auth/auth-interceptor.service';
+import {TrainingService} from './trainings/training.service';
 
 
 @NgModule({
@@ -53,7 +54,7 @@ import {AuthInterceptorService} from './auth/auth-interceptor.service';
     MaterializeModule,
     ReactiveFormsModule,
   ],
-  providers: [HomeService, AuthService, {
+  providers: [HomeService, AuthService, TrainingService, {
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptorService,
     multi: true

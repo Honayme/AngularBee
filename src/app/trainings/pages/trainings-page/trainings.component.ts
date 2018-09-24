@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-declare var $:any;
+import {TrainingService} from '../../training.service';
+declare var $: any;
 
 @Component({
   selector: 'app-trainings',
@@ -8,9 +9,16 @@ declare var $:any;
 })
 export class TrainingsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private trainingService: TrainingService) { }
+
+  trainings: any = [];
 
   ngOnInit() {
+    this.trainingService.getAll().subscribe(trainings =>{
+      this.trainings = trainings;
+      console.log(this.trainings);
+    });
+
     $('#modal-add-training').modal();
     $('#modal-ask-for-training').modal();
   }
