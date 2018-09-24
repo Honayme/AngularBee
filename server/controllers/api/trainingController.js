@@ -102,12 +102,12 @@ getAllTraining = (req, res) =>{
 
   models.Training.findAll({
     order:      [(order != null) ? order.split(':') : ['name', 'ASC']],
-    attributes: ['name'],
+    attributes: (fields !== '*' && fields != null) ? fields.split(',') : null,
     limit:      (!isNaN(limit)) ? limit : null,
     offset:     (!isNaN(offset)) ? offset : null,
     include: [{
       model: models.User,
-      attributes: [ 'firstname' ]
+      attributes: [ 'firstname']
     }]
   }).then(function(training) {
     if (training) {
