@@ -5,7 +5,7 @@ module.exports = {
     return queryInterface.addColumn(
        'Trainings',
         'picture',
-        Sequelize.STRING,
+        Sequelize.TEXT('long'),
     );
   },
   down: (queryInterface, Sequelize) => {

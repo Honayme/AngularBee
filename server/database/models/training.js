@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
     place: DataTypes.STRING,
     totalSeat: DataTypes.INTEGER,
     availableSeat: DataTypes.INTEGER,
-    picture: DataTypes.STRING,
+    picture: DataTypes.TEXT('long'),
     theme: DataTypes.STRING,
   }, {});
   Training.associate = function(models) {
