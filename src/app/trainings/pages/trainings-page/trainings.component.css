@@ -1,10 +1,12 @@
 /* ---- Native ---- */
 section {
-  height: 62.5vh;
   background-size: cover;
   border-bottom: 5px solid var(--beetobee-red-dark);
 }
 
+img {
+  height: 150px;
+}
 /* ---- Class ---- -*/
 
 .training #ask-for-training {

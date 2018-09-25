@@ -1,13 +1,11 @@
 <main class="training">
   <section id="news" class="template-section">
-
     <div class="container" id="formations">
       <div class="row">
         <div *ngFor="let training of trainings" class="col s12 m6">
           <div class="card">
-            <div class="card-image" >
-              <!--<img *ngIf="training.picture" [src]=sanitize.bypassSecurityTrustUrl(adver.picture)>-->
-              <img src="https://picsum.photos/200/100?image=0">
+            <div class="card-image">
+              <img *ngIf="training.picture" [src]=sanitize.bypassSecurityTrustUrl(training.picture)>
               <span class="card-title">{{training.name}}</span>
               <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
             </div>
@@ -18,24 +16,24 @@
         </div>
       </div>
     </div>
-
-    <div class="container">
-      <div id="add-training" class="fixed-action-btn">
-        <a (click)="openModalAdd()" routerLink="['']" class="btn-floating btn-large waves-effect waves-light beetobee-blue-elec-bg tooltipped" data-position="left"
-           data-tooltip="Ajouter une formation"><i class="material-icons">group_add</i></a>
-      </div>
-      <div id="ask-for-training" class="fixed-action-btn">
-        <a (click)="openModalAsk()" routerLink="['']" class="btn-floating btn-large waves-effect waves-light beetobee-red-dark-bg tooltipped"
-        data-position="left" data-tooltip="Demander une formation"><i class="material-icons">add</i></a>
-      </div>
-
-      <!-- TODO put them in fixed -->
-      <!-- Modal for ask a training-->
-      <app-ask-training></app-ask-training>
-
-      <!-- Modal for add a training-->
-      <app-add-training></app-add-training>
-
-    </div><!--fin de container-->
   </section>
+  <aside>
+    <div id="add-training" class="fixed-action-btn">
+      <a (click)="openModalAdd()"
+         class="btn-floating btn-large waves-effect waves-light beetobee-blue-elec-bg tooltipped"
+         data-position="left"
+         data-tooltip="Ajouter une formation"><i class="material-icons">group_add</i></a>
+    </div>
+    <div id="ask-for-training" class="fixed-action-btn">
+      <a (click)="openModalAsk()"
+         class="btn-floating btn-large waves-effect waves-light beetobee-red-dark-bg tooltipped"
+         data-position="left" data-tooltip="Demander une formation"><i class="material-icons">add</i></a>
+    </div>
+
+    <!-- Modal for ask a training-->
+    <app-ask-training></app-ask-training>
+
+    <!-- Modal for add a training-->
+    <app-add-training></app-add-training>
+  </aside>
 </main>

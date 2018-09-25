@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {TrainingService} from '../../training.service';
+import {DomSanitizer} from '@angular/platform-browser';
 declare var $: any;
 
 @Component({
@@ -9,7 +10,8 @@ declare var $: any;
 })
 export class TrainingsComponent implements OnInit {
 
-  constructor(private trainingService: TrainingService) { }
+  constructor(private trainingService: TrainingService,
+              public sanitize: DomSanitizer) { }
 
   trainings: any = [];
 

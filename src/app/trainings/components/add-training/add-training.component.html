@@ -2,72 +2,276 @@
 <div id="modal-add-training" class="modal modal-fixed-footer">
   <div class="modal-content">
     <h4 class="beetobee-purple-dark-text">Ajouter une formation</h4>
-    <p class="beetobee-red-dark-text">Vous voulez nous ajouter une formation ? Nous sommes ravis de vous annoncer que ce formulaire est
-      là pour ça ! Veuillez remplir ce formulaire afin que nos petites abeilles s'occupent en retour,
-      de créer votre formation et de trouver des participants.</p>
     <div class="vert-padding"></div>
-    <div class="row">
-      <div class="input-field col s6">
-        <i class="material-icons prefix">assignment</i>
-        <input id="formationTitle" name="formationTitle" type="text" class="validate">
-        <label for="formationTitle">Nom de la formation <span class="beetobee-red-dark-text">*</span></label>
+    <form class="form-group row"
+          novalidate
+          (ngSubmit)="save()"
+          [formGroup]="trainingForm">
+      <div class="row">
+        <!--___NAME___-->
+        <div class="form-group"
+             [ngClass]="{'has-error': (trainingForm.get('name').touched || trainingForm.get('name').dirty) && !trainingForm.get('name').valid }">
+
+          <div class="input-field col s6">
+            <i class="material-icons prefix">assignment</i>
+
+            <input class="validate form-control"
+                   id="nameId"
+                   type="text"
+                   name="nameId"
+                   formControlName="name">
+            <span class="help-block"
+                  *ngIf="(trainingForm.get('name').touched || trainingForm.get('name').dirty) && trainingForm.get('name').errors">
+                            <span *ngIf="trainingForm.get('name').errors.required">
+                                Please enter a name.
+                            </span>
+                            <span *ngIf="trainingForm.get('name').errors.minlength">
+                                The name must be longer than 5 characters.
+                            </span>
+                            <span *ngIf="trainingForm.get('name').errors.maxLength">
+                                The name must be shorter than 40 characters.
+                            </span>
+          </span>
+
+            <label for="nameId">Nom de la formation <span class="beetobee-red-dark-text">*</span></label>
+          </div>
+
+        </div>
+
+
+        <!--___DATE___-->
+        <div class="form-group"
+             [ngClass]="{'has-error': (trainingForm.get('date').touched || trainingForm.get('date').dirty) && !trainingForm.get('date').valid }">
+
+          <div class="input-field col s6">
+            <i class="material-icons prefix">today</i>
+
+            <input class="validate form-control"
+                   id="dateId"
+                   type="text"
+                   name="dateId"
+                   formControlName="date">
+            <span class="help-block"
+                  *ngIf="(trainingForm.get('date').touched || trainingForm.get('date').dirty) && trainingForm.get('date').errors">
+                            <span *ngIf="trainingForm.get('date').errors.required">
+                                Please enter a date.
+                            </span>
+          </span>
+
+            <label for="dateId">Date (jj/mm/aaaa) <span class="beetobee-red-dark-text">*</span></label>
+          </div>
+
+        </div>
+
       </div>
-      <div class="input-field col s6">
-        <i class="material-icons prefix">today</i>
-        <input id="formationDate" name="formationDate" type="text" pattern="(0[1-9]|1[0-9]|2[0-9]|3[01])/(0[1-9]|1[012])/[0-9]{4}"
-               class="validate">
-        <label for="formationDate">Date (jj/mm/aaaa) <span class="beetobee-red-dark-text">*</span></label>
+
+      <div class="row">
+        <!--___DUREE___-->
+        <div class="form-group"
+             [ngClass]="{'has-error': (trainingForm.get('duration').touched || trainingForm.get('duration').dirty) && !trainingForm.get('duration').valid }">
+
+          <div class="input-field col s6">
+            <i class="material-icons prefix">timer</i>
+
+            <input class="validate form-control"
+                   id="durationId"
+                   type="text"
+                   name="durationId"
+                   formControlName="duration">
+            <span class="help-block"
+                  *ngIf="(trainingForm.get('duration').touched || trainingForm.get('duration').dirty) && trainingForm.get('duration').errors">
+                            <span *ngIf="trainingForm.get('duration').errors.required">
+                                Please enter a duration.
+                            </span>
+          </span>
+
+            <label for="durationId">Durée (min) <span class="beetobee-red-dark-text">*</span></label>
+          </div>
+
+        </div>
+
+        <!--___HEURE___-->
+        <div class="form-group"
+             [ngClass]="{'has-error': (trainingForm.get('hour').touched || trainingForm.get('hour').dirty) && !trainingForm.get('hour').valid }">
+
+          <div class="input-field col s6">
+            <i class="material-icons prefix">access_time</i>
+
+            <input class="validate form-control"
+                   id="hourId"
+                   type="text"
+                   name="hourId"
+                   formControlName="hour">
+            <span class="help-block"
+                  *ngIf="(trainingForm.get('hour').touched || trainingForm.get('hour').dirty) && trainingForm.get('hour').errors">
+                            <span *ngIf="trainingForm.get('hour').errors.required">
+                                Please enter a hour.
+                            </span>
+          </span>
+
+            <label for="hourId">Heure de début (hh:mm) <span class="beetobee-red-dark-text">*</span></label>
+          </div>
+
+        </div>
+
       </div>
-    </div>
-    <div class="row">
-      <div class="input-field col s6">
-        <i class="material-icons prefix">timer</i>
-        <input id="formationDuration" name="formationDuration" type="number" class="validate">
-        <label for="formationDuration">Durée (min) <span class="beetobee-red-dark-text">*</span></label>
+
+      <div class="row">
+        <!--___NOMBRE DE PLACE___-->
+        <div class="form-group"
+             [ngClass]="{'has-error': (trainingForm.get('totalSeat').touched || trainingForm.get('totalSeat').dirty) && !trainingForm.get('totalSeat').valid }">
+
+          <div class="input-field col s6">
+            <i class="material-icons prefix">event_seat</i>
+
+            <input class="validate form-control"
+                   id="totalSeatId"
+                   type="number"
+                   name="totalSeatId"
+                   formControlName="totalSeat">
+            <span class="help-block"
+                  *ngIf="(trainingForm.get('totalSeat').touched || trainingForm.get('totalSeat').dirty) && trainingForm.get('totalSeat').errors">
+                            <span *ngIf="trainingForm.get('totalSeat').errors.required">
+                                Please enter a totalSeat.
+                            </span>
+                            <span *ngIf="trainingForm.get('totalSeat').errors.minlength">
+                                The min number of total seat must be greater than 5.
+                            </span>
+                            <span *ngIf="trainingForm.get('totalSeat').errors.maxlength">
+                                The max number of total seat must be less than 35.
+                            </span>
+          </span>
+
+            <label for="totalSeatId">Nombre de places <span class="beetobee-red-dark-text">*</span></label>
+          </div>
+
+        </div>
+        <!--___THEME___-->
+        <div class="form-group"
+             [ngClass]="{'has-error': (trainingForm.get('theme').touched || trainingForm.get('theme').dirty) && !trainingForm.get('theme').valid }">
+
+          <div class="input-field col s6">
+            <i class="material-icons prefix">turned_in</i>
+
+            <input class="validate form-control"
+                   id="themeId"
+                   type="text"
+                   name="themeId"
+                   formControlName="theme">
+            <span class="help-block"
+                  *ngIf="(trainingForm.get('theme').touched || trainingForm.get('theme').dirty) && trainingForm.get('theme').errors">
+                            <span *ngIf="trainingForm.get('theme').errors.required">
+                                Please enter a theme.
+                            </span>
+          </span>
+
+            <label for="themeId">Thème <span class="beetobee-red-dark-text">*</span></label>
+          </div>
+
+        </div>
+
       </div>
-      <div class="input-field col s6">
-        <i class="material-icons prefix">access_time</i>
-        <input id="formationTime" name="formationTime" type="text" pattern="([01]?[0-9]|2[0-3]):[0-5][0-9]" class="validate">
-        <label for="formationTime">Heure de début (hh:mm) <span class="beetobee-red-dark-text">*</span></label>
+
+      <div class="row">
+        <!--___LIEU___-->
+        <div class="form-group"
+             [ngClass]="{'has-error': (trainingForm.get('place').touched || trainingForm.get('place').dirty) && !trainingForm.get('place').valid }">
+
+          <div class="input-field col s6">
+            <i class="material-icons prefix">location_on</i>
+
+            <input class="validate form-control"
+                   id="placeId"
+                   type="text"
+                   name="placeId"
+                   formControlName="place">
+            <span class="help-block"
+                  *ngIf="(trainingForm.get('place').touched || trainingForm.get('place').dirty) && trainingForm.get('place').errors">
+                            <span *ngIf="trainingForm.get('place').errors.required">
+                                Please enter a place.
+                            </span>
+          </span>
+
+            <label for="placeId">Lieu <span class="beetobee-red-dark-text">*</span></label>
+          </div>
+
+        </div>
+
+        <!--___DESCRIPTION___-->
+        <div class="form-group"
+             [ngClass]="{'has-error': (trainingForm.get('description').touched || trainingForm.get('description').dirty) && !trainingForm.get('description').valid }">
+
+          <div class="input-field col s6">
+            <i class="material-icons prefix">comment</i>
+
+            <input class="validate form-control"
+                   id="descriptionId"
+                   type="text"
+                   name="descriptionId"
+                   formControlName="description">
+            <span class="help-block"
+                  *ngIf="(trainingForm.get('description').touched || trainingForm.get('description').dirty) && trainingForm.get('description').errors">
+                            <span *ngIf="trainingForm.get('description').errors.required">
+                                Please enter a description.
+                            </span>
+                            <span *ngIf="trainingForm.get('description').errors.maxlength">
+                                The name must be shorter than 500 characters.
+                            </span>
+          </span>
+
+            <label for="descriptionId">Description <span class="beetobee-red-dark-text">*</span></label>
+          </div>
+
+        </div>
+
       </div>
-    </div>
-    <div class="row">
-      <div class="input-field col s6">
-        <i class="material-icons prefix">event_seat</i>
-        <input id="formationSeats" name="formationSeats" type="number" class="validate">
-        <label for="formationSeats">Places disponibles <span class="beetobee-red-dark-text">*</span></label>
+
+      <div class="row">
+        <div class="form-group"
+             [ngClass]="{'has-error': (trainingForm.get('picture').touched || trainingForm.get('picture').dirty) && !trainingForm.get('picture').valid }">
+
+          <div class="input-field col s12">
+            <i class="material-icons prefix">photo</i>
+            <img *ngIf="picture" [src]=sanitize.bypassSecurityTrustUrl(picture)>
+            <input class="validate form-control"
+                   id="pictureId"
+                   type="file"
+                   accept="image/*"
+                   (change)="changeListener($event)"
+                   name="pictureId"
+                   formControlName="picture">
+            <span class="help-block"
+                  *ngIf="(trainingForm.get('picture').touched || trainingForm.get('picture').dirty) && trainingForm.get('picture').errors">
+                            <span *ngIf="trainingForm.get('picture').errors.required">
+                                Please enter a picture.
+                            </span>
+                            <span *ngIf="trainingForm.get('picture').errors.maxlength">
+                                The name must be shorter than 500 characters.
+                            </span>
+          </span>
+
+            <label for="pictureId"></label>
+          </div>
+
+        </div>
       </div>
-      <div class="input-field col s6">
-        <i class="material-icons prefix">turned_in</i>
-        <select id="formationTheme">
-          <option value="" disabled selected>Choisissez un thème</option>
-          <option value="2">Informatique</option>
-          <option value="3">Management</option>
-          <option value="4">Design</option>
-        </select>
-        <label for="formationTheme">Thématique <span class="beetobee-red-dark-text">*</span></label>
-      </div>
-    </div>
-    <div class="row">
-      <div class="input-field col s12">
-        <i class="material-icons prefix">location_on</i>
-        <input id="formationLocation" name="formationLocation" type="text" class="validate">
-        <label for="formationLocation">Lieu <span class="beetobee-red-dark-text">*</span></label>
-      </div>
-    </div>
-    <div class="row">
-      <div class="input-field col s12">
-        <i class="material-icons prefix">comment</i>
-        <textarea id="formationDescription" class="materialize-textarea"></textarea>
-        <label for="formationDescription">Description <span class="tooltipped" data-position="top" data-tooltip="Soyez diligent comme une abeille !">*</span></label>
-      </div>
-    </div>
-  </div>
-  <div class="modal-footer">
-    <button class="modal-action modal-close waves-effect beetobee-red-dark-bg btn-flat beetobee-white-text">Annuler</button>
-    <button id="addFormation" class="modal-action waves-effect beetobee-blue-dark-bg btn-flat beetobee-white-text">Envoyer</button>
+    </form>
   </div>
 
-  <!-- Modal Structure -->
+  <!--___SEND FORM___-->
+  <div class="modal-footer">
+    <button class="modal-action modal-close waves-effect beetobee-red-dark-bg btn-flat beetobee-white-text">
+      Annuler
+    </button>
+
+    <button class="modal-action waves-effect beetobee-blue-dark-bg btn-flat beetobee-white-text"
+            type="submit"
+            [disabled]="!trainingForm.valid"
+            id="addFormation"
+            (click)="save()">
+      Envoyer
+    </button>
+  </div>
 
 </div>
+
