@@ -27,10 +27,11 @@ createTraining = (req, res) => {
       hour          = req.body.hour,
       place         = req.body.place,
       totalSeat     = req.body.totalSeat,
-      picture       = req.body.picture;
+      picture       = req.body.picture,
+      theme         = req.body.theme;
 
 
-  if (name == null || description == null || duration == null || date == null || hour == null || place == null || totalSeat == null ) {
+  if (name == null || description == null || duration == null || date == null || hour == null || place == null || totalSeat == null || theme == null ) {
     return res.status(400).json({'error': 'missing parameters'})
   }
 
@@ -75,6 +76,7 @@ createTraining = (req, res) => {
           availableSeat : totalSeat,
           totalSeat     : totalSeat,
           picture       : picture,
+          theme         : theme,
           UserId        : userFound.id
         })
           .then(function(newTraining){
@@ -210,9 +212,10 @@ updateTraining = (req, res) => {
       hour        = req.body.hour,
       place       = req.body.place,
       totalSeat   = req.body.totalSeat,
-      picture     = req.body.picture;
+      picture     = req.body.picture,
+      theme       = req.body.theme;
 
-  if (name == null || description == null || duration == null || date == null || hour == null || place == null || totalSeat == null ) {
+  if (name == null || description == null || duration == null || date == null || hour == null || place == null || totalSeat == null || theme == null  ) {
     return res.status(400).json({'error': 'missing parameters'})
   }
 
@@ -262,6 +265,7 @@ updateTraining = (req, res) => {
           totalSeat: (totalSeat ? totalSeat : trainingFound.totalSeat),
           availableSeat: (totalSeat ? totalSeat - (trainingFound.totalSeat - trainingFound.availableSeat ) : trainingFound.availableSeat),
           picture: (picture ? picture : trainingFound.picture),
+          theme: (theme ? theme : trainingFound.theme),
         }).then(function() {
           done(trainingFound);
         }).catch(function(err) {

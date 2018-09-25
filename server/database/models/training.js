@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     totalSeat: DataTypes.INTEGER,
     availableSeat: DataTypes.INTEGER,
     picture: DataTypes.STRING,
+    theme: DataTypes.STRING,
   }, {});
   Training.associate = function(models) {
     // associations can be defined here
