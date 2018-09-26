@@ -9,11 +9,13 @@ import {TeamComponent} from './core/team/team.component';
 import {ContactComponent} from './core/contact/contact.component';
 import {CertificationsComponent} from './certifications/pages/certifications-page/certifications.component';
 import {HomeComponent} from './core/home/home.component';
+import {TrainingComponent} from './trainings/pages/training-page/training.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'home', component: HomeComponent},
   {path: 'formations', component: TrainingsComponent},
+  {path: 'formations/detail/:id', component: TrainingComponent},
   {path: 'cgu', component: CguComponent},
   {path: 'team', component: TeamComponent},
   {path: 'contact', component: ContactComponent},

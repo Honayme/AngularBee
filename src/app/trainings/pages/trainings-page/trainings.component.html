@@ -7,7 +7,7 @@
             <div class="card-image">
               <img *ngIf="training.picture" [src]=sanitize.bypassSecurityTrustUrl(training.picture)>
               <span class="card-title">{{training.name}}</span>
-              <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+              <a [routerLink]="['/formations/detail/' + training.id]" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
             </div>
             <div class="card-content">
               <p>{{training.description}}</p>

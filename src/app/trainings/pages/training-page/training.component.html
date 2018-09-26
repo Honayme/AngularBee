@@ -1,48 +1,57 @@
-<div class="col s12 l4 content">
-  <div class="card   classTheme(formation.themes[0].id)  " data-id="  formation.id  ">
-    <div class="card-image waves-effect waves-block waves-light">
-      <img class="activator" src="">
-    </div>
-    <div class="card-content">
-      <span class="card-title activator beetobee-blue-dark-text">Titre de la formation<i class="material-icons right">more_vert</i></span>
-      <p><span class="training-details beetobee-purple-dark-text">Date : </span><span
-        class="beetobee-purple-light-text"> Date de la formation  </span></p>
-      <p><span class="training-details beetobee-purple-dark-text">Places disponibles : </span>
-        <span class="beetobee-purple-light-text">Nombre de place disponibles</span>
-      </p>
-    </div>
-    <div class="card-action">
-      <a href="#" class="activator beetobee-red-dark-text">Voir les détails</a>
-    </div>
-    <div class="card-reveal">
-      <span class="card-title beetobee-blue-dark-text">Détails de la formation<i class="material-icons right">close</i></span>
-      <p><span class="training-details beetobee-purple-dark-text"><i class="material-icons left">today</i>Date : </span>
-        <span class="beetobee-purple-light-text">  formattedDate(formation.date)  </span>
-      </p>
-      <p><span class="training-details beetobee-purple-dark-text"><i
-        class="material-icons left">timer</i>Durée : </span>
-        <span class="beetobee-purple-light-text">  Durée de la formation </span>
-      </p>
-      <p><span class="training-details beetobee-purple-dark-text"><i class="material-icons left">access_time</i>Heure : </span>
-        <span class="beetobee-purple-light-text">  Heure de début  </span>
-      </p>
-      <p><span class="training-details beetobee-purple-dark-text"><i class="material-icons left">event_available</i>Places disponibles : </span>
-        <span class="beetobee-purple-light-text">  Nombre de place  </span>
-      </p>
-      <p><span class="training-details beetobee-purple-dark-text"><i class="material-icons left">location_on</i>Lieu : </span>
-        <span class="beetobee-purple-light-text">  Lieux </span>
-      </p>
-      <p><span class="training-details beetobee-purple-dark-text">Description : </span> Description de la formation</p>
-      <p class="beetobee-blue-dark-text">
-        <i class="material-icons left">group</i>
-        <span class="training-details beetobee-purple-dark-text">Liste des participants :</span>
-      <div class="chip">
-        <img src="" class="creator" alt="" data-firstname="" data-name="">
-        users
+<main class="mdl-layout__content">
+  <section class="container ">
+    <div *ngFor="let train of training">
+    <div class="row z-depth-5 content">
+
+        <h3 class="content-padding">{{train.name}}</h3>
+        <img *ngIf="train.picture" [src]=sanitize.bypassSecurityTrustUrl(train.picture)>
+        <!--<img-->
+          <!--src="https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F41204378%2F196480064855%2F1%2Foriginal.jpg?w=800&auto=compress&rect=0%2C0%2C1920%2C960&s=fb621fecdbe1f0a69ae5dbab306f3313">-->
+        <div class="content-padding">
+          <h4 class="training-details beetobee-purple-dark-text">Desription</h4>
+          <p class="beetobee-purple-light-text">{{train.description}}</p>
+          <ul class="col m6">
+            <li class="training-details beetobee-purple-dark-text">
+              <i class="material-icons prefix">today</i>
+              Date : <p class="beetobee-purple-light-text">{{train.date}}</p>
+
+            </li>
+
+            <li class="training-details beetobee-purple-dark-text">
+              <i class="material-icons prefix">access_time</i>
+              Heure :
+              <p class="beetobee-purple-light-text">{{train.hour}}</p>
+            </li>
+
+            <li class="training-details beetobee-purple-dark-text">
+              <i class="material-icons prefix">timer</i>
+              Durée :
+              <p class="beetobee-purple-light-text">{{train.duration}}</p>
+            </li>
+          </ul>
+          <ul class="col m6">
+            <li class="training-details beetobee-purple-dark-text">
+              <i class="material-icons prefix">event_seat</i>
+              Nombre de places :
+              <p class="beetobee-purple-light-text">{{train.totalSeat}}</p>
+            </li>
+
+            <li class="training-details beetobee-purple-dark-text">
+              <i class="material-icons prefix">turned_in</i>
+              Thème :
+              <p class="beetobee-purple-light-text">{{train.theme}}</p>
+            </li>
+
+            <li class="training-details beetobee-purple-dark-text">
+              <i class="material-icons prefix">location_on</i>
+              Lieu :
+              <p class="beetobee-purple-light-text">{{train.place}}</p>
+            </li>
+          </ul>
+        </div>
       </div>
-      <div class="card-action">
-        action
-      </div>
     </div>
-  </div>
-</div>
+  </section>
+</main>
+<!--TODO TITRE class="training-details beetobee-purple-dark-text"-->
+<!--TODO TEXTE class="beetobee-purple-light-text"-->
