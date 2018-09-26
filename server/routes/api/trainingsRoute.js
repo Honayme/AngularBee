@@ -8,7 +8,7 @@ let router = express.Router();
 
 router.post('/create', trainingController.createTraining);
 router.get('/all', trainingController.getAllTraining);
-router.get('/detail', trainingController.getDetailTraining);
+router.get('/detail/:id', trainingController.getDetailTraining);
 router.get('/trainingUser', trainingController.getUserTraining);
 router.put('/update', trainingController.updateTraining);
 router.delete('/delete/:id', trainingController.deleteTraining);

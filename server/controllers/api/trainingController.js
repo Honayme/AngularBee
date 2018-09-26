@@ -128,6 +128,8 @@ getDetailTraining= (req, res) => {
   let limit   = parseInt(req.query.limit);
   let offset  = parseInt(req.query.offset);
   let order   = req.query.order;
+  let trainingId  = req.params.id;
+
 
 
   models.Training.findAll({
@@ -138,7 +140,8 @@ getDetailTraining= (req, res) => {
     include: [{
       model: models.User,
       attributes: [ 'firstname' ]
-    }]
+    }],
+    where: {id : trainingId}
   }).then(function(training) {
     if (training) {
       res.status(200).json(training);
