@@ -8,7 +8,8 @@ const
   subscribe    = 1;
 
 let subscribeTraining,
-    unsubscribeTraining;
+    unsubscribeTraining,
+    isParticipateTraining;
 
 
 subscribeTraining = (req, res) =>{
@@ -202,7 +203,83 @@ unsubscribeTraining = (req, res) => {
   )
 };
 
+isParticipateTraining = (req, res) => {
+  // Getting auth header
+  let headerAuth  = req.headers['authorization'],
+      userId      = jwtHelper.getUserId(headerAuth),
+      trainingId  = parseInt(req.params.trainingId);
+
+  let participate = false;
+
+  console.log("training id est " + trainingId);
+  console.log("user id est " + userId);
+  if(trainingId <=0){
+    return res.status(400).json({'error': 'invalid parameters'});
+  }
+
+  asyncLib.waterfall([
+    function(done) {
+      models.Training.findOne({
+        where: {id: trainingId}
+      })
+        .then(function(trainingFound){
+          done(null, trainingFound);
+        })
+        .catch(function(err){
+          console.log(err);
+          return res.status(500).json({ 'error': 'unable to verify training'})
+        });
+    },
+      function(trainingFound, done){
+        if(trainingFound) {
+          models.User.findOne({
+            where: { id: userId}
+          })
+            .then(function(userFound){
+              done(null, trainingFound, userFound);
+            })
+            .catch(function(err){
+              console.log(err);
+              return res.status(500).json({ 'error': 'unable to verify user'})
+            });
+        }else{
+          res.status(404).json({ 'error': 'the training doesn\'t exist'});
+        }
+      },
+      function(trainingFound, userFound, done){
+        if(userFound){
+          models.Participate.findOne({
+            where: {
+              userId: userId,
+              trainingId: trainingId
+            }
+          })
+            .then(function(userAlreadyParticipate){
+              if(userAlreadyParticipate){
+                participate = true;
+              }
+              done(null, trainingFound, userFound, userAlreadyParticipate);
+            })
+            .catch(function(err){
+              console.log(err);
+              return res.status(500).json({ 'error': 'unable to verify if the user already participate to the training'});
+            })
+        }else{
+          res.status(404).json({ 'error': 'the user doesn\'t exist'})
+        }
+      },
+    ], function(trainingFound) {
+      if(participate){
+        return res.status(201).json(participate);
+      }else{
+        return res.status(201).json(participate)
+      }
+    }
+  )
+};
+
 module.exports = {
   subscribeTraining,
-  unsubscribeTraining
+  unsubscribeTraining,
+  isParticipateTraining
 };

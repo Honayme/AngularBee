@@ -25,8 +25,8 @@ module.exports = () => {
         server.set('hostname', config.hostname);
 
         //Middleware that parses json
-        server.use(bodyParser.json());
-        server.use(bodyParser.urlencoded({ extended: false}));
+        server.use(bodyParser.json({limit: '50mb', extended: true}));
+        server.use(bodyParser.urlencoded({ limit:'50mb', extended: true}));
 
         // Point static path to dist
         server.use(express.static('dist'));
