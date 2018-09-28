@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {TrainingService} from '../../training.service';
 import {DomSanitizer} from '@angular/platform-browser';
 
@@ -10,17 +10,36 @@ import {DomSanitizer} from '@angular/platform-browser';
 })
 export class TrainingComponent implements OnInit {
 
+  idTraining = this.route.snapshot.params['id'];
   training = [];
+  isSubscribe = false;
 
   constructor(private route: ActivatedRoute,
-              private trainingService: TrainingService,
-              public  sanitize: DomSanitizer) { }
+              public trainingService: TrainingService,
+              public  sanitize: DomSanitizer,
+              private router: Router) { }
 
   ngOnInit() {
-    this.trainingService.getDetail((this.route.snapshot.params['id'])).subscribe(training => {
+    this.trainingService.getDetail((this.idTraining)).subscribe(training => {
       this.training = training;
-      console.log(this.route.snapshot.params['id']);
+    });
+
+    this.trainingService.isSubscribe((this.idTraining)).subscribe(isSubscribe => {
+      this.isSubscribe = isSubscribe;
     });
   }
 
+  subscribe() {
+    this.trainingService.subscribeTraining(this.idTraining).subscribe(participate => {
+      this.router.navigate(['/formations/detail/' + this.idTraining]);
+      console.log('participate');
+    });
+  }
+
+  unsubscribe() {
+    this.trainingService.unsubscribeTraining(this.idTraining).subscribe(participate => {
+      this.router.navigate(['/formations/detail/' + this.idTraining]);
+      console.log('not participate');
+    });
+  }
 }

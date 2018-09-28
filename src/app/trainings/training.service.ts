@@ -11,6 +11,7 @@ export class TrainingService {
   }
 
   path = 'http://localhost:3000/api/training';
+  pathPart = 'http://localhost:3000/api/participate';
 
   getAll(): Observable<Training[]> {
     return this.http.get<Training[]>(this.path + '/all');
@@ -34,5 +35,17 @@ export class TrainingService {
 
   deleteTraining(id: number): Observable<boolean> {
     return this.http.delete<boolean>(this.path + '/delete/' + id);
+  }
+
+  subscribeTraining(id: number): Observable<any[]> {
+    return this.http.post<any[]>(this.pathPart + '/training/subscribe/' + id, '' );
+  }
+
+  unsubscribeTraining(id: number): Observable<any[]> {
+    return this.http.post<any[]>(this.pathPart + '/training/unsubscribe/' + id, '' );
+  }
+
+  isSubscribe(id: number): Observable<boolean> {
+    return this.http.get<boolean>(this.pathPart + '/training/issubscribe/' + id);
   }
 }

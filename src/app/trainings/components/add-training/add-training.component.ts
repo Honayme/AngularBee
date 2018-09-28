@@ -39,7 +39,7 @@ export class AddTrainingComponent implements OnInit {
     });
 
     const id = this.route.snapshot.params['id'];
-    this.Training = new Training('', '', '', '', '', '', '', '', '', '');
+    this.Training = new Training('', '', '', '', '', '', '', '', '', '', '');
 
     if (id) {
       this.update = true;
@@ -55,6 +55,7 @@ export class AddTrainingComponent implements OnInit {
           hour: training[0].hour,
           place: training[0].place,
           totalSeat: training[0].totalSeat,
+          availableSeat: training[0].totalSeat,
           picture: training[0].picture,
           theme: training[0].theme,
         });
@@ -78,7 +79,7 @@ populateTestData(): void {
 save() {
     this.Training = Object.assign(this.Training, this.trainingForm.value);
     this.Training.picture = this.picture;
-    if (this.update !== true){
+    if (this.update !== true) {
       this.trainingService.createTraining(this.Training).subscribe(Training => {
         this.router.navigate(['/formations']);
         console.log('create');
