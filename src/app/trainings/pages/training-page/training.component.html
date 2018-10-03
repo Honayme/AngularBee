@@ -1,12 +1,12 @@
 <main class="mdl-layout__content">
   <section class="container ">
     <div *ngFor="let train of training">
-    <div class="row z-depth-5 content">
+      <div class="row z-depth-5 content">
 
         <h3 class="content-padding">{{train.name}}</h3>
         <img *ngIf="train.picture" [src]=sanitize.bypassSecurityTrustUrl(train.picture)>
         <!--<img-->
-          <!--src="https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F41204378%2F196480064855%2F1%2Foriginal.jpg?w=800&auto=compress&rect=0%2C0%2C1920%2C960&s=fb621fecdbe1f0a69ae5dbab306f3313">-->
+        <!--src="https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F41204378%2F196480064855%2F1%2Foriginal.jpg?w=800&auto=compress&rect=0%2C0%2C1920%2C960&s=fb621fecdbe1f0a69ae5dbab306f3313">-->
         <div class="content-padding">
           <h4 class="training-details beetobee-purple-dark-text">Desription</h4>
           <p class="beetobee-purple-light-text">{{train.description}}</p>
@@ -33,7 +33,7 @@
             <li class="training-details beetobee-purple-dark-text">
               <i class="material-icons prefix">event_seat</i>
               Nombre de places :
-              <p class="beetobee-purple-light-text">{{train.totalSeat}}</p>
+              <p class="beetobee-purple-light-text">{{train.availableSeat}} of {{train.totalSeat}}</p>
             </li>
 
             <li class="training-details beetobee-purple-dark-text">
@@ -49,6 +49,18 @@
             </li>
           </ul>
         </div>
+
+        <div *ngIf="!isSubscribe" class=" col m12">
+          <button class="subButton waves-effect beetobee-blue-dark-bg btn-flat" type="submit">
+            <a (click)="subscribe()" class="beetobee-white-text">Inscription</a>
+          </button>
+        </div>
+        <div *ngIf="isSubscribe" class=" col m12">
+          <button class="subButton waves-effect beetobee-red-dark-bg btn-flat" type="submit">
+            <a (click)="unsubscribe()" class="beetobee-white-text">Désinscription</a>
+          </button>
+        </div>
+
       </div>
     </div>
   </section>

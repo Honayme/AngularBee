@@ -9,11 +9,12 @@ export class Training {
   hour: Time;
   place: string;
   totalSeat: number;
+  availableSeat: number;
   picture: string;
   theme: string;
 
 
-  constructor(id, name, description, duration, date, hour, place, totalSeat, picture, theme) {
+  constructor(id, name, description, duration, date, hour, place, totalSeat, availableSeat, picture, theme) {
     this.id = id;
     this.name = name;
     this.description = description;
@@ -22,6 +23,7 @@ export class Training {
     this.hour = hour ;
     this.place = place ;
     this.totalSeat = totalSeat ;
+    this.availableSeat = availableSeat ;
     this.picture = picture ;
     this.theme = theme ;
   }
