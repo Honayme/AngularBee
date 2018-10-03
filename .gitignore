@@ -42,4 +42,7 @@ testem.log
 .DS_Store
 Thumbs.db
 
+#Personnal Rules
+package-lock.json
+.env
 git config core.fileMode false

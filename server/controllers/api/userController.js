@@ -239,6 +239,5 @@ module.exports = {
   register,
   login,
   getUserProfile,
-  updateUserProfile;
-
+  updateUserProfile,
 };
