@@ -20,7 +20,7 @@ export class TrainingComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
-    this.trainingService.getDetail((this.idTraining)).subscribe(training => {
+    this.trainingService.getDetail((this.idTraining)).toPromise().then(training => {
       this.training = training;
     });
 
@@ -30,14 +30,13 @@ export class TrainingComponent implements OnInit {
   }
 
   subscribe() {
-    this.trainingService.subscribeTraining(this.idTraining).subscribe(participate => {
+    this.trainingService.subscribeTraining(this.idTraining).toPromise().then(participate => {
       this.router.navigate(['/formations/detail/' + this.idTraining]);
-      console.log('participate');
     });
   }
 
   unsubscribe() {
-    this.trainingService.unsubscribeTraining(this.idTraining).subscribe(participate => {
+    this.trainingService.unsubscribeTraining(this.idTraining).toPromise().then(participate => {
       this.router.navigate(['/formations/detail/' + this.idTraining]);
       console.log('not participate');
     });
