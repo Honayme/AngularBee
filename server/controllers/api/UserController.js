@@ -14,6 +14,7 @@ let register,
     getUserProfile,
     updateUserProfile;
 
+
 register = (req, res) => {
 
   let firstname   = req.body.firstname,
@@ -238,5 +239,6 @@ module.exports = {
   register,
   login,
   getUserProfile,
-  updateUserProfile
+  updateUserProfile;
+
 };

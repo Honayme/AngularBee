@@ -39,10 +39,13 @@ export class LoginRegisterComponent implements OnInit {
     });
   }
 
+
+
   ngOnInit() {
     $(document).ready(function(){
       $('#loginRegister').modal();
     });
+
 
     //Change label size and position when they are focus or not
     $('.input input').focus(function() {
@@ -104,6 +107,7 @@ export class LoginRegisterComponent implements OnInit {
         $(this).parent().removeClass('material-button');
         $('#buttonregister').removeAttr('disabled');
         $('#buttonlogin').attr('disabled', 'disabled');
+
       } else {
         $('#buttonlogin').removeAttr('disabled');
         $('#buttonregister').attr('disabled', 'disabled');

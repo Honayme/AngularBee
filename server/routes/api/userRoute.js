@@ -7,9 +7,9 @@ const
 let router = express.Router();
 
 router.post('/register', userController.register);
-router.post('/login', userController.login);
-router.get('/profile', userController.getUserProfile);
-router.put('/profile', userController.updateUserProfile);
+router.post('/login',    userController.login);
+router.get('/profile',   userController.getUserProfile);
+router.put('/profile',   userController.updateUserProfile);
 // router.get('/users/:id', userController.getUsersWithId());
 
 module.exports = router;

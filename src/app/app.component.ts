@@ -47,7 +47,7 @@ export class AppComponent {
 
     // Show up the register form when the user click on the register link
     $('#modal-register').on('click', function () {
-      $('.materialContainer').find('.material-button-register').trigger('click');
+      $('.materialContainer').find('.shape').trigger('click');
       if (!registerBox.hasClass('active')) {
         let overlayId = $(this).attr('data-overlay'),
             overlay = $('#' + overlayId),
