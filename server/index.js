@@ -33,7 +33,7 @@ module.exports = () => {
 
         // Catch all other routes and return the index file
         server.get('/', (req, res) => {
-          res.sendFile("index.html", {"root": 'C:/dev/AngularBee/angularBeeV2/dist'});
+          res.sendFile("index.html", {"root": 'C:/dev/AngularBee/dist'});
         });
 
       server.use(function(req, res, next) {
