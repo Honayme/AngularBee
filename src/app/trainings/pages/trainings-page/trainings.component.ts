@@ -25,11 +25,11 @@ export class TrainingsComponent implements OnInit {
     $('#modal-ask-for-training').modal();
   }
 
-  private openModalAdd(){
+  public openModalAdd(){
     $("#modal-add-training").modal('open');
   }
 
-  private openModalAsk(){
+  public openModalAsk(){
     $("#modal-ask-for-training").modal('open');
   }
 

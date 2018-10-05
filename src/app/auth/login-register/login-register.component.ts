@@ -12,8 +12,8 @@ declare var $: any ;
 })
 export class LoginRegisterComponent implements OnInit {
 
-  registerData = {};
-  loginData = {};
+  registerData = <any>{};
+  loginData = <any>{};
 
   constructor(private authService: AuthService,
               private router: Router) { }
