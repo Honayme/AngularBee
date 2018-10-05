@@ -5,6 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng build && node server.js",
+    "startprod": "ng build --prod && node server.js",
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
@@ -24,7 +25,7 @@
     "@angular/router": "6.1.9",
     "angular2-materialize": "^15.1.10",
     "async": "^2.6.1",
-    "bcrypt": "^2.0.1",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
     "core-js": "^2.5.7",
     "cors": "^2.8.4",
