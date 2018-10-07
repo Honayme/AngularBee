@@ -25,7 +25,7 @@
     "@angular/router": "6.1.9",
     "angular2-materialize": "^15.1.10",
     "async": "^2.6.1",
-    "bcrypt": "https://github.com/kelektiv/node.bcrypt.js.git#master",
+    "bcrypt": "^3.0.1",
     "body-parser": "^1.18.3",
     "core-js": "^2.5.7",
     "cors": "^2.8.4",
