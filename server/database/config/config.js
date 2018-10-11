@@ -1,6 +1,5 @@
-// const dotenv = require('dotenv').config({path: 'C:\\dev\\AngularBee\\angularBeeV2\\.env'});
 // const dotenv = require('dotenv').config({path: 'C:\\laragon\\www\\AngularBee\\.env'});
-
+// const dotenv = require('dotenv').config({path: '//var//www//beetobee.ovh//html//AngularBee//.env'});
 module.exports = {
   development: {
     username: process.env.DB_USER,
