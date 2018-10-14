@@ -2,7 +2,7 @@
 
 //TODO http://docs.sequelizejs.com/manual/tutorial/querying.html#operators deprecated String
 //TODO ES6 import : import bcrypt from 'bcrypt';
-const bcrypt          = require('bcrypt'),
+const bcrypt          = require('bcryptjs'),
       jwtUtils        = require('../../helpers/jwtHelper'),
       models          = require('../../database/models'),
       asyncLib        = require('async'),
