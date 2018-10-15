@@ -15,7 +15,9 @@ module.exports = () => {
         start;
 
     create = (config) => {
-        let routes = require('./routes/index');
+      server.use(cors());
+
+      let routes = require('./routes/index');
 
         //Server settings
         server.set('env', config.env);
@@ -33,22 +35,6 @@ module.exports = () => {
         server.get('/', (req, res) => {
           res.sendFile("index.html", {"root": 'C:/dev/AngularBee/dist'});
         });
-
-      let originsWhitelist = [
-        'http://localhost:4200',      //this is my front-end url for development
-
-        'https://www.beetobee.ovh'
-      ];
-
-      let corsOptions = {
-        origin: function(origin, callback){
-          let isWhitelisted = originsWhitelist.indexOf(origin) !== -1;
-          callback(null, isWhitelisted);
-        },
-        credentials:true
-      };
-
-      server.use(cors(corsOptions));
 
       server.use(function(req, res, next) {
         res.header("Access-Control-Allow-Origin", "*");

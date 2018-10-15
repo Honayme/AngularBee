@@ -26,9 +26,6 @@ import { SearchFiltersComponent } from './certifications/components/search-filte
 import {AuthService} from './auth/auth.service';
 import {AuthInterceptorService} from './auth/auth-interceptor.service';
 import {TrainingService} from './trainings/training.service';
-import {BrowserXhr} from '@angular/http';
-import {CustExtBrowserXhr} from '../cust-ext-browser-xhr';
-import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 
 
 @NgModule({
@@ -59,8 +56,6 @@ import {HashLocationStrategy, LocationStrategy} from '@angular/common';
   ],
   providers: [HomeService, AuthService, TrainingService,
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true},
-    {provide: BrowserXhr, useClass: CustExtBrowserXhr},
-    {provide: LocationStrategy, useClass: HashLocationStrategy}
   ], // Add the posts service
   bootstrap: [AppComponent]
 })
