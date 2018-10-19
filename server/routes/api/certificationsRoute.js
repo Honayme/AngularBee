@@ -8,5 +8,6 @@ let router = express.Router();
 
 router.post('/create', certificationsController.createCertifications);
 router.get('/all', certificationsController.getAllCertifications);
+router.get('/detail/:id', certificationsController.getDetailCertifications);
 
 module.exports = router;
