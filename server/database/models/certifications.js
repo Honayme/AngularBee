@@ -1,6 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  let certifications = sequelize.define('certifications', {
+  let Certifications = sequelize.define('Certifications', {
     title: DataTypes.STRING,
     editor: DataTypes.STRING,
     expertiseField: DataTypes.STRING,
@@ -13,8 +13,8 @@ module.exports = (sequelize, DataTypes) => {
     examDuration: DataTypes.TIME,
     examNumber: DataTypes.INTEGER
   }, {});
-  certifications.associate = function(models) {
+  Certifications.associate = function(models) {
     // associations can be defined here
   };
-  return certifications;
+  return Certifications;
 };

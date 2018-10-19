@@ -50,7 +50,7 @@ module.exports = {
       },
       examNumber: {
         allowNull: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,

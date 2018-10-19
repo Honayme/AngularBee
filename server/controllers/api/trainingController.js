@@ -18,7 +18,6 @@ createTraining = (req, res) => {
   let headerAuth  = req.headers['authorization'];
   let userId      = jwtHelper.getUserId(headerAuth);
 
-  //TODO Get the picture
   //Param
   let name          = req.body.name,
       description   = req.body.description,
