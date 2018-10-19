@@ -90,6 +90,35 @@ createCertifications = (req, res) => {
 
 };
 
+getAllCertifications = (req, res) => {
+  let fields = req.query.fields,
+      limit  = parseInt(req.query.limit),
+      offset = parseInt(req.query.offset),
+      order  = req.query.order;
+
+  models.Certifications.findAll({
+    order:  [(order != null) ? order.split(':') : ['title', 'ASC']],
+    attributes: (fields !== '*' && fields != null ) ? fields.split(',') : null,
+    limit:  (!isNaN(limit)) ? limit : null,
+    offset:  (!isNaN(offset)) ? offset : null,
+  }).then(function (certifications) {
+    if (certifications) {
+      res.status(200).json(certifications);
+    } else {
+      res.status(404).json({"error" : "no training found" });
+    }
+  }).catch(function(err) {
+    console.log(err);
+    res.status(500).json({"error": "invalid fields"});
+  });
+};
+
+
 module.exports  = {
   createCertifications,
+  getAllCertifications,
+  getDetailCertifications,
+  getUserCertifications,
+  updateCertifications,
+  deleteCertifications,
 };

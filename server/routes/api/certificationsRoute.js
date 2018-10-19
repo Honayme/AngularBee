@@ -7,5 +7,6 @@ const
 let router = express.Router();
 
 router.post('/create', certificationsController.createCertifications);
+router.get('/all', certificationsController.getAllCertifications);
 
 module.exports = router;
