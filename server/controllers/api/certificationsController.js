@@ -9,7 +9,6 @@ const
 let createCertifications,
   getAllCertifications,
   getDetailCertifications,
-  getUserCertifications,
   updateCertifications,
   deleteCertifications;
 
@@ -223,6 +222,51 @@ updateCertifications = (req, res) => {
       return res.status(500).json({'error': 'cannot update advert'})
     }
   });
+};
+
+
+//TODO Verify the userId if is negative do not allow the execution
+deleteCertifications = (req, res) => {
+  let headerAuth = req.headers['authorization'],
+      userId     = jwtHelper.getUserId(headerAuth);
+
+  let certificationsid = req.params.id;
+
+  asyncLib.waterfall([
+    function(done) {
+      models.Certifications.findOne({
+        attributes: ['id'],
+        where: {id: certificationsid}
+    }).then(function(certificationsFound) {
+        console.log(certificationsFound);
+        done(null, certificationsFound)
+      }).catch(function(err) {
+        console.log(err);
+        return res.status(500).json({ 'error' : 'Unable to find certification'});
+      });
+    },
+    function (certificationFound, done) {
+      if(certificationFound){
+        certificationFound.destroy({
+          where : {id : certificationsid}
+        }).then(function(){
+          done(certificationFound);
+        }).catch(function(err) {
+          console.log(err);
+          res.status(500).json({'error': 'cannot destroy advert'})
+        })
+      }else{
+          res.status(404).json({'error': 'certifications not found'});
+      }
+    },
+  ], function(certificationFound) {
+    if(certificationFound) {
+      return res.status(201).json(certificationFound);
+    } else {
+      return res.status(500).json({ 'error' : "cannot destroy certification"});
+    }
+  });
+
 };
 
 module.exports  = {

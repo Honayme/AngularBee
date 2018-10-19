@@ -310,7 +310,7 @@ deleteTraining = (req, res) => {
       })
         .catch(function(err) {
           console.log(err);
-          return res.status(500).json({ 'error': 'unable to destroy training' });
+          return res.status(500).json({ 'error': 'unable to find training' });
         });
     },
     function(trainingFound, done) {
