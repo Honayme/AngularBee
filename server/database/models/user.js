@@ -18,3 +18,20 @@ module.exports = (sequelize, DataTypes) => {
   };
   return User;
 };
+
+//sequelize model:create --attributes "messageId:integer userId:integer" --name Like
+
+//Titre de la certification
+//Editeur de certification
+//Domaine d'expertise
+
+//Description
+//Validité
+// Coût
+  // Coût HT/TTC
+//Détail de l'examens
+  //Durée de l'examen
+  //Numéro d'examen (null)
+
+//Comment s'inscrire
+//Information utile

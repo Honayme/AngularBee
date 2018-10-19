@@ -1,4 +1,4 @@
-// const dotenv = require('dotenv').config({path: 'C:\\laragon\\www\\AngularBee\\.env'});
+const dotenv = require('dotenv').config({path: 'C:\\laragon\\www\\AngularBee\\.env'});
 // const dotenv = require('dotenv').config({path: '//var//www//beetobee.ovh//html//AngularBee//.env'});
 module.exports = {
   development: {
