@@ -201,7 +201,7 @@ getUserTraining = (req, res) => {
 
 updateTraining = (req, res) => {
 
-//Getting auth header
+  //Getting auth header
   let headerAuth  = req.headers['authorization'];
   let userId      = jwtHelper.getUserId(headerAuth);
 
@@ -217,9 +217,9 @@ updateTraining = (req, res) => {
       picture     = req.body.picture,
       theme       = req.body.theme;
 
-  if (name == null || description == null || duration == null || date == null || hour == null || place == null || totalSeat == null || theme == null  ) {
-    return res.status(400).json({'error': 'missing parameters'})
-  }
+  // if (name == null || description == null || duration == null || date == null || hour == null || place == null || totalSeat == null || theme == null  ) {
+  //   return res.status(400).json({'error': 'missing parameters'})
+  // }
 
   if (name.length >= 40 || name.length <= 5) {
     return res.status(400).json({'error': 'Name must contain min 5 and max 40 letters'})

@@ -31,8 +31,6 @@ createCertifications = (req, res) => {
       examDuration = req.body.examDuration,
       examNumber = req.body.examNumber;
 
-  console.log(userId);
-
   if (title == null || editor == null || expertiseField == null || desc == null || validity == null || cost == null || costTtc == null || examDetail == null || examDuration == null || examNumber == null ) {
     return res.status(400).json({'error': 'missing parameters'})
   }
@@ -140,11 +138,97 @@ getDetailCertifications = (req, res) => {
 };
 
 
+updateCertifications = (req, res) => {
+  let headerAuth = req.headers['authorization'],
+      userId     = jwtHelper.getUserId(headerAuth);
+
+  let id = req.body.id,
+      title = req.body.title,
+      editor = req.body.editor,
+      expertiseField = req.body.expertiseField,
+      desc = req.body.desc,
+      validity = req.body.validity,
+      cost = req.body.cost,
+      costHt = req.body.costHt,
+      costTtc = req.body.costTtc,
+      examDetail = req.body.examDetail,
+      examDuration = req.body.examDuration,
+      examNumber = req.body.examNumber;
+
+
+  // if (title == null || editor == null || expertiseField == null || desc == null || validity == null || cost == null || costTtc == null || examDetail == null || examDuration == null || examNumber == null ) {
+  //   return res.status(400).json({'error': 'missing parameters'})
+  // }
+  console.log(title);
+  // if (title.length >= 40 || title.length <= 5) {
+  //   return res.status(400).json({'error': 'Title must contain min 5 and max 40 letters'})
+  // }
+
+  // if (costTtc < 0 || costHt < 0) {
+  //   return res.status(400).json({'error': 'Cost must be a positive'})
+  // }
+
+  asyncLib.waterfall([
+    function(done){
+      models.User.findOne({
+        where : {id: userId}
+      })
+        .then(function(userFound){
+          done(null, userFound);
+        })
+        .catch(function(err){
+          console.log(err);
+          return res.status(500).json({'error': 'unable to verify user'})
+        })
+    },
+    function(userFound, done) {
+      models.Certifications.findOne({
+      attributes: ['id', 'title', 'editor', 'expertiseField', 'desc', 'validity', 'cost', 'costHt', 'costTtc', 'examDetail', 'examDuration', 'examNumber' ],
+      where: { id : id }
+    }).then(function(certificationsFound) {
+        done(null, certificationsFound);
+      }).catch(function(err){
+        console.log(err);
+        return res.status(500).json({ 'error': 'unable to found advert'});
+      });
+    },
+    function(certificationFound, done){
+      if(certificationFound){
+        certificationFound.update({
+          title: (title ? title : certificationFound.title),
+          editor: (editor ? editor : certificationFound.editor),
+          expertiseField: (expertiseField ? expertiseField : certificationFound.expertiseField),
+          desc: (desc ? desc : certificationFound.desc),
+          validity: (validity ? validity : certificationFound.validity),
+          cost: (cost ? cost : certificationFound.cost),
+          costHt: (costHt ? costHt : certificationFound.costHt),
+          costTtc: (costTtc ? costTtc : certificationFound.costTtc),
+          examDetail: (examDetail ? examDetail : certificationFound.examDetail),
+          examDuration: (examDuration ? examDuration : certificationFound.examDuration),
+          examNumber: (examNumber ? examNumber : certificationFound.examNumber),
+        }).then(function(){
+          done(certificationFound);
+        }).catch(function(err){
+          console.log("Error during update" + err);
+          res.status(500).json({ 'error': 'cannot update certifications' });
+        });
+      } else {
+        res.status(404).json({ 'error': 'certifications not found' });
+      }
+    },
+  ], function(certificationsFound) {
+    if(certificationsFound) {
+      return res.status(201).json(certificationsFound);
+    }else {
+      return res.status(500).json({'error': 'cannot update advert'})
+    }
+  });
+};
+
 module.exports  = {
   createCertifications,
   getAllCertifications,
   getDetailCertifications,
-  getUserCertifications,
   updateCertifications,
   deleteCertifications,
 };

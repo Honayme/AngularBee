@@ -9,5 +9,6 @@ let router = express.Router();
 router.post('/create', certificationsController.createCertifications);
 router.get('/all', certificationsController.getAllCertifications);
 router.get('/detail/:id', certificationsController.getDetailCertifications);
+router.put('/update', certificationsController.updateCertifications);
 
 module.exports = router;
