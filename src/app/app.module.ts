@@ -22,7 +22,6 @@ import { AddTrainingComponent } from './trainings/components/add-training/add-tr
 import { AskTrainingComponent } from './trainings/components/ask-training/ask-training.component';
 import { CertificationComponent } from './certifications/pages/certification-page/certification.component';
 import { TrainingComponent } from './trainings/pages/training-page/training.component';
-import { SearchFiltersComponent } from './certifications/components/search-filters/search-filters.component';
 import {AuthService} from './auth/auth.service';
 import {AuthInterceptorService} from './auth/auth-interceptor.service';
 import {TrainingService} from './trainings/training.service';
@@ -43,7 +42,6 @@ import {TrainingService} from './trainings/training.service';
     AddTrainingComponent,
     AskTrainingComponent,
     CertificationComponent,
-    SearchFiltersComponent,
   ],
   imports: [
     BrowserModule,
