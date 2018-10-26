@@ -2,14 +2,75 @@
   <div class="box beetobee-white-bg">
     <i class="icon-beetobee-logo beetobee-blue-elec-text materialContainer-beetobee"></i>
     <div class="title beetobee-blue-elec-text">CONNEXION</div>
+
+    <form class="form-group row"
+          novalidate
+          (ngSubmit)="postLogin()"
+          [formGroup]="loginForm">
+
+      <!--___EMAIL___-->
+      <div class="form-group"
+           [ngClass]="{'has-error': (loginForm.get('email').touched || loginForm.get('email').dirty) && !loginForm.get('email').valid }">
+
+        <div class="input-field col s6">
+          <input class="validate form-control no-border beetobee-purple-dark-text"
+                 id="email"
+                 type="email"
+                 name="email"
+                 formControlName="email"
+                 autofocus>
+          <span class="help-block"
+                *ngIf="(loginForm.get('email').touched || loginForm.get('email').dirty) && loginForm.get('email').errors">
+                            <span *ngIf="loginForm.get('email').errors.required">
+                                Please enter a email.
+                            </span>
+                            <span *ngIf="loginForm.get('email').errors.pattern">
+                              <!--TODO Render a more correct message about the expecting pattern-->
+                                The email must be longer than 5 characters.
+                            </span>
+          </span>
+
+          <label for="email">Email<span class="beetobee-red-dark-text">*</span></label>
+        </div>
+      </div><!--End FormGroup-->
+
+
     <div class="input">
-      <label for="email">Email</label>
-      <input [(ngModel)] = "loginData.email" class="no-border beetobee-purple-dark-text" type="email" name="email" id="email" required autofocus>
+      <!--<label for="email">Email</label>-->
+      <!--<input [(ngModel)] = "loginData.email" class="no-border beetobee-purple-dark-text" type="email" name="email" id="email" required autofocus>-->
     </div>
+
+      <!--___PASSWORD___-->
+      <div class="form-group"
+           [ngClass]="{'has-error': (loginForm.get('password').touched || loginForm.get('password').dirty) && !loginForm.get('password').valid }">
+
+        <div class="input-field col s6">
+          <input class="validate form-control no-border beetobee-purple-dark-text"
+                 id="password"
+                 type="password"
+                 name="password"
+                 formControlName="password">
+          <span class="help-block"
+                *ngIf="(loginForm.get('password').touched || loginForm.get('password').dirty) && loginForm.get('password').errors">
+                            <span *ngIf="loginForm.get('password').errors.required">
+                                Please enter a password.
+                            </span>
+                            <span *ngIf="loginForm.get('password').errors.pattern">
+                              <!--TODO Render a more correct message about the expecting pattern-->
+                                The password must be longer than 5 characters.
+                            </span>
+          </span>
+
+          <label for="email">Email<span class="beetobee-red-dark-text">*</span></label>
+        </div>
+      </div><!--End FormGroup-->
+
+
     <div class="input">
       <label for="pass">Mot de passe</label>
       <input [(ngModel)] = "loginData.password" class="no-border beetobee-purple-dark-text" type="password" name="pass" id="pass" required >
     </div>
+
     <div class="button login">
       <button (click)="postLogin()" class="login beetobee-blue-elec-text" id="buttonlogin">
         <span class="materialContainer-action">GO</span>
@@ -17,6 +78,8 @@
         <i class="material-icons materialContainer-close">close</i>
       </button>
     </div>
+
+    </form>
     <a href="#" class="pass-forgot">Mot de passe oublié ?</a>
     <span id="errorCon" class="beetobee-red-dark-text"></span>
   </div>
