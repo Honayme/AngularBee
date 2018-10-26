@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import * as jwt_decode from "jwt-decode";
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -15,7 +16,19 @@ export class AuthService {
     return localStorage.getItem(this.TOKEN_KEY);
   }
   get isAuthenticated() {
-    // TODO Add method to check is it's a valid token
+    if (localStorage.getItem(this.TOKEN_KEY)) {
+      const jwt = jwt_decode(localStorage.getItem(this.TOKEN_KEY));
+
+      let current_time = new Date().getTime() / 1000;
+      let segments = localStorage.getItem(this.TOKEN_KEY).split('.');
+
+      if (current_time > jwt.exp
+        && segments.length !== 3
+        && jwt.userId === false) {
+        this.logout();
+      }
+    }
+
     return !!localStorage.getItem(this.TOKEN_KEY);
   }
   logout() {
