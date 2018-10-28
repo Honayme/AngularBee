@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MaterializeModule } from 'angular2-materialize';
+import { MaterialModule} from './material';
 
 import { AppComponent } from './app.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -25,6 +26,7 @@ import { TrainingComponent } from './trainings/pages/training-page/training.comp
 import {AuthService} from './auth/auth.service';
 import {AuthInterceptorService} from './auth/auth-interceptor.service';
 import {TrainingService} from './trainings/training.service';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -51,6 +53,8 @@ import {TrainingService} from './trainings/training.service';
     AppRouting,
     MaterializeModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MaterialModule
   ],
   providers: [HomeService, AuthService, TrainingService,
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true},

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../auth.service';
 import {Router} from '@angular/router';
 import {MaterializeAction, MaterializeDirective} from 'angular2-materialize';
@@ -38,7 +38,6 @@ export class LoginRegisterComponent implements OnInit {
       });
     });
   }
-
 
 
   ngOnInit() {
