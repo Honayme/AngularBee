@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../auth.service';
 import {Router} from '@angular/router';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MaterializeAction, MaterializeDirective} from 'angular2-materialize';
 
 declare var $: any ;
@@ -13,15 +12,11 @@ declare var $: any ;
 })
 export class LoginRegisterComponent implements OnInit {
 
-  loginForm: FormGroup;
-  registerForm: FormGroup;
-
   registerData = <any>{};
   loginData = <any>{};
 
   constructor(private authService: AuthService,
-              private router: Router,
-              private fb: FormBuilder) { }
+              private router: Router) { }
 
   postRegister() {
     this.authService.registerUser(this.registerData);
@@ -47,12 +42,6 @@ export class LoginRegisterComponent implements OnInit {
 
 
   ngOnInit() {
-
-    this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.pattern(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)]],
-      password: ['', [Validators.required, Validators.pattern(/^(?=.*\d).{4,8}$/)]]
-    });
-
     $(document).ready(function(){
       $('#loginRegister').modal();
     });
