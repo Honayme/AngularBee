@@ -4,7 +4,7 @@
 /* ---- Variables ---- */
 
 :root {
-  --beetobee-white: white !important;
+  --beetobee-white: white;
   --beetobee-purple-dark: #321851;
   --beetobee-purple-light: #522b77;
   --beetobee-blue-dark: #2c3664;

@@ -21,79 +21,12 @@
     <span id="errorCon" class="beetobee-red-dark-text"></span>
   </div>
   <div class="overbox">
-
-
     <div class="material-button material-button-register alt-2 beetobee-red-dark-bg"><span class="shape"></span></div>
     <div class="title beetobee-purple-dark-text">INSCRIPTION</div>
-
-    <form class="form-group"
-          novalidate
-          (ngSubmit)="postRegister()"
-          [formGroup]="registerForm">
-      <!--___EMAIL___-->
-
-      <div class="form-group"
-           [ngClass]="{'has-error': (registerForm.get('email').touched || registerForm.get('email').dirty) && !registerForm.get('email').valid }">
-
-        <div class="input">
-          <mat-form-field class="example-full-width">
-
-          <input matInput class="validate form-control no-border beetobee-white-text"
-                 id="emailId"
-                 placeholder="Email"
-                 type="email"
-                 email="emailId"
-                 [formControl]="emailFormControl">
-          <mat-error class="help-block beetobee-white-text"
-                *ngIf="(registerForm.get('email').touched || registerForm.get('email').dirty) && registerForm.get('email').errors">
-                            <span *ngIf="registerForm.get('email').errors.required">
-                                Please enter a email.
-                            </span>
-                            <span *ngIf="registerForm.get('email').errors.pattern">
-                                Email non valide.
-                            </span>
-          </mat-error>
-
-          <!--<label class="beetobee-white-text" for="emailId">Email <span>*</span></label>-->
-          </mat-form-field>
-
-        </div>
-
-      </div>
-
-      <!--___FIRSTNAME___-->
-
-      <div class="form-group"
-           [ngClass]="{'has-error': (registerForm.get('firstname').touched || registerForm.get('firstname').dirty) && !registerForm.get('firstname').valid }">
-
-        <div class="input">
-          <mat-form-field class="example-full-width">
-
-            <input matInput class="validate beetobee-white-text"
-                   id="firstnameId"
-                   placeholder="Prénom"
-                   type="text"
-                   firstname="firstnameId"
-                   [formControl]="firstnameFormControl">
-            <mat-error class="help-block beetobee-white-text"
-                       *ngIf="(registerForm.get('firstname').touched || registerForm.get('firstname').dirty) && registerForm.get('firstname').errors">
-                            <span *ngIf="registerForm.get('firstname').errors.required">
-                                Please enter a firstname.
-                            </span>
-              <span *ngIf="registerForm.get('firstname').errors.maxLength">
-                                Trop long
-                            </span>
-            </mat-error>
-
-            <!--<label class="beetobee-white-text" for="firstnameId">Email <span>*</span></label>-->
-          </mat-form-field>
-
-        </div>
-
-      </div>
-    </form>
-
-
+    <div class="input">
+      <label class="beetobee-white-text" for="regmail">Email *</label>
+      <input [(ngModel)] = "registerData.email" class="no-border beetobee-white-text" type="email" name="regmail" id="regmail" required autofocus>
+    </div>
     <div class="input">
       <label class="beetobee-white-text" for="regfirstname">Prénom *</label>
       <input [(ngModel)] = "registerData.firstname" class="no-border beetobee-white-text" type="text" name="regfirstname" id="regfirstname" required>
@@ -110,19 +43,13 @@
       <label class="beetobee-white-text" for="reregpass">Confirmation *</label>
       <input class="no-border beetobee-white-text" type="password" name="reregpass" id="reregpass" required>
     </div>
-
     <div class="button register">
-      <button class="mat-raised-button white-text"
-              type="submit"
-              [disabled]="!registerForm.valid"
-              id="buttonregister"
-              (click)="postRegister()">
+      <button (click)="postRegister()" class="white-text" id="buttonregister" disabled>
         <span class="materialContainer-action">Valider</span>
         <i class="material-icons materialContainer-check">check</i>
         <i class="material-icons materialContainer-close">close</i>
       </button>
     </div>
-
     <span id="errorReg" class="beetobee-red-dark-text"></span>
   </div>
 </div>

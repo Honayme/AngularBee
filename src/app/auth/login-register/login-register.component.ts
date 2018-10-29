@@ -2,28 +2,21 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../auth.service';
 import {Router} from '@angular/router';
 import {MaterializeAction, MaterializeDirective} from 'angular2-materialize';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-
-
 
 declare var $: any ;
 
 @Component({
-    selector: 'app-login-register',
-    templateUrl: './login-register.component.html',
-    styleUrls: ['./login-register.component.css']
-  })
-  export class LoginRegisterComponent implements OnInit {
-
-  registerForm: FormGroup;
+  selector: 'app-login-register',
+  templateUrl: './login-register.component.html',
+  styleUrls: ['./login-register.component.css']
+})
+export class LoginRegisterComponent implements OnInit {
 
   registerData = <any>{};
   loginData = <any>{};
 
   constructor(private authService: AuthService,
-              private router: Router,
-              private fb: FormBuilder) { }
-
+              private router: Router) { }
 
   postRegister() {
     this.authService.registerUser(this.registerData);
@@ -48,42 +41,33 @@ declare var $: any ;
 
 
   ngOnInit() {
-
-    this.registerForm = this.fb.group({
-      email: ['', [Validators.required, Validators.pattern(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)]],
-      firstname: ['', [Validators.required, Validators.maxLength(20)]],
-      lastname: ['', [Validators.required]],
-      password: ['', [Validators.required, Validators.pattern(/^(?=.*\d).{4,8}$/)]],
-    });
-
-    //Activate login Register modal on click
     $(document).ready(function(){
       $('#loginRegister').modal();
     });
 
 
     //Change label size and position when they are focus or not
-    // $('.input input').focus(function() {
-    //   $(this).parent('.input').each(function() {
-    //     $('label', this).css({
-    //       'line-height': '18px',
-    //       'font-size': '18px',
-    //       'font-weight': '100',
-    //       'top': '0px'
-    //     });
-    //   });
-    // }).blur(function() {
-    //   if ($(this).val() === '') {
-    //     $(this).parent('.input').each(function() {
-    //       $('label', this).css({
-    //         'line-height': '60px',
-    //         'font-size': '24px',
-    //         'font-weight': '300',
-    //         'top': '10px'
-    //       });
-    //     });
-    //   }
-    // });
+    $('.input input').focus(function() {
+      $(this).parent('.input').each(function() {
+        $('label', this).css({
+          'line-height': '18px',
+          'font-size': '18px',
+          'font-weight': '100',
+          'top': '0px'
+        });
+      });
+    }).blur(function() {
+      if ($(this).val() === '') {
+        $(this).parent('.input').each(function() {
+          $('label', this).css({
+            'line-height': '60px',
+            'font-size': '24px',
+            'font-weight': '300',
+            'top': '10px'
+          });
+        });
+      }
+    });
 
 
     $('.shape').click(function(e) {
