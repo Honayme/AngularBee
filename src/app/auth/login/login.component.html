@@ -1,0 +1,30 @@
+<!-- Modal Structure -->
+
+  <div id="login" class="modal">
+    <div class="box beetobee-white-bg">
+      <i class="icon-beetobee-logo beetobee-blue-elec-text materialContainer-beetobee"></i>
+
+      <div class="modal-content">
+        <h4 class="beetobee-blue-elec-text">CONNEXION</h4>
+
+        <div class="input-field col s6">
+          <input id="email" type="email" class="validate" required autofocus>
+          <label for="email">Email</label>
+        </div>
+
+        <div class="input-field col s6">
+          <input id="password" type="password" class="validate">
+          <label for="password">Password</label>
+        </div>
+
+
+      </div>
+
+      <div class="modal-footer">
+        <a (click)="postLogin()" id="button" class="waves-effect waves-teal btn-flat beetobee-blue-elec-text"><p>GO</p>
+        </a>
+        <a href="#modal2" (click)="close()" class="registerLink">Pas de compte ? Inscrivez-vous !</a>
+        <a href="#" class="pass-forgot">Mot de passe oublié ?</a>
+      </div>
+    </div>
+  </div>

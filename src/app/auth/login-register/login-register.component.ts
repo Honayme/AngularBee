@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MaterializeAction, MaterializeDirective} from 'angular2-materialize';
 
+
 declare var $: any ;
 
 @Component({
@@ -12,6 +13,7 @@ declare var $: any ;
   styleUrls: ['./login-register.component.css']
 })
 export class LoginRegisterComponent implements OnInit {
+
 
   loginForm: FormGroup;
   registerForm: FormGroup;

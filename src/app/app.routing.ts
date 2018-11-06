@@ -10,10 +10,14 @@ import {ContactComponent} from './core/contact/contact.component';
 import {CertificationsComponent} from './certifications/pages/certifications-page/certifications.component';
 import {HomeComponent} from './core/home/home.component';
 import {TrainingComponent} from './trainings/pages/training-page/training.component';
+import {LoginComponent} from './auth/login/login.component';
+import {RegisterComponent} from './auth/register/register.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'home', component: HomeComponent},
+  {path: 'login', component: LoginComponent},
+  {path: 'register', component: RegisterComponent},
   {path: 'formations', component: TrainingsComponent},
   {path: 'formations/detail/:id', component: TrainingComponent},
   {path: 'cgu', component: CguComponent},

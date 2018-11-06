@@ -25,6 +25,8 @@ import { TrainingComponent } from './trainings/pages/training-page/training.comp
 import {AuthService} from './auth/auth.service';
 import {AuthInterceptorService} from './auth/auth-interceptor.service';
 import {TrainingService} from './trainings/training.service';
+import { LoginComponent } from './auth/login/login.component';
+import { RegisterComponent } from './auth/register/register.component';
 
 
 @NgModule({
@@ -42,6 +44,8 @@ import {TrainingService} from './trainings/training.service';
     AddTrainingComponent,
     AskTrainingComponent,
     CertificationComponent,
+    LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
