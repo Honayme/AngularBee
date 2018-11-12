@@ -26,10 +26,6 @@ register = (req, res) => {
     return res.status(400).json({'error': 'missing parameters'})
   }
 
-  if (firstname.length >= 15 || firstname.length <= 4) {
-    return res.status(400).json({'error': 'Username must contain min 4 and max 15 letters'})
-  }
-
   if (!EMAIL_REGEX.test(email)) {
     return res.status(400).json({'error': 'Email is not valid'})
   }
