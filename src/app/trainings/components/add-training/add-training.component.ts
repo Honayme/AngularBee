@@ -4,7 +4,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {TrainingService} from '../../training.service';
 import {DomSanitizer} from '@angular/platform-browser';
 import {Training} from '../../training';
-import {Time} from '@angular/common';
+
 declare var $: any;
 
 @Component({
