@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import * as jwt_decode from 'jwt-decode';
 import 'rxjs/add/operator/map';
-import {IUser} from './iuser';
+import {ILogin} from './ilogin';
 import {catchError, tap} from 'rxjs/operators';
 import {of} from 'rxjs';
 
@@ -11,7 +11,6 @@ export class AuthService {
 
   path = 'http://localhost:3000/api/users';
   TOKEN_KEY = 'token';
-  currentUser: IUser;
 
   constructor(private http: HttpClient) {
   }
@@ -45,10 +44,9 @@ export class AuthService {
     const options = { headers: new HttpHeaders({'Content-Type': 'application/json'})};
 
     return this.http.post(this.path + '/login', loginData, options)
-      .pipe(tap(data => {
-        this.currentUser = <IUser>data['user'];
-        this.saveToken(data.token);
-        console.log(data.token);
+      .pipe(tap(res => {
+        console.log(res['token']);
+        this.saveToken(res['token']);
       }))
       .pipe(catchError(err => {
         console.log('Invalid credentials => ' + err);

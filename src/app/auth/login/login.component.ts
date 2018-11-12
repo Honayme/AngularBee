@@ -2,7 +2,7 @@ import { Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from '../auth.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {IUser} from '../iuser';
+import {ILogin} from '../ilogin';
 
 declare var $: any ;
 
@@ -13,7 +13,7 @@ declare var $: any ;
 })
 export class LoginComponent implements OnInit {
 
-  loginData = <IUser>{};
+  loginData = <ILogin>{};
   loginForm: FormGroup;
   loginInvalid = false;
 
@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
               private router: Router,
               private fb: FormBuilder) {}
 
-  close(){
+  closeLogin() {
     $('#login').modal('close');
   }
 
@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
         this.loginInvalid = true;
         console.log(this.loginData);
       } else {
-        this.close();
+        this.closeLogin();
         this.router.navigate(['/home']);
       }
     });
