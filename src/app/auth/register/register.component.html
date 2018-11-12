@@ -1,10 +1,92 @@
-<!-- Modal Structure -->
-<div id="modal2" class="modal">
-  <div class="modal-content">
-    <h4>MODAL INSCRIPTION</h4>
-    <p>A bunch of text</p>
-  </div>
-  <div class="modal-footer">
-    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
-  </div>
-</div>
+<!--&lt;!&ndash; Modal Structure &ndash;&gt;-->
+
+<!--<div id="register" class="modal beetobee-red-dark-bg">-->
+  <!--<div class="box beetobee-white-bg">-->
+
+    <!--<form class="form-group"-->
+          <!--novalidate-->
+          <!--(ngSubmit)="postLogin()"-->
+          <!--[formGroup]="loginForm">-->
+
+      <!--<div class="modal-content">-->
+        <!--<h4 class="beetobee-purple-dark-text">INSCRIPTION</h4>-->
+
+
+        <!--&lt;!&ndash;<div class="input-field col s6">&ndash;&gt;-->
+        <!--&lt;!&ndash;<input [(ngModel)]="loginData.email" id="email" type="email" class="validate" required autofocus>&ndash;&gt;-->
+        <!--&lt;!&ndash;<label for="email">Email</label>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;___EMAIL___&ndash;&gt;-->
+        <!--<div class="row">-->
+          <!--<div class="form-group"-->
+               <!--[ngClass]="{'has-error': (loginForm.get('email').touched || loginForm.get('email').dirty) && !loginForm.get('email').valid }">-->
+
+            <!--<div class="input-field col s12 no-padding">-->
+
+              <!--<input class="validate form-control"-->
+                     <!--id="emailId"-->
+                     <!--type="email"-->
+                     <!--name="emailId"-->
+                     <!--formControlName="email">-->
+              <!--<span class="help-block"-->
+                    <!--*ngIf="(loginForm.get('email').touched || loginForm.get('email').dirty) && loginForm.get('email').errors">-->
+                            <!--<span *ngIf="loginForm.get('email').errors.required">-->
+                                <!--Please enter a email.-->
+                            <!--</span>-->
+          <!--</span>-->
+
+              <!--<label id="labelEmail" for="emailId">Email</label>-->
+            <!--</div>-->
+
+          <!--</div>-->
+        <!--</div>-->
+
+        <!--&lt;!&ndash;<div class="input-field col s6">&ndash;&gt;-->
+        <!--&lt;!&ndash;<input [(ngModel)]="loginData.password" id="password" type="password" class="validate">&ndash;&gt;-->
+        <!--&lt;!&ndash;<label for="password">Password</label>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;___PASSWORD___&ndash;&gt;-->
+        <!--<div class="row">-->
+
+          <!--<div class="form-group"-->
+               <!--[ngClass]="{'has-error': (loginForm.get('password').touched || loginForm.get('password').dirty) && !loginForm.get('password').valid }">-->
+
+            <!--<div class="input-field col s12 no-padding">-->
+
+              <!--<input class="validate form-control"-->
+                     <!--id="passwordId"-->
+                     <!--type="password"-->
+                     <!--name="passwordId"-->
+                     <!--formControlName="password">-->
+              <!--<span class="help-block"-->
+                    <!--*ngIf="(loginForm.get('password').touched || loginForm.get('password').dirty) && loginForm.get('password').errors">-->
+                            <!--<span *ngIf="loginForm.get('password').errors.required">-->
+                                <!--Please enter a password.-->
+                            <!--</span>-->
+            <!--</span>-->
+
+              <!--<label for="passwordId">Password</label>-->
+            <!--</div>-->
+
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<p *ngIf="error" class="beetobee-blue-elec-text">{{error}}</p>-->
+    <!--</form>-->
+
+    <!--<div class="modal-footer">-->
+      <!--<button type="submit"-->
+              <!--id="button"-->
+              <!--class="waves-effect waves-teal btn-flat beetobee-blue-elec-text"-->
+              <!--[disabled]="!loginForm.valid"-->
+              <!--(click)="postLogin()">-->
+        <!--GO-->
+      <!--</button>-->
+      <!--<a href="#modal2" (click)="close()">Pas de compte ? Inscrivez-vous !</a>-->
+      <!--<br>-->
+      <!--<a href="#" >Mot de passe oublié ?</a>-->
+    <!--</div>-->
+
+
+  <!--</div>-->
+<!--</div>-->
