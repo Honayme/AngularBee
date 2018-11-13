@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../auth.service';
 import {Router} from '@angular/router';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MaterializeAction, MaterializeDirective} from 'angular2-materialize';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 
 declare var $: any ;
@@ -15,7 +15,6 @@ declare var $: any ;
 
 export class LoginRegisterComponent implements OnInit {
 
-  loginForm: FormGroup;
   registerForm: FormGroup;
 
   registerData = <any>{};
@@ -47,41 +46,43 @@ export class LoginRegisterComponent implements OnInit {
   }
 
 
-
   ngOnInit() {
 
-    this.loginForm = this.fb.group({
+    this.registerForm = this.fb.group({
       email: ['', [Validators.required, Validators.pattern(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)]],
-      password: ['', [Validators.required, Validators.pattern(/^(?=.*\d).{4,8}$/)]]
+      firstname: ['', [Validators.required, Validators.maxLength(20)]],
+      lastname: ['', [Validators.required]],
+      password: ['', [Validators.required, Validators.pattern(/^(?=.*\d).{4,8}$/)]],
     });
 
+    //Activate login Register modal on click
     $(document).ready(function(){
       $('#loginRegister').modal();
     });
 
 
     //Change label size and position when they are focus or not
-    $('.input input').focus(function() {
-      $(this).parent('.input').each(function() {
-        $('label', this).css({
-          'line-height': '18px',
-          'font-size': '18px',
-          'font-weight': '100',
-          'top': '0px'
-        });
-      });
-    }).blur(function() {
-      if ($(this).val() === '') {
-        $(this).parent('.input').each(function() {
-          $('label', this).css({
-            'line-height': '60px',
-            'font-size': '24px',
-            'font-weight': '300',
-            'top': '10px'
-          });
-        });
-      }
-    });
+    // $('.input input').focus(function() {
+    //   $(this).parent('.input').each(function() {
+    //     $('label', this).css({
+    //       'line-height': '18px',
+    //       'font-size': '18px',
+    //       'font-weight': '100',
+    //       'top': '0px'
+    //     });
+    //   });
+    // }).blur(function() {
+    //   if ($(this).val() === '') {
+    //     $(this).parent('.input').each(function() {
+    //       $('label', this).css({
+    //         'line-height': '60px',
+    //         'font-size': '24px',
+    //         'font-weight': '300',
+    //         'top': '10px'
+    //       });
+    //     });
+    //   }
+    // });
 
 
     $('.shape').click(function(e) {

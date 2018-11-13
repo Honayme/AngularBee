@@ -20,7 +20,6 @@
         <li ><a  id="modal-register" data-overlay="access" >OldInscription</a></li>
         <li><a *ngIf="authService.isAuthenticated" [routerLink]="['/profil']"><i class="material-icons connected">person</i></a></li>
         <li><a *ngIf="authService.isAuthenticated" (click)="authService.logout()" ><i class="material-icons connected">power_settings_new</i></a></li>
-
       </ul>
       <ul class="side-nav" id="mobile-demo">
         <li class="active"><a [routerLink]="['/home']" class="beetobee-purple-dark-text">Accueil</a></li>

@@ -43,13 +43,19 @@
       <label class="beetobee-white-text" for="reregpass">Confirmation *</label>
       <input class="no-border beetobee-white-text" type="password" name="reregpass" id="reregpass" required>
     </div>
+
     <div class="button register">
-      <button (click)="postRegister()" class="white-text" id="buttonregister" disabled>
+      <button class="mat-raised-button white-text"
+              type="submit"
+              [disabled]="!registerForm.valid"
+              id="buttonregister"
+              (click)="postRegister()">
         <span class="materialContainer-action">Valider</span>
         <i class="material-icons materialContainer-check">check</i>
         <i class="material-icons materialContainer-close">close</i>
       </button>
     </div>
+
     <span id="errorReg" class="beetobee-red-dark-text"></span>
   </div>
 </div>
