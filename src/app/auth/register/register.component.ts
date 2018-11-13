@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from '../auth.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {EqualValidatorDirective} from '../../shared/equal-validator.directive';
 
 declare var $: any ;
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
 
@@ -40,7 +41,8 @@ export class RegisterComponent implements OnInit {
       email: ['', [Validators.required, Validators.pattern(this.emailPattern)]],
       firstname: ['', [Validators.required]],
       lastname: ['', [Validators.required]],
-      password: ['', [Validators.required, Validators.pattern(this.passPattern)]]
+      password: ['', [Validators.required, Validators.pattern(this.passPattern)]],
+      passwordConfirm: ['', []]
     });
 
     $(document).ready(function(){

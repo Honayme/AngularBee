@@ -125,22 +125,20 @@
         <div class="row">
 
           <div class="form-group"
-               [ngClass]="{'has-error': (registerForm.get('password').touched || registerForm.get('password').dirty) && !registerForm.get('password').valid }">
+               [ngClass]="{'has-error': (registerForm.get('passwordConfirm').touched || registerForm.get('passwordConfirm').dirty) && !registerForm.get('passwordConfirm').valid }">
 
             <div class="input-field col s12 no-padding">
 
               <input class="validate form-control"
-                     id="passwordRegisterId"
+                     id="passwordConfirmRegisterId"
                      type="password"
-                     name="passwordId"
-                     formControlName="password">
+                     name="passwordConfirmdId"
+                     formControlName="passwordConfirm"
+                     compare="password">
               <span class="help-block"
-                    *ngIf="(registerForm.get('password').touched || registerForm.get('password').dirty) && registerForm.get('password').errors">
-                            <span *ngIf="registerForm.get('password').errors.required">
-                                Please enter a password.
-                            </span>
-                            <span *ngIf="registerForm.get('password').errors.pattern">
-                                Doit avoir entre 4 et 8 charactère avec au moins un chiffre.
+                    *ngIf="(registerForm.get('passwordConfirm').touched || registerForm.get('passwordConfirm').dirty) && registerForm.get('passwordConfirm').errors">
+                            <span *ngIf="registerForm.get('passwordConfirm').errors.compare">
+                                mismatch
                             </span>
               </span>
 
@@ -160,7 +158,7 @@
               (click)="postRegister()">
         Valider
       </button>
-      <a href="#login" (click)="closeRegister()">Vous avez déjà un compte ? Connectez-vous !</a>
+      <a href="#login" class="beetobee-purple-dark-text" (click)="closeRegister()">Vous avez déjà un compte ? Connectez-vous !</a>
     </div>
 
 

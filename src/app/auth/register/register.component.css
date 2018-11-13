@@ -26,6 +26,7 @@ input[type=text].valid,
 input[type=password].valid{
   border-bottom: 1px solid white!important;
   box-shadow: 0 1px 0 0 white !important;
+  color: white !important;
 }
 
 input[type=text]:focus:not([readonly]),
@@ -39,6 +40,10 @@ label{
   font-size: 24px;
   color: rgba(0, 0, 0, .3);
   font-weight: 300;
+}
+
+label:focus{
+  color: var(--beetobee-purple-dark) !important;
 }
 
 .input-field.col label{
@@ -74,7 +79,7 @@ h4:before {
   height: 100%;
   position: absolute;
   top: 0;
-  left: -50px;
+  left: -60px;
   background: var(--beetobee-purple-dark);
 }
 
@@ -111,6 +116,7 @@ h4:before {
   padding: 10px !important;
 }
 
-.modal-footer{
+.modal-footer {
   background-color: inherit !important;
+  height: 119px !important;
 }
