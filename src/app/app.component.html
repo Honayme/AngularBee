@@ -16,8 +16,6 @@
         <li><a *ngIf="authService.isAuthenticated" [routerLink]="['/certifications']">Certifications</a></li>
         <li><a *ngIf="!authService.isAuthenticated"href="#login">Connexions</a></li>
         <li><a *ngIf="!authService.isAuthenticated"href="#register">Inscription</a></li>
-        <li ><a  id="modal-login" data-overlay="access" >OldConnexion</a></li>
-        <li ><a  id="modal-register" data-overlay="access" >OldInscription</a></li>
         <li><a *ngIf="authService.isAuthenticated" [routerLink]="['/profil']"><i class="material-icons connected">person</i></a></li>
         <li><a *ngIf="authService.isAuthenticated" (click)="authService.logout()" ><i class="material-icons connected">power_settings_new</i></a></li>
       </ul>

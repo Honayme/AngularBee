@@ -50,7 +50,17 @@ export class LoginComponent implements OnInit {
       $('#login').modal();
     });
 
-    //TODO Appuyer sur entrée pour valider le formulaire de login
+    //Trigger modal login button with enter key
+    $(document).on('keydown', function (e) {
+      const keycode = e.which || e.keyCode;
+      if (keycode === 13) {
+        $('#buttonLogin').trigger('click');
+      } else {
+        setTimeout(function () {
+          $('.materialContainer').find('#buttonlogin').trigger('click');
+        }, 400);
+      }
+    });
   }
 
 

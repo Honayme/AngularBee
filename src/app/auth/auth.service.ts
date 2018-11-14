@@ -5,6 +5,7 @@ import 'rxjs/add/operator/map';
 import {ILogin} from './ilogin';
 import {catchError, tap} from 'rxjs/operators';
 import {of} from 'rxjs';
+import {Router} from '@angular/router';
 
 @Injectable()
 export class AuthService {
@@ -12,7 +13,8 @@ export class AuthService {
   path = 'http://localhost:3000/api/users';
   TOKEN_KEY = 'token';
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+              private router: Router) {
   }
 
   get token() {
@@ -38,6 +40,7 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem(this.TOKEN_KEY);
+    this.router.navigate(['/home']);
   }
 
   logInUser(loginData) {

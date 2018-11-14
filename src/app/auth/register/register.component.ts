@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from '../auth.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {EqualValidatorDirective} from '../../shared/equal-validator.directive';
 
-declare var $: any ;
+declare var $: any;
 
 @Component({
   selector: 'app-register',
@@ -21,7 +21,8 @@ export class RegisterComponent implements OnInit {
 
   constructor(private authService: AuthService,
               private router: Router,
-              private fb: FormBuilder) { }
+              private fb: FormBuilder) {
+  }
 
   postRegister() {
     this.registerData = Object.assign(this.registerData, this.registerForm.value);
@@ -31,7 +32,7 @@ export class RegisterComponent implements OnInit {
     this.router.navigate(['/home']);
   }
 
-  closeRegister(){
+  closeRegister() {
     $('#register').modal('close');
   }
 
@@ -45,9 +46,20 @@ export class RegisterComponent implements OnInit {
       passwordConfirm: ['', []]
     });
 
-    $(document).ready(function(){
+    $(document).ready(function () {
       $('#register').modal();
     });
-  }
 
+    //Trigger modal login button with enter key
+    $(document).on('keydown', function (e) {
+      const keycode = e.which || e.keyCode;
+      if (keycode === 13) {
+        $('#buttonRegister').trigger('click');
+      } else {
+        setTimeout(function () {
+          $('.materialContainer').find('#buttonlogin').trigger('click');
+        }, 400);
+      }
+    });
+  }
 }

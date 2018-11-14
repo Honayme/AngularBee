@@ -141,16 +141,15 @@ export class AppComponent {
       }
 
       if (keycode === 13) {
-        if (overlay.length && (materialContainer.find(':animated').addBack().length === 1)) {
-          if ( $('.materialContainer').find('#buttonlogin').prop('disable') === false){
-            $('.materialContainer').find('#buttonlogin').trigger('click');
+        if ($('#login').find('#button').prop('disable') === false) {
+            $('#button').trigger('click');
           }
         } else {
           setTimeout(function () {
             $('.materialContainer').find('#buttonlogin').trigger('click');
           }, 400);
         }
-      }
+
 
       if (keycode === 13) {
         if (overlay.length && (materialContainer.find(':animated').addBack().length === 1)) {
