@@ -26,25 +26,25 @@
           <div class="input-field col s12 l6">
             <i class="material-icons prefix">email</i>
             <input id="email" name="email" type="email" class="validate" value="{{profile.email}}">
-            <label for="email">Email</label>
+            <label for="email" class="active">Email</label>
           </div>
           <div class="input-field col s12 l6">
             <i class="material-icons prefix">person</i>
             <input id="name" name="name" type="text" class="validate" value="{{profile.lastname}}">
-            <label for="name">Nom</label>
+            <label for="name" class="active">Nom</label>
           </div>
         </div>
         <div class="row">
           <div class="input-field col s12 l6">
             <i class="material-icons prefix">person</i>
             <input id="firstname" name="firstname" type="text" class="validate" value="{{profile.firstname}}">
-            <label for="firstname">Prénom</label>
+            <label for="firstname" class="active">Prénom</label>
           </div>
           <div class="input-field col s12 l6">
             <i class="material-icons prefix">cake</i>
             <input id="birthday" pattern="(0[1-9]|1[0-9]|2[0-9]|3[01])/(0[1-9]|1[012])/[0-9]{4}" type="text"
                    class="validate">
-            <label for="birthday">Date de naissance (jj/mm/aaaa)</label>
+            <label for="birthday" class="active">Date de naissance (jj/mm/aaaa)</label>
           </div>
         </div>
         <div class="vert-padding"></div>
@@ -53,7 +53,7 @@
           <div class="input-field col s12 l6">
             <i class="material-icons prefix">lock</i>
             <input id="password" pattern="[A-Za-z0-9]{7,24}" name="password" type="password" class="validate">
-            <label for="password">Mot de passe</label>
+            <label for="password" class="active">Mot de passe</label>
           </div>
           <div class="input-field col s12 l6">
             <i class="material-icons prefix">lock</i>
@@ -66,24 +66,24 @@
         <div class="row">
           <div class="input-field col s12 l6">
             <i class="material-icons prefix">location_city</i>
-            <input id="city" name="city" type="text" class="validate">
+            <input id="city" name="city" type="text" class="validate" value="{{profile.city}}">
             <label for="city">Ville</label>
           </div>
           <div class="input-field col s12 l6">
             <i class="material-icons prefix">account_balance</i>
-            <input id="college" name="college" type="text">
+            <input id="college" name="college" type="text" value="{{profile.university}}">
             <label for="college">Université</label>
           </div>
         </div>
         <div class="row">
           <div class="input-field col s12 l6">
             <i class="material-icons prefix">grade</i>
-            <input id="speciality" name="speciality" type="text">
+            <input id="speciality" name="speciality" type="text" value="{{profile.speciality}}">
             <label for="speciality">Spécialité</label>
           </div>
           <div class="input-field col s12 l6">
             <i class="material-icons prefix">equalizer</i>
-            <input id="level" name="level" type="text">
+            <input id="level" name="level" type="text" value="{{profile.levelDegree}}">
             <label for="level">Niveau d'études</label>
           </div>
         </div>
@@ -91,27 +91,29 @@
         <!--<h4 class="beetobee-red-dark-text"><i class="material-icons">phone</i> Contact</h4>-->
       </div>
     <div class="vert-padding"></div>
-    <h4 class="beetobee-red-dark-text"><i class="icon-beetobee-logo"></i> BeeToBee <a href="#modal-become-instructor"
-                                                                                      class="right btn waves-effect waves-light beetobee-blue-elec-bg"
-                                                                                      id="showBecomeInstructor"
-                                                                                      type="submit" name="action">Devenir
-      Formateur !</a></h4>
-    <div class="row">
-      <div class="input-field col s12">
-        <i class="material-icons prefix">card_membership</i>
-        <input disabled id="role" class="beetobee-blue-dark-text" name="role" type="text">
-        <label for="role">Rôle</label>
-      </div>
+    <!--<h4 class="beetobee-red-dark-text"><i class="icon-beetobee-logo"></i> BeeToBee <a href="#modal-become-instructor"-->
+                                                                                      <!--class="right btn waves-effect waves-light beetobee-blue-elec-bg"-->
+                                                                                      <!--id="showBecomeInstructor"-->
+                                                                                      <!--type="submit" name="action">Devenir-->
+      <!--Formateur !</a></h4>-->
+    <!--<div class="row">-->
+      <!--<div class="input-field col s12">-->
+        <!--<i class="material-icons prefix">card_membership</i>-->
+        <!--<input disabled id="role" class="beetobee-blue-dark-text" name="role" type="text">-->
+        <!--<label for="role">Rôle</label>-->
+      <!--</div>-->
       <div class="vert-padding"></div>
-      <div class="row">
-        <div class="input-field col s12">
-          <button class="right btn waves-effect waves-light beetobee-blue-dark-bg" id="save" type="submit"
-                  name="action">Sauvegarder
-            <i class="material-icons right">check</i>
-          </button>
+        <div class="row center">
+          <div class="input-field col s12">
+            <button class="btn waves-effect waves-light beetobee-blue-dark-bg" id="save" type="submit"
+                    name="action">Sauvegarder
+              <i class="material-icons right">check</i>
+            </button>
+          </div>
         </div>
-      </div>
-    </div>
+      <div class="vert-padding"></div>
+
+    <!--</div>-->
   </section>
 </div>
 <app-become-trainer></app-become-trainer>

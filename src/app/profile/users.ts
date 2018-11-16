@@ -6,10 +6,13 @@ export class Users {
   password: string;
   birthdate: Date;
   profilePicture: string;
-  country: number;
-  city: number;
+  country: string;
+  city: string;
+  university: string;
+  speciality: string;
+  levelDegree: string;
 
-  constructor(id, firstname, lastname, email, password, birthdate, profilePicture, country, city) {
+  constructor(id, firstname, lastname, email, password, birthdate, profilePicture, country, city, university, speciality, levelDegree) {
     this.id = id;
     this.firstname = firstname;
     this.lastname = lastname;
@@ -19,5 +22,8 @@ export class Users {
     this.profilePicture = profilePicture ;
     this.country = country ;
     this.city = city ;
+    this.university = university ;
+    this.speciality = speciality ;
+    this.levelDegree = levelDegree ;
   }
 }
