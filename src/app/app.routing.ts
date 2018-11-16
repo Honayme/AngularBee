@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';
 
-import {ProfileComponent} from './profile/profile.component';
+import {ProfileComponent} from './profile/pages/profile.component';
 import {TrainingsComponent} from './trainings/pages/trainings-page/trainings.component';
 import {CguComponent} from './core/cgu/cgu.component';
 import {TeamComponent} from './core/team/team.component';

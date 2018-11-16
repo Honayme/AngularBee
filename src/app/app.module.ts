@@ -10,7 +10,7 @@ import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HomeService } from './home.service';
-import { ProfileComponent } from './profile/profile.component';
+import { ProfileComponent } from './profile/pages/profile.component';
 import { AppRouting } from './app.routing';
 //CORE
 import { ContactComponent } from './core/contact/contact.component';
@@ -34,7 +34,8 @@ import { RegisterComponent } from './auth/register/register.component';
 import { LoginRegisterComponent } from './auth/login-register/login-register.component';
 //SHARED
 import { EqualValidatorDirective } from './shared/equal-validator.directive';
-
+//PROFILE
+import { BecomeTrainerComponent } from './profile/components/become-trainer/become-trainer.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { EqualValidatorDirective } from './shared/equal-validator.directive';
     LoginComponent,
     RegisterComponent,
     EqualValidatorDirective,
+    BecomeTrainerComponent,
   ],
   imports: [
     BrowserModule,

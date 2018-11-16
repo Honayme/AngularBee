@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import * as jwt_decode from 'jwt-decode';
 import 'rxjs/add/operator/map';
-import {ILogin} from './ilogin';
 import {catchError, tap} from 'rxjs/operators';
 import {of} from 'rxjs';
 import {Router} from '@angular/router';
