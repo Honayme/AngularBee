@@ -9,6 +9,9 @@ module.exports = {
     );
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.removeColumn('isSubscribe');
+    return queryInterface.removeColumn(
+      'Trainings',
+      'theme',
+    );
   }
 };
