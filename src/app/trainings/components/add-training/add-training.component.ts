@@ -85,7 +85,7 @@ save() {
         console.log('create');
       });
     } else {
-      this.trainingService.updateTraining(this.Training).subscribe(Advert => {
+      this.trainingService.updateTraining(this.Training).subscribe(Training => {
         this.router.navigate(['/formations']);
         console.log('update');
       });

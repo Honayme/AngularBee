@@ -185,10 +185,16 @@ updateUserProfile = (req, res) => {
    city = req.body.city,
    university = req.body.university,
    speciality = req.body.speciality,
-   levelDegree = req.body.levelDegree;
+   levelDegree = req.body.levelDegree,
+   password = req.body.password,
+   passwordConfirm = req.body.passwordConfirm;
 
   if (!EMAIL_REGEX.test(email)) {
     return res.status(400).json({'error': 'Email is not valid'})
+  }
+
+  if(password !== passwordConfirm){
+    return res.status(400).json({'error': 'Password doesn\'t match'})
   }
 
   asyncLib.waterfall([
@@ -210,6 +216,7 @@ updateUserProfile = (req, res) => {
           email: (email ? email : userFound.email),
           firstname: (firstname ? firstname : userFound.firstname),
           lastname: (lastname ? lastname : userFound.lastname),
+          password: (password ? password : userFound.password),
           birthdate: (birthdate ? birthdate : userFound.birthdate),
           profilePicture: (profilePicture ? profilePicture : userFound.profilePicture),
           country: (country ? country : userFound.country),
