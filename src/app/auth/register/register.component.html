@@ -1,0 +1,166 @@
+<!-- Modal Structure -->
+
+<div id="register" class="modal">
+  <div class="box beetobee-red-dark-bg">
+
+    <form class="form-group"
+          novalidate
+          (ngSubmit)="postRegister()"
+          [formGroup]="registerForm">
+
+      <div class="modal-content">
+        <h4 class="beetobee-purple-dark-text">INSCRIPTION</h4>
+
+        <!--___EMAIL___-->
+        <div class="row">
+          <div class="form-group"
+               [ngClass]="{'has-error': (registerForm.get('email').touched || registerForm.get('email').dirty) && !registerForm.get('email').valid }">
+
+            <div class="input-field col s12 no-padding">
+
+              <input class="validate form-control beetobee-white-text"
+                     id="emailRegisterId"
+                     type="email"
+                     name="emailId"
+                     formControlName="email">
+              <span class="help-block"
+                    *ngIf="(registerForm.get('email').touched || registerForm.get('email').dirty) && registerForm.get('email').errors">
+                            <span *ngIf="registerForm.get('email').errors.required">
+                                Please enter a email.
+                            </span>
+                            <span *ngIf="registerForm.get('email').errors.pattern">
+                                Email is not valid.
+                            </span>
+              </span>
+
+              <label id="emailRegisterId" for="emailRegisterId" class="beetobee-white-text">Email*</label>
+            </div>
+
+          </div>
+        </div>
+
+
+        <!--___FIRSTNAME___-->
+        <div class="row">
+          <div class="form-group"
+               [ngClass]="{'has-error': (registerForm.get('firstname').touched || registerForm.get('firstname').dirty) && !registerForm.get('firstname').valid }">
+
+            <div class="input-field col s12 no-padding">
+
+              <input class="validate form-control"
+                     id="firstnameRegisterId"
+                     type="text"
+                     name="firstnameId"
+                     formControlName="firstname">
+              <span class="help-block"
+                    *ngIf="(registerForm.get('firstname').touched || registerForm.get('firstname').dirty) && registerForm.get('firstname').errors">
+                            <span *ngIf="registerForm.get('firstname').errors.required">
+                                Please enter a firstname.
+                            </span>
+              </span>
+
+              <label id="firstnameRegisterId" for="firstnameRegisterId" class="beetobee-white-text">Prénom*</label>
+            </div>
+
+          </div>
+        </div>
+
+
+        <!--___NAME___-->
+        <div class="row">
+          <div class="form-group"
+               [ngClass]="{'has-error': (registerForm.get('lastname').touched || registerForm.get('lastname').dirty) && !registerForm.get('lastname').valid }">
+
+            <div class="input-field col s12 no-padding">
+
+              <input class="validate form-control"
+                     id="lastnameRegisterId"
+                     type="text"
+                     name="lastnameId"
+                     formControlName="lastname">
+              <span class="help-block"
+                    *ngIf="(registerForm.get('lastname').touched || registerForm.get('lastname').dirty) && registerForm.get('lastname').errors">
+                            <span *ngIf="registerForm.get('lastname').errors.required">
+                                Please enter a lastname.
+                            </span>
+              </span>
+
+              <label id="lastnameRegisterId" for="lastnameRegisterId" class="beetobee-white-text">Nom*</label>
+            </div>
+
+          </div>
+        </div>
+
+        <!--___PASSWORD___-->
+        <div class="row">
+
+          <div class="form-group"
+               [ngClass]="{'has-error': (registerForm.get('password').touched || registerForm.get('password').dirty) && !registerForm.get('password').valid }">
+
+            <div class="input-field col s12 no-padding">
+
+              <input class="validate form-control"
+                     id="passwordRegisterId"
+                     type="password"
+                     name="passwordId"
+                     formControlName="password">
+              <span class="help-block"
+                    *ngIf="(registerForm.get('password').touched || registerForm.get('password').dirty) && registerForm.get('password').errors">
+                            <span *ngIf="registerForm.get('password').errors.required">
+                                Please enter a password.
+                            </span>
+                            <span *ngIf="registerForm.get('password').errors.pattern">
+                                Doit avoir entre 4 et 8 charactère avec au moins un chiffre.
+                            </span>
+              </span>
+
+              <label for="passwordRegisterId" class="beetobee-white-text">Mot de passe*</label>
+            </div>
+
+          </div>
+        </div>
+
+
+        <!--___CONFIRMATION___-->
+        <div class="row">
+
+          <div class="form-group"
+               [ngClass]="{'has-error': (registerForm.get('passwordConfirm').touched || registerForm.get('passwordConfirm').dirty) && !registerForm.get('passwordConfirm').valid }">
+
+            <div class="input-field col s12 no-padding">
+
+              <input class="validate form-control"
+                     id="passwordConfirmRegisterId"
+                     type="password"
+                     name="passwordConfirmdId"
+                     formControlName="passwordConfirm"
+                     compare="password">
+              <span class="help-block"
+                    *ngIf="(registerForm.get('passwordConfirm').touched || registerForm.get('passwordConfirm').dirty) && registerForm.get('passwordConfirm').errors">
+                            <span *ngIf="registerForm.get('passwordConfirm').errors.compare">
+                                mismatch
+                            </span>
+              </span>
+
+              <label for="passwordRegisterId" class="beetobee-white-text">Confirmation*</label>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <div class="modal-footer">
+      <button type="submit"
+              id="buttonRegister"
+              class="waves-effect waves-teal btn-flat beetobee-blue-elec-text"
+              [disabled]="!registerForm.valid"
+              (click)="postRegister()">
+        Valider
+      </button>
+      <a href="#login" class="beetobee-purple-dark-text" (click)="closeRegister()">Vous avez déjà un compte ? Connectez-vous !</a>
+    </div>
+
+
+  </div>
+</div>

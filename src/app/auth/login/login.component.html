@@ -1,0 +1,92 @@
+<!-- Modal Structure -->
+
+<div id="login" class="modal">
+  <div class="box beetobee-white-bg">
+    <i class="icon-beetobee-logo beetobee-blue-elec-text materialContainer-beetobee"></i>
+    <div *ngIf="loginInvalid" class="invalidLogin"><p>Identifiants invalides</p></div>
+    <form class="form-group"
+          novalidate
+          (ngSubmit)="postLogin()"
+          [formGroup]="loginForm">
+
+      <div class="modal-content">
+        <h4 class="beetobee-blue-elec-text">CONNEXION</h4>
+
+
+        <!--<div class="input-field col s6">-->
+          <!--<input [(ngModel)]="loginData.email" id="email" type="email" class="validate" required autofocus>-->
+          <!--<label for="email">Email</label>-->
+        <!--</div>-->
+        <!--___EMAIL___-->
+        <div class="row">
+        <div class="form-group"
+             [ngClass]="{'has-error': (loginForm.get('email').touched || loginForm.get('email').dirty) && !loginForm.get('email').valid }">
+
+          <div class="input-field col s12 no-padding">
+
+            <input class="validate form-control"
+                   id="emailLoginId"
+                   type="email"
+                   name="emailId"
+                   formControlName="email">
+            <span class="help-block"
+                  *ngIf="(loginForm.get('email').touched || loginForm.get('email').dirty) && loginForm.get('email').errors">
+                            <span *ngIf="loginForm.get('email').errors.required">
+                                Please enter a email.
+                            </span>
+          </span>
+
+            <label id="labelEmail" for="emailId">Email</label>
+          </div>
+
+        </div>
+        </div>
+
+        <!--<div class="input-field col s6">-->
+          <!--<input [(ngModel)]="loginData.password" id="password" type="password" class="validate">-->
+          <!--<label for="password">Password</label>-->
+        <!--</div>-->
+        <!--___PASSWORD___-->
+        <div class="row">
+
+        <div class="form-group"
+             [ngClass]="{'has-error': (loginForm.get('password').touched || loginForm.get('password').dirty) && !loginForm.get('password').valid }">
+
+          <div class="input-field col s12 no-padding">
+
+            <input class="validate form-control"
+                   id="passworLogindId"
+                   type="password"
+                   name="passwordId"
+                   formControlName="password">
+            <span class="help-block"
+                  *ngIf="(loginForm.get('password').touched || loginForm.get('password').dirty) && loginForm.get('password').errors">
+                            <span *ngIf="loginForm.get('password').errors.required">
+                                Please enter a password.
+                            </span>
+            </span>
+
+            <label for="passwordId">Password</label>
+          </div>
+
+        </div>
+        </div>
+      </div>
+    </form>
+
+      <div class="modal-footer">
+        <button type="submit"
+                id="buttonLogin"
+                class="waves-effect waves-teal btn-flat beetobee-blue-elec-text"
+                [disabled]="!loginForm.valid"
+                (click)="postLogin()">
+             GO
+        </button>
+          <a href="#register" (click)="closeLogin()">Pas de compte ? Inscrivez-vous !</a>
+          <br>
+          <a href="#" >Mot de passe oublié ?</a>
+      </div>
+
+
+  </div>
+</div>

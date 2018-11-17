@@ -1,0 +1,122 @@
+#register{
+  max-width: 460px;
+  height: 745px;
+  top: 12.5% !important;
+  border-radius: 10px !important;
+}
+
+.modal{
+  max-height: inherit !important;
+}
+
+input[type=text],
+input[type=email],
+input[type=password]{
+  border-bottom: 1px solid white!important;
+}
+
+input[type=email].invalid,
+input[type=password].invalid{
+  border-bottom: 1px solid var(--beetobee-purple-dark)!important;
+  box-shadow: 0 1px 0 0 var(--beetobee-purple-dark) !important;
+}
+
+input[type=email].valid,
+input[type=text].valid,
+input[type=password].valid{
+  border-bottom: 1px solid white!important;
+  box-shadow: 0 1px 0 0 white !important;
+  color: white !important;
+}
+
+input[type=text]:focus:not([readonly]),
+input[type=email]:focus:not([readonly]),
+input[type=password]:focus:not([readonly]){
+  border-bottom: 1px solid white!important;
+  box-shadow: 0 1px 0 0 white !important;
+}
+
+label{
+  font-size: 24px;
+  color: rgba(0, 0, 0, .3);
+  font-weight: 300;
+}
+
+label:focus{
+  color: var(--beetobee-purple-dark) !important;
+}
+
+.input-field.col label{
+  left: 0 !important;
+}
+
+.box {
+  padding: 60px 50px 40px 50px;
+  width: 100%;
+}
+
+.materialContainer-beetobee {
+  display: block;
+  text-align: center;
+  margin: -30px 0 -30px 0;
+  font-size: 120px;
+}
+
+h4{
+  width: 100%;
+  margin-bottom: 35px;
+  float: left;
+  line-height: 46px;
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  position: relative;
+}
+
+h4:before {
+  content: "";
+  width: 5px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: -60px;
+  background: var(--beetobee-purple-dark);
+}
+
+#buttonRegister{
+  width: 100%;
+  margin: 15px 0 10px 0;
+  height: 70px;
+  font-weight: 900;
+  font-size: 18px;
+  text-align: center;
+  vertical-align: center;
+  color: white;
+  border: 1px solid var(--beetobee-white);
+  background-color: var(--beetobee-red-dark);
+}
+
+#button:hover{
+  border-color: var(--beetobee-purple-dark);
+}
+
+.btn-flat:hover{
+  background-color: inherit !important;
+}
+
+#link{
+  padding: 5px 0 2px 0;
+}
+
+.modal{
+  background-color: white !important;
+}
+
+.modal .modal-content{
+  padding: 10px !important;
+}
+
+.modal-footer {
+  background-color: inherit !important;
+  height: 119px !important;
+}

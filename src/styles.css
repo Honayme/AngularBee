@@ -84,7 +84,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-body {
+app-root{
   display: flex;
   min-height: 100vh;
   flex-direction: column;
@@ -111,23 +111,9 @@ h1 {
   padding: 2rem 0 !important;
 }
 
-/* ---- Overide Materialize ---- */
-/*TODO Usefull ? */
-/*Do not work in the contact part when we place it here but let it anyway just in case we'v got this in other section */
-input:not([type]), input[type=text], input[type=password], input[type=email], input[type=url], input[type=time], input[type=date], input[type=datetime], input[type=datetime-local], input[type=tel], input[type=number], input[type=search], textarea.materialize-textarea {
-  border-bottom: 1px solid var(--beetobee-white);
-}
-
-input:not([type]):focus:not([readonly]), input[type=text]:focus:not([readonly]), input[type=password]:focus:not([readonly]), input[type=email]:focus:not([readonly]), input[type=url]:focus:not([readonly]), input[type=time]:focus:not([readonly]), input[type=date]:focus:not([readonly]), input[type=datetime]:focus:not([readonly]), input[type=datetime-local]:focus:not([readonly]), input[type=tel]:focus:not([readonly]), input[type=number]:focus:not([readonly]), input[type=search]:focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]) {
-  border-bottom: 1px solid var(--beetobee-yellow);
-  box-shadow: 0 1px 0 0 var(--beetobee-yellow);
-}
-
-input:not([type]):focus:not([readonly]) + label, input[type=text]:focus:not([readonly]) + label, input[type=password]:focus:not([readonly]) + label, input[type=email]:focus:not([readonly]) + label,
-input[type=url]:focus:not([readonly]) + label, input[type=time]:focus:not([readonly]) + label, input[type=date]:focus:not([readonly]) + label, input[type=datetime]:focus:not([readonly]) + label,
-input[type=datetime-local]:focus:not([readonly]) + label, input[type=tel]:focus:not([readonly]) + label, input[type=number]:focus:not([readonly]) + label,
-input[type=search]:focus:not([readonly]) + label, textarea.materialize-textarea:focus:not([readonly]) + label {
-  color: var(--beetobee-yellow);
+/* ---- Helpers ----  */
+.no-padding{
+  padding: 0 !important;
 }
 
 /* ---- Overlay ---- */

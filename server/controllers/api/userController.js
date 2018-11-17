@@ -26,10 +26,6 @@ register = (req, res) => {
     return res.status(400).json({'error': 'missing parameters'})
   }
 
-  if (firstname.length >= 15 || firstname.length <= 4) {
-    return res.status(400).json({'error': 'Username must contain min 4 and max 15 letters'})
-  }
-
   if (!EMAIL_REGEX.test(email)) {
     return res.status(400).json({'error': 'Email is not valid'})
   }
@@ -160,7 +156,7 @@ getUserProfile = (req, res) =>{
     return res.status(400).json({ 'error': 'wrong token' });
 
   models.User.findOne({
-    attributes: [ 'id', 'email', 'firstname', 'lastname', 'birthdate', 'profilePicture', 'country', 'city', 'level'],
+    attributes: [ 'id', 'email', 'firstname', 'lastname', 'birthdate', 'profilePicture', 'country', 'city', 'level', 'university', 'speciality', 'levelDegree'],
     where: { id: userId }
   }).then(function(user) {
     if (user) {
@@ -186,7 +182,10 @@ updateUserProfile = (req, res) => {
    birthdate = req.body.birthdate,
    profilePicture = req.body.profilePicture,
    country = req.body.country,
-   city = req.body.city;
+   city = req.body.city,
+   university = req.body.university,
+   speciality = req.body.speciality,
+   levelDegree = req.body.levelDegree;
 
   if (!EMAIL_REGEX.test(email)) {
     return res.status(400).json({'error': 'Email is not valid'})
@@ -214,7 +213,10 @@ updateUserProfile = (req, res) => {
           birthdate: (birthdate ? birthdate : userFound.birthdate),
           profilePicture: (profilePicture ? profilePicture : userFound.profilePicture),
           country: (country ? country : userFound.country),
-          city: (city ? city : userFound.city)
+          city: (city ? city : userFound.city),
+          university: (university ? university : userFound.university),
+          speciality: (speciality ? speciality : userFound.speciality),
+          levelDegree: (levelDegree ? levelDegree : userFound.levelDegree),
         }).then(function() {
           done(userFound);
         }).catch(function(err) {

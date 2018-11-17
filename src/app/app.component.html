@@ -14,14 +14,10 @@
         <li class="active"><a [routerLink]="['/home']">Accueil</a></li>
         <li><a *ngIf="authService.isAuthenticated" [routerLink]="['/formations']" >Formations</a></li>
         <li><a *ngIf="authService.isAuthenticated" [routerLink]="['/certifications']">Certifications</a></li>
-        <li ><a  id="modal-login" data-overlay="access" >Connexion</a></li>
-        <li ><a  id="modal-register" data-overlay="access" >Inscription</a></li>
+        <li><a *ngIf="!authService.isAuthenticated"href="#login">Connexions</a></li>
+        <li><a *ngIf="!authService.isAuthenticated"href="#register">Inscription</a></li>
         <li><a *ngIf="authService.isAuthenticated" [routerLink]="['/profil']"><i class="material-icons connected">person</i></a></li>
         <li><a *ngIf="authService.isAuthenticated" (click)="authService.logout()" ><i class="material-icons connected">power_settings_new</i></a></li>
-        <!--TODO n'afficher la flèche que sur la page certificatiion-->
-        <!--<li id="toggle-arrow" class="toggle-drawer">-->
-          <!--<a (click)="activeToggle()" href="#" class="tooltipped waves-orange" data-tooltip="Ouvrir / Cacher les filtres" data-position="bottom"><i class="material-icons">chevron_right</i></a>-->
-        <!--</li>-->
       </ul>
       <ul class="side-nav" id="mobile-demo">
         <li class="active"><a [routerLink]="['/home']" class="beetobee-purple-dark-text">Accueil</a></li>
@@ -36,7 +32,9 @@
   </nav>
 </header>
 
-<router-outlet></router-outlet>
+<main><router-outlet></router-outlet></main>
+<app-login></app-login>
+<app-register></app-register>
 
 <footer id="footer" class="page-footer beetobee-purple-dark-bg">
   <div class="container vert-padding beetobee-yellow-text center">
