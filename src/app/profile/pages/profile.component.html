@@ -29,14 +29,10 @@
           </div>
 
         </div>
+
+        <!--______|PREMIERE SECTION|______-->
         <div class="vert-padding"></div>
         <div class="row">
-
-          <!--<div class="input-field col s12 l6">-->
-            <!--<i class="material-icons prefix">email</i>-->
-            <!--<input id="email" name="email" type="email" class="validate" value="{{profile.email}}">-->
-            <!--<label for="email" class="active">Email</label>-->
-          <!--</div>-->
 
           <!--___EMAIL___-->
           <div class="form-group"
@@ -63,17 +59,11 @@
 
           </div>
 
-          <!--<div class="input-field col s12 l6">-->
-            <!--<i class="material-icons prefix">person</i>-->
-            <!--<input id="name" name="name" type="text" class="validate">-->
-            <!--<label for="name" class="active">Nom</label>-->
-          <!--</div>-->
           <!--___LASTNAME___-->
-          <div class="form-group"
-               [ngClass]="{'has-error': (profileForm.get('lastname').touched || profileForm.get('lastname').dirty) && !profileForm.get('lastname').valid }">
+          <div class="form-group">
 
             <div class="input-field col s12 l6 no-padding">
-              <i class="material-icons prefix">lastname</i>
+              <i class="material-icons prefix">person</i>
 
               <input class="validate form-control"
                      id="lastnameProfileId"
@@ -81,91 +71,194 @@
                      name="lastnameId"
                      formControlName="lastname"
                      value="{{Profile.lastname}}">
-              <span class="help-block"
-                    *ngIf="(profileForm.get('lastname').touched || profileForm.get('lastname').dirty) && profileForm.get('lastname').errors">
-                            <span *ngIf="profileForm.get('lastname').errors.pattern">
-                                Invalid Email.
-                            </span>
-              </span>
 
-              <label id="labelEmail" for="lastnameProfileId">Email</label>
+              <label id="labelEmail" for="lastnameProfileId">Nom</label>
             </div>
 
           </div>
 
 
-        </div>
+        </div><!--Fin de row-->
+
         <div class="row">
-          <div class="input-field col s12 l6">
-            <i class="material-icons prefix">person</i>
-            <input id="firstname" name="firstname" type="text" class="validate">
-            <label for="firstname" class="active">Prénom</label>
+
+          <!--___FIRSTNAME___-->
+          <div class="form-group">
+
+            <div class="input-field col s12 l6 no-padding">
+              <i class="material-icons prefix">person</i>
+
+              <input class="validate form-control"
+                     id="firstnameProfileId"
+                     type="text"
+                     name="firstnameId"
+                     formControlName="firstname"
+                     value="{{Profile.firstname}}">
+
+              <label id="labelFirstname" for="firstnameProfileId">Prénom</label>
+            </div>
+
           </div>
-          <div class="input-field col s12 l6">
-            <i class="material-icons prefix">cake</i>
-            <input id="birthday" pattern="(0[1-9]|1[0-9]|2[0-9]|3[01])/(0[1-9]|1[012])/[0-9]{4}" type="text"
-                   class="validate">
-            <label for="birthday" class="active">Date de naissance (jj/mm/aaaa)</label>
+
+          <!--___BIRTHDAY DATE___-->
+          <div class="form-group">
+
+            <div class="input-field col s12 l6 no-padding">
+              <i class="material-icons prefix">cake</i>
+
+              <input class="validate form-control"
+                     id="birthdayDateProfileId"
+                     type="text"
+                     name="birthdayDateId"
+                     formControlName="birthdayDate"
+                     value="{{Profile.birthdate}}">
+
+              <label id="labelBirthDate" for="birthdayDateProfileId">Date de naissance (jj/mm/aaaa)</label>
+            </div>
+
           </div>
-        </div>
+
+        </div><!--Fin de row-->
+
+        <!--______|DEUXIEME SECTION|______-->
         <div class="vert-padding"></div>
         <h4 class="beetobee-red-dark-text"><i class="material-icons">security</i> Sécurité</h4>
+
+        <!--___PASSWORD___-->
         <div class="row">
-          <div class="input-field col s12 l6">
-            <i class="material-icons prefix">lock</i>
-            <input id="password" pattern="[A-Za-z0-9]{7,24}" name="password" type="password" class="validate">
-            <label for="password" class="active">Mot de passe</label>
+
+          <div class="form-group"
+               [ngClass]="{'has-error': (profileForm.get('password').touched || profileForm.get('password').dirty) && !profileForm.get('password').valid }">
+
+            <div class="input-field col s12 l6 no-padding">
+              <i class="material-icons prefix">lock</i>
+
+              <input class="validate form-control"
+                     id="passwordProfileId"
+                     type="password"
+                     name="passwordId"
+                     formControlName="password">
+              <span class="help-block"
+                    *ngIf="(profileForm.get('password').touched || profileForm.get('password').dirty) && profileForm.get('password').errors">
+                            <span *ngIf="profileForm.get('password').errors.pattern">
+                                Doit avoir entre 4 et 8 charactère avec au moins un chiffre.
+                            </span>
+              </span>
+
+              <label for="passwordProfileId">Mot de passe</label>
+            </div>
+
           </div>
-          <div class="input-field col s12 l6">
-            <i class="material-icons prefix">lock</i>
-            <input id="confirmation" name="confirmation" type="password" class="validate">
-            <label for="confirmation">Confirmation</label>
+
+          <!--___CONFIRMATION___-->
+          <div class="form-group"
+               [ngClass]="{'has-error': (profileForm.get('passwordConfirm').touched || profileForm.get('passwordConfirm').dirty) && !profileForm.get('passwordConfirm').valid }">
+
+            <div class="input-field col s12 l6 no-padding">
+              <i class="material-icons prefix">lock</i>
+
+              <input class="validate form-control"
+                     id="passwordConfirmProfileId"
+                     type="password"
+                     name="passwordConfirmdId"
+                     formControlName="passwordConfirm"
+                     compare="password">
+              <span class="help-block"
+                    *ngIf="(profileForm.get('passwordConfirm').touched || profileForm.get('passwordConfirm').dirty) && profileForm.get('passwordConfirm').errors">
+                            <span *ngIf="profileForm.get('passwordConfirm').errors.compare">
+                                mismatch
+                            </span>
+              </span>
+
+              <label for="passwordConfirmProfileId">Confirmation</label>
+            </div>
+
           </div>
+
         </div>
+
+        <!--______|TROISIEME SECTION|______-->
+
         <div class="vert-padding"></div>
         <h4 class="beetobee-red-dark-text"><i class="material-icons">school</i> Études</h4>
-        <div class="row">
-          <div class="input-field col s12 l6">
-            <i class="material-icons prefix">location_city</i>
-            <input id="city" name="city" type="text" class="validate">
-            <label for="city">Ville</label>
-          </div>
-          <div class="input-field col s12 l6">
-            <i class="material-icons prefix">account_balance</i>
-            <input id="college" name="college" type="text">
-            <label for="college">Université</label>
-          </div>
-        </div>
-        <div class="row">
-          <div class="input-field col s12 l6">
-            <i class="material-icons prefix">grade</i>
-            <input id="speciality" name="speciality" type="text">
-            <label for="speciality">Spécialité</label>
-          </div>
-          <div class="input-field col s12 l6">
-            <i class="material-icons prefix">equalizer</i>
-            <input id="level" name="level" type="text">
-            <label for="level">Niveau d'études</label>
-          </div>
-        </div>
-        <div class="vert-padding"></div>
-        <!--<h4 class="beetobee-red-dark-text"><i class="material-icons">phone</i> Contact</h4>-->
-      </div>
-    <div class="vert-padding"></div>
-    <!--<h4 class="beetobee-red-dark-text"><i class="icon-beetobee-logo"></i> BeeToBee <a href="#modal-become-instructor"-->
-                                                                                      <!--class="right btn waves-effect waves-light beetobee-blue-elec-bg"-->
-                                                                                      <!--id="showBecomeInstructor"-->
-                                                                                      <!--type="submit" name="action">Devenir-->
-      <!--Formateur !</a></h4>-->
-    <!--<div class="row">-->
-      <!--<div class="input-field col s12">-->
-        <!--<i class="material-icons prefix">card_membership</i>-->
-        <!--<input disabled id="role" class="beetobee-blue-dark-text" name="role" type="text">-->
-        <!--<label for="role">Rôle</label>-->
-      <!--</div>-->
 
+        <div class="row">
+          <!--___CITY___-->
+          <div class="form-group">
 
-    <!--</div>-->
+            <div class="input-field col s12 l6 no-padding">
+              <i class="material-icons prefix">location_city</i>
+
+              <input class="validate form-control"
+                     id="cityProfileId"
+                     type="text"
+                     name="cityId"
+                     formControlName="city"
+                     value="{{Profile.city}}">
+
+              <label id="labelCity" for="cityProfileId">Ville</label>
+            </div>
+
+          </div>
+          <!--___UNIVERSITY___-->
+          <div class="form-group">
+
+            <div class="input-field col s12 l6 no-padding">
+              <i class="material-icons prefix">account_balance</i>
+
+              <input class="validate form-control"
+                     id="universityProfileId"
+                     type="text"
+                     name="universityId"
+                     formControlName="university"
+                     value="{{Profile.university}}">
+
+              <label id="labelUniversity" for="universityProfileId">Université</label>
+            </div>
+
+          </div>
+
+        </div><!--Fin de row-->
+
+        <div class="row">
+
+          <div class="form-group">
+
+            <div class="input-field col s12 l6 no-padding">
+              <i class="material-icons prefix">grade</i>
+
+              <input class="validate form-control"
+                     id="gradeProfileId"
+                     type="text"
+                     name="gradeId"
+                     formControlName="grade"
+                     value="{{Profile.speciality}}">
+
+              <label id="labelGrade" for="gradeProfileId">Spécialité</label>
+            </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <div class="input-field col s12 l6 no-padding">
+              <i class="material-icons prefix">equalizer</i>
+
+              <input class="validate form-control"
+                     id="universityProfileId"
+                     type="text"
+                     name="universityId"
+                     formControlName="university"
+                     value="{{Profile.levelDegree}}">
+
+              <label id="labelUniversity" for="universityProfileId">Niveau d'études</label>
+            </div>
+
+          </div>
+
+        </div><!--Fin de row-->
+
+        </div>
     </form>
 
     <div class="vert-padding"></div>
@@ -173,7 +266,6 @@
       <div class="input-field col s12">
         <button class="btn waves-effect waves-light beetobee-blue-dark-bg"
                 type="submit"
-                [disabled]="!profileForm.valid"
                 id="save"
                 (click)="save()">Sauvegarder
           <i class="material-icons right">check</i>
@@ -186,6 +278,23 @@
 </div>
 <app-become-trainer></app-become-trainer>
 
+
+<!--<div class="vert-padding"></div>-->
+<!--<h4 class="beetobee-red-dark-text"><i class="material-icons">phone</i> Contact</h4>-->
+<!--</div>-->
+<!--<div class="vert-padding"></div>-->
+<!--</div>-->
+<!--<h4 class="beetobee-red-dark-text"><i class="icon-beetobee-logo"></i> BeeToBee <a href="#modal-become-instructor"-->
+<!--class="right btn waves-effect waves-light beetobee-blue-elec-bg"-->
+<!--id="showBecomeInstructor"-->
+<!--type="submit" name="action">Devenir-->
+<!--Formateur !</a></h4>-->
+<!--<div class="row">-->
+<!--<div class="input-field col s12">-->
+<!--<i class="material-icons prefix">card_membership</i>-->
+<!--<input disabled id="role" class="beetobee-blue-dark-text" name="role" type="text">-->
+<!--<label for="role">Rôle</label>-->
+<!--</div>-->
 <!--<section class="row">-->
 <!--<header>-->
 <!--<h3 class="beetobee-blue-dark-text">Formations à venir</h3>-->

@@ -17,6 +17,7 @@ export class ProfileComponent implements OnInit {
   updateProfile: Users;
   profileForm: FormGroup;
   emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  passPattern = /^(?=.*\d).{4,8}$/;
 
 
   constructor(private route: ActivatedRoute,
@@ -36,6 +37,8 @@ export class ProfileComponent implements OnInit {
       lastname: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(40)]],
       firstname: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(40)]],
       birthdayDate: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(40)]],
+      password: ['', [Validators.required, Validators.pattern(this.passPattern)]],
+      passwordConfirm: ['', []],
       city: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(40)]],
       university: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(40)]],
       speciality: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(40)]],
