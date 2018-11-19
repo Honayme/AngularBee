@@ -16,7 +16,6 @@ export class ProfileComponent implements OnInit {
   Profile: Users;
   updateProfile: Users;
   profileForm: FormGroup;
-  id: number;
   emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 
@@ -30,7 +29,6 @@ export class ProfileComponent implements OnInit {
     this.profileService.getProfile().toPromise().then(profile => {
       this.Profile = profile;
       console.log(profile);
-      this.id = profile.id;
     });
 
     this.profileForm = this.fb.group({
@@ -59,16 +57,16 @@ export class ProfileComponent implements OnInit {
       '',
       );
 
-    this.profileForm.patchValue({
-      email: this.Profile.email,
-      lastname: this.Profile.lastname,
-      firstname: this.Profile.firstname,
-      birthdate: this.Profile.birthdate,
-      city: this.Profile.city,
-      university: this.Profile.university,
-      speciality: this.Profile.speciality,
-      levelDegree: this.Profile.levelDegree
-    });
+    // this.profileForm.patchValue({
+    //   email: this.Profile.email,
+    //   lastname: this.Profile.lastname,
+    //   firstname: this.Profile.firstname,
+    //   birthdate: this.Profile.birthdate,
+    //   city: this.Profile.city,
+    //   university: this.Profile.university,
+    //   speciality: this.Profile.speciality,
+    //   levelDegree: this.Profile.levelDegree
+    // });
 
 
 
