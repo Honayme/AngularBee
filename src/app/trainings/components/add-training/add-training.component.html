@@ -1,3 +1,4 @@
+<!--//TODO Add Text AREA WITH CHARACTER COUNT -->
 <!-- Modal for add a training-->
 <div id="modal-add-training" class="modal modal-fixed-footer">
   <div class="modal-content">
@@ -215,7 +216,7 @@
                                 Please enter a description.
                             </span>
                             <span *ngIf="trainingForm.get('description').errors.maxlength">
-                                The name must be shorter than 500 characters.
+                                The description must be shorter than 500 characters.
                             </span>
           </span>
 
@@ -234,6 +235,7 @@
             <i class="material-icons prefix">photo</i>
             <img *ngIf="picture" [src]=sanitize.bypassSecurityTrustUrl(picture)>
             <input class="validate form-control"
+                   data-length="500"
                    id="pictureId"
                    type="file"
                    accept="image/*"
@@ -245,12 +247,8 @@
                             <span *ngIf="trainingForm.get('picture').errors.required">
                                 Please enter a picture.
                             </span>
-                            <span *ngIf="trainingForm.get('picture').errors.maxlength">
-                                The name must be shorter than 500 characters.
-                            </span>
           </span>
 
-            <label for="pictureId"></label>
           </div>
 
         </div>

@@ -1,7 +1,8 @@
 /* ---- Native ---- */
 section {
+  margin-top: 75px;
   background-size: cover;
-  border-bottom: 5px solid var(--beetobee-red-dark);
+  /*border-bottom: 5px solid var(--beetobee-red-dark);*/
 }
 
 img {

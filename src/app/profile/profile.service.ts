@@ -19,8 +19,8 @@ export class ProfileService {
     return this.http.get<Users>(this.path + '/profile');
   }
 
-  updateProfile(): Observable<Users> {
-    return this.http.get<Users>(this.path + '/profile');
+  updateProfile(data): Observable<Users> {
+    return this.http.put<Users>(this.path + '/profile', data);
   }
 
 }

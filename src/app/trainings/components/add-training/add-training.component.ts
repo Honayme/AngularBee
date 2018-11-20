@@ -92,11 +92,11 @@ save() {
     }
 }
 
-changeListener($event): void{
+changeListener($event): void {
     this.readThis($event.target);
 }
 
-readThis(inputValue: any): void{
+readThis(inputValue: any): void {
     const file: File = inputValue.files[0],
           myReader: FileReader = new FileReader();
 

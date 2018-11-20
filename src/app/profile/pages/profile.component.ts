@@ -4,7 +4,6 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {ProfileService} from '../profile.service';
 import {DomSanitizer} from '@angular/platform-browser';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import * as jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-profile',
@@ -14,7 +13,7 @@ import * as jwt_decode from 'jwt-decode';
 export class ProfileComponent implements OnInit {
 
   Profile: Users;
-  updateProfile: Users;
+  // updateProfile: Users;
   profileForm: FormGroup;
   emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   passPattern = /^(?=.*\d).{4,8}$/;
@@ -33,54 +32,68 @@ export class ProfileComponent implements OnInit {
     });
 
     this.profileForm = this.fb.group({
+      profilePicture: ['', []],
       email: ['', [Validators.required, Validators.pattern(this.emailPattern)]],
-      lastname: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(40)]],
-      firstname: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(40)]],
-      birthdayDate: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(40)]],
+      lastname: ['', []],
+      firstname: ['', []],
+      birthdayDate: ['', []],
       password: ['', [Validators.required, Validators.pattern(this.passPattern)]],
       passwordConfirm: ['', []],
-      city: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(40)]],
-      university: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(40)]],
-      speciality: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(40)]],
-      levelDegree: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(40)]],
+      city: ['', []],
+      university: ['', []],
+      speciality: ['', []],
+      levelDegree: ['', []]
     });
 
-    this.updateProfile = new Users(
-      '',
-      '',
-      '',
-      '',
-      '',
-      '',
-      '',
-      '',
-      '',
-      '',
-      '',
-      '',
-      );
+    // this.updateProfile = new Users(
+    //   '',
+    //   '',
+    //   '',
+    //   '',
+    //   '',
+    //   '',
+    //   '',
+    //   '',
+    //   '',
+    //   '',
+    //   '',
+    //   '',
+    //   );
 
-    // this.profileForm.patchValue({
-    //   email: this.Profile.email,
-    //   lastname: this.Profile.lastname,
-    //   firstname: this.Profile.firstname,
-    //   birthdate: this.Profile.birthdate,
-    //   city: this.Profile.city,
-    //   university: this.Profile.university,
-    //   speciality: this.Profile.speciality,
-    //   levelDegree: this.Profile.levelDegree
-    // });
+    this.profileForm.patchValue({
+      profilePicture: this.Profile.profilePicture,
+      email: this.Profile.email,
+      lastname: this.Profile.lastname,
+      firstname: this.Profile.firstname,
+      birthdate: this.Profile.birthdate,
+      city: this.Profile.city,
+      university: this.Profile.university,
+      speciality: this.Profile.speciality,
+      levelDegree: this.Profile.levelDegree
+    });
 
 
 
   }
 
   save() {
-    this.profileService.updateProfile().subscribe(profile => {
+    this.profileService.updateProfile(this.profileForm).subscribe(profile => {
       this.router.navigate(['/profile']);
     });
   }
 
+  changeListener($event): void {
+    this.readThis($event.target);
+  }
 
+  readThis(inputValue: any): void {
+    const file: File = inputValue.files[0],
+      myReader: FileReader = new FileReader();
+
+    myReader.onloadend = (e) => {
+      this.picture = myReader.result;
+    };
+    myReader.readAsDataURL(file);
+  }
 
 }
