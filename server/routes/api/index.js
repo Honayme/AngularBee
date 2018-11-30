@@ -5,12 +5,16 @@ const
       users = require('./userRoute'),
       training = require('./trainingsRoute'),
       participate = require('./participateRoute'),
-      certifications = require('./certificationsRoute');
-
+      certifications = require('./certificationsRoute'),
+      expressJWT = require('express-jwt'),
+      key = 'secret',
+      checkIfAuthenticated = expressJWT({
+        secret: key
+      });
 let router = express.Router();
 
 router.use('/users', users);
-router.use('/training', training);
+router.use('/training', checkIfAuthenticated, training);
 router.use('/participate', participate);
 router.use('/certifications', certifications);
 
