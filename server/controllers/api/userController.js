@@ -188,7 +188,8 @@ updateUserProfile = (req, res) => {
    levelDegree = req.body.levelDegree,
    password = req.body.password,
    passwordConfirm = req.body.passwordConfirm;
-
+  console.log(birthdate);
+  console.log(firstname);
   if (!EMAIL_REGEX.test(email)) {
     return res.status(400).json({'error': 'Email is not valid'})
   }
@@ -209,14 +210,23 @@ updateUserProfile = (req, res) => {
           console.log(err);
           return res.status(500).json({ 'error': 'unable to verify user' });
         });
+    }, function (userFound, done) {
+      if (userFound) {
+        bcrypt.hash(password, 5, function (err, bcryptedPassword) {
+          done(null, userFound, bcryptedPassword);
+          console.log(bcryptedPassword);
+        });
+      } else {
+        return res.status(409).json({'error': 'user not found'});
+      }
     },
-    function(userFound, done) {
+    function(userFound, bcryptedPassword, done) {
       if(userFound) {
         userFound.update({
           email: (email ? email : userFound.email),
           firstname: (firstname ? firstname : userFound.firstname),
           lastname: (lastname ? lastname : userFound.lastname),
-          password: (password ? password : userFound.password),
+          password: (password ? bcryptedPassword : userFound.password),
           birthdate: (birthdate ? birthdate : userFound.birthdate),
           profilePicture: (profilePicture ? profilePicture : userFound.profilePicture),
           country: (country ? country : userFound.country),

@@ -13,8 +13,10 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 export class ProfileComponent implements OnInit {
 
   Profile: Users;
-  // updateProfile: Users;
+  updateProfile: Users;
   profileForm: FormGroup;
+  picture = '';
+
   emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   passPattern = /^(?=.*\d).{4,8}$/;
 
@@ -32,53 +34,46 @@ export class ProfileComponent implements OnInit {
     });
 
     this.profileForm = this.fb.group({
-      profilePicture: ['', []],
-      email: ['', [Validators.required, Validators.pattern(this.emailPattern)]],
-      lastname: ['', []],
       firstname: ['', []],
-      birthdayDate: ['', []],
+      lastname: ['', []],
+      email: ['', [Validators.required, Validators.pattern(this.emailPattern)]],
       password: ['', [Validators.required, Validators.pattern(this.passPattern)]],
       passwordConfirm: ['', []],
+      birthdate: ['', []],
+      profilePicture: ['', []],
+      country: ['', []],
       city: ['', []],
       university: ['', []],
       speciality: ['', []],
       levelDegree: ['', []]
     });
 
-    // this.updateProfile = new Users(
-    //   '',
-    //   '',
-    //   '',
-    //   '',
-    //   '',
-    //   '',
-    //   '',
-    //   '',
-    //   '',
-    //   '',
-    //   '',
-    //   '',
-    //   );
+    this.updateProfile = new Users('', '', '', '', '', '', '', '', '', '', '', '');
 
-    this.profileForm.patchValue({
-      profilePicture: this.Profile.profilePicture,
-      email: this.Profile.email,
-      lastname: this.Profile.lastname,
-      firstname: this.Profile.firstname,
-      birthdate: this.Profile.birthdate,
-      city: this.Profile.city,
-      university: this.Profile.university,
-      speciality: this.Profile.speciality,
-      levelDegree: this.Profile.levelDegree
+    this.profileService.getProfile().subscribe((user: Users) => {
+      this.updateProfile.id = user.id;
+      this.picture = user.profilePicture;
+
+      this.profileForm.patchValue({
+        firstname: user.firstname,
+        lastname: user.lastname,
+        email: user.email,
+        password: user.password,
+        passwordConfirm: user.password,
+        birthdate: user.birthdate,
+        country: user.country,
+        city: user.city,
+        university: user.university,
+        speciality: user.speciality,
+        levelDegree: user.levelDegree
+      });
     });
-
-
-
   }
 
   save() {
-    this.profileService.updateProfile(this.profileForm).subscribe(profile => {
-      this.router.navigate(['/profile']);
+    this.updateProfile = Object.assign(this.updateProfile, this.profileForm.value);
+    this.updateProfile.profilePicture = this.picture;
+    this.profileService.updateProfile(this.updateProfile).subscribe(profile => {
     });
   }
 

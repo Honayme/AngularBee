@@ -19,6 +19,7 @@
 
               <div class="z-depth-1">
                   <i class="material-icons beetobee-purple-dark-text">edit</i>
+                  <img *ngIf="picture" [src]=sanitize.bypassSecurityTrustUrl(picture)>
                   <input class="validate form-control"
                          id="pictureId"
                          type="file"
@@ -111,13 +112,13 @@
               <i class="material-icons prefix">cake</i>
 
               <input class="validate form-control"
-                     id="birthdayDateProfileId"
+                     id="birthDateProfileId"
                      type="text"
-                     name="birthdayDateId"
-                     formControlName="birthdayDate"
-                     value="{{Profile.birthdate}}">
+                     name="birthDateId"
+                     formControlName="birthdate"
+                     value="{{Profile.birthdate | date}}">
 
-              <label id="labelBirthDate" for="birthdayDateProfileId">Date de naissance (jj/mm/aaaa)</label>
+              <label id="labelBirthDate" for="birthDateProfileId">Date de naissance (aaaa-mm-jj)</label>
             </div>
 
           </div>
@@ -252,7 +253,7 @@
                      id="levelDegreeProfileId"
                      type="text"
                      name="levelDegreeId"
-                     formControlName="university"
+                     formControlName="levelDegree"
                      value="{{Profile.levelDegree}}">
 
               <label id="labelLevelDegree" for="levelDegreeProfileId">Niveau d'études</label>

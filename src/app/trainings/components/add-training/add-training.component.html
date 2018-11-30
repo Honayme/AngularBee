@@ -235,7 +235,6 @@
             <i class="material-icons prefix">photo</i>
             <img *ngIf="picture" [src]=sanitize.bypassSecurityTrustUrl(picture)>
             <input class="validate form-control"
-                   data-length="500"
                    id="pictureId"
                    type="file"
                    accept="image/*"
