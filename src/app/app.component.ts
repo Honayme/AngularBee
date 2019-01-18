@@ -17,21 +17,18 @@ export class AppComponent {
 
   }
 
-  ngOnInit(){
+  ngOnInit() {
+
+    $(document).ready(function() {
+      $('.sidenav').sidenav();
+    });
 
     let nav = $('nav'),
       footer = $('footer'),
       arrow = $('#toggle-arrow');
 
-    // if(nav.hasClass("layout-drawer-is-close")){
-    //   alert("salut les gros pd");
-    // }
     nav.addClass("layout-drawer-is-close");
     footer.addClass("layout-drawer-is-close");
-    // arrow.addClass("hide");
-    // nav.removeClass("layout-drawer-is-open");
-    // footer.removeClass("layout-drawer-is-open");
-
 
     let materialContainer = $('.materialContainer'),
         registerBox = materialContainer.find('.material-button-register'),

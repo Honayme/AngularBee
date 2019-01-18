@@ -2,7 +2,7 @@
   <nav class="beetobee-blue-dark-bg navbar-fixed">
     <div class="nav-wrapper">
       <a [routerLink]="['/home']" class="brand-logo"><i class="icon-beetobee-logo"></i>BeeToBee</a>
-      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+      <!--<a href="#" data-activates="#mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>-->
       <form id="search-menu">
         <div class="input-field">
           <input id="search-input" type="search" required>
@@ -14,20 +14,24 @@
         <li class="active"><a [routerLink]="['/home']">Accueil</a></li>
         <li><a *ngIf="authService.isAuthenticated" [routerLink]="['/formations']" >Formations</a></li>
         <li><a *ngIf="authService.isAuthenticated" [routerLink]="['/certifications']">Certifications</a></li>
-        <li><a *ngIf="!authService.isAuthenticated"href="#login">Connexions</a></li>
-        <li><a *ngIf="!authService.isAuthenticated"href="#register">Inscription</a></li>
+        <li><a *ngIf="!authService.isAuthenticated" href="#login" class="modal-trigger">Connexions</a></li>
+
+        <li><a *ngIf="!authService.isAuthenticated" href="#register" class="modal-trigger">Inscription</a></li>
         <li><a *ngIf="authService.isAuthenticated" [routerLink]="['/profil']"><i class="material-icons connected">person</i></a></li>
         <li><a *ngIf="authService.isAuthenticated" (click)="authService.logout()" ><i class="material-icons connected">power_settings_new</i></a></li>
       </ul>
-      <ul class="side-nav" id="mobile-demo">
-        <li class="active"><a [routerLink]="['/home']" class="beetobee-purple-dark-text">Accueil</a></li>
-        <li><a [routerLink]="['/formations']" class="beetobee-purple-dark-text connected">Formations</a></li>
-        <li><a [routerLink]="['/certifications']" class="beetobee-purple-dark-text">Certifications</a></li>
-        <li><a [routerLink]="['']" class="beetobee-purple-dark-text disconnected" data-overlay="access" id="modal-register">Inscription</a></li>
-        <li><a [routerLink]="['']" class="beetobee-purple-dark-text disconnected" data-overlay="access" id="modal-login">Connexion</a></li>
-        <li><a [routerLink]="['/profil']" class="beetobee-purple-dark-text connected">Profil</a></li>
-        <li><a class="beetobee-purple-dark-text connected disconnect connected">Déconnexion</a></li>
+      <ul id="slide-out" class="sidenav">
+        <!--<li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>-->
+        <li><a *ngIf="!authService.isAuthenticated" href="#login" class="beetobee-purple-dark-text disconnected waves-effect modal-trigger" data-overlay="access" id="modal-register">Connexion</a></li>
+        <li><a *ngIf="!authService.isAuthenticated" href="#register" class="beetobee-purple-dark-text disconnected waves-effect modal-trigger" data-overlay="access" id="modal-login">Inscription</a></li>
+        <!--<li><a class="waves-effect" href="#!">Third Link With Waves</a></li>-->
+        <li><a *ngIf="authService.isAuthenticated" [routerLink]="['/formations']" class="beetobee-purple-dark-text connected waves-effect">Formations</a></li>
+        <li><a *ngIf="authService.isAuthenticated" [routerLink]="['/certifications']" class="beetobee-purple-dark-text waves-effect">Certifications</a></li>
+        <li><a *ngIf="authService.isAuthenticated" [routerLink]="['/profil']" class="beetobee-purple-dark-text connected waves-effect">Profil</a></li>
+        <li><div *ngIf="authService.isAuthenticated" class="divider"></div></li>
+        <li><a *ngIf="authService.isAuthenticated" (click)="authService.logout()" class="beetobee-purple-dark-text connected disconnect connected">Déconnexion</a></li>
       </ul>
+      <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     </div>
   </nav>
 </header>

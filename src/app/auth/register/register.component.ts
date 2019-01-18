@@ -38,6 +38,10 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
 
+    $(document).ready(function() {
+      $('.modal').modal();
+    });
+
     this.registerForm = this.fb.group({
       email: ['', [Validators.required, Validators.pattern(this.emailPattern)]],
       firstname: ['', [Validators.required]],

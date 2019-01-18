@@ -46,8 +46,8 @@ export class LoginComponent implements OnInit {
     });
 
     // jQuery //
-    $(document).ready(function(){
-      $('#login').modal();
+    $(document).ready(function() {
+      $('.modal').modal();
     });
 
     //Trigger modal login button with enter key
