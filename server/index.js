@@ -55,7 +55,6 @@ module.exports = () => {
         connection.connect( (error) => {
           if(error){
             console.log('Error Connexion to database');
-            console.log('Error Connexion to database');
             console.log(config.hostname);
             console.log(config.user);
             console.log(config.password);

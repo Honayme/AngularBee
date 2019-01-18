@@ -1,6 +1,10 @@
 const jwt = require('jsonwebtoken'),
-  SECRET = 'secret'; //TODO https://www.youtube.com/watch?v=F0HLIe3kNvM
+      SECRET = 'secret', //TODO https://www.youtube.com/watch?v=F0HLIe3kNvM
+      expressJWT = require('express-jwt');
 
+const checkAuthenticated = expressJWT({
+  secret: SECRET
+});
 
 const generateUserToken = (userData) => {
   return jwt.sign({
@@ -29,22 +33,6 @@ const getUserId = (authorization) => {
     }
   }
   return userId
-};
-
-checkAuthenticated = (req, res) => {
-  if(!req.header('authorization')){
-    return res.status(401).send({message: 'Unauthorized. Missing Auth Header'})
-  }
-
-  let token = req.header('authorization').split(' ')[1];
-  let payload = jwt.decode(token, SECRET);
-
-  if(!payload){
-    return res.status(401).send({message: 'Unauthorized. Missing Auth Header Invalid'})
-  }
-
-  req.userId = payload.sub;
-
 };
 
 module.exports = {
