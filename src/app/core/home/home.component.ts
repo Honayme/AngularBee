@@ -14,13 +14,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
 
-    let nav = $('nav'),
-        footer = $('footer');
-
-    nav.removeClass('layout-drawer-is-open');
-    footer.removeClass('layout-drawer-is-open');
-
-
   }
 
 }

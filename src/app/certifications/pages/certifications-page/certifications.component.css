@@ -8,19 +8,6 @@
   transition: width .3s ease-out;
 }
 
-/*TODO Find a way to remove this class in the all project except if it's triggerd from certification
-TODO Maybe NgClass*/
-
-.layout-drawer-is-open
-{
-  width: calc(100% - 256px) !important;
-}
-
-.layout-drawer-is-close
-{
-  width: 100% !important;
-}
-
 .container h2 {
   font-size: 12px;
 }
