@@ -1,4 +1,32 @@
-'use strict';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: server/controllers/api/trainingController.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: server/controllers/api/trainingController.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>'use strict';
 
 /**
  * Certification Controller
@@ -50,19 +78,19 @@ createTraining = (req, res) => {
     return res.status(400).json({'error': 'missing parameters'})
   }
 
-  if (name.length >= 40 || name.length <= 5) {
+  if (name.length >= 40 || name.length &lt;= 5) {
     return res.status(400).json({'error': 'Name must contain min 5 and max 40 letters'})
   }
 
-  if (totalSeat <= 0) {
+  if (totalSeat &lt;= 0) {
     return res.status(400).json({'error': 'Total seat must be a positive number'})
   }
 
-  if (place.length >= 40 || place.length <= 0) {
+  if (place.length >= 40 || place.length &lt;= 0) {
     return res.status(400).json({'error': 'Place must contain min 5 and max 40 letters'})
   }
 
-  if (description.length >= 500 || description.length <= 10) {
+  if (description.length >= 500 || description.length &lt;= 10) {
     return res.status(400).json({'error': 'description must contain min 10 and max 500 letters'})
   }
 
@@ -80,7 +108,7 @@ createTraining = (req, res) => {
         })
     },
     function(userFound, done){
-      if(userFound && moment(date, "YYYYMMDD").fromNow() > moment().format()){
+      if(userFound &amp;&amp; moment(date, "YYYYMMDD").fromNow() > moment().format()){
         models.Training.create({
           name          : name,
           description   : description,
@@ -126,7 +154,7 @@ getAllTraining = (req, res) =>{
 
   models.Training.findAll({
     order:      [(order != null) ? order.split(':') : ['name', 'ASC']],
-    attributes: (fields !== '*' && fields != null) ? fields.split(',') : null,
+    attributes: (fields !== '*' &amp;&amp; fields != null) ? fields.split(',') : null,
     limit:      (!isNaN(limit)) ? limit : null,
     offset:     (!isNaN(offset)) ? offset : null,
     include: [{
@@ -161,7 +189,7 @@ getDetailTraining= (req, res) => {
 
   models.Training.findAll({
     order:      [(order != null) ? order.split(':') : ['name', 'ASC']],
-    attributes: (fields !== '*' && fields != null) ? fields.split(',') : null,
+    attributes: (fields !== '*' &amp;&amp; fields != null) ? fields.split(',') : null,
     limit:      (!isNaN(limit)) ? limit : null,
     offset:     (!isNaN(offset)) ? offset : null,
     include: [{
@@ -210,7 +238,7 @@ getUserTraining = (req, res) => {
     function(userFound, done) {
       if (userFound) {
         models.Training.findAll({
-          attributes: (fields !== '*' && fields != null) ? fields.split(',') : null,
+          attributes: (fields !== '*' &amp;&amp; fields != null) ? fields.split(',') : null,
           where: {userId: userId},
           include: [{
             model: models.User,
@@ -262,19 +290,19 @@ updateTraining = (req, res) => {
   //   return res.status(400).json({'error': 'missing parameters'})
   // }
 
-  if (name.length >= 40 || name.length <= 5) {
+  if (name.length >= 40 || name.length &lt;= 5) {
     return res.status(400).json({'error': 'Name must contain min 5 and max 40 letters'})
   }
 
-  if (totalSeat <= 0) {
+  if (totalSeat &lt;= 0) {
     return res.status(400).json({'error': 'Total seat must be a positive number'})
   }
 
-  if (place.length >= 40 || place.length <= 0) {
+  if (place.length >= 40 || place.length &lt;= 0) {
     return res.status(400).json({'error': 'Place must contain min 5 and max 40 letters'})
   }
 
-  if (description.length >= 500 || description.length <= 10) {
+  if (description.length >= 500 || description.length &lt;= 10) {
     return res.status(400).json({'error': 'description must contain min 10 and max 500 letters'})
   }
 
@@ -296,8 +324,8 @@ updateTraining = (req, res) => {
     function(trainingFound, done) {
     console.log(moment(date, "YYYYMMDD").fromNow() > moment().format());
       if(trainingFound
-        && trainingFound.totalSeat - trainingFound.availableSeat <= totalSeat
-        && moment(date, "YYYYMMDD").fromNow() > moment().format()) {
+        &amp;&amp; trainingFound.totalSeat - trainingFound.availableSeat &lt;= totalSeat
+        &amp;&amp; moment(date, "YYYYMMDD").fromNow() > moment().format()) {
         trainingFound.update({
           name: (name ? name : trainingFound.name),
           description: (description ? description : trainingFound.description),
@@ -397,3 +425,26 @@ module.exports = {
   updateTraining,
   deleteTraining
 };
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-certificationController.html">certificationController</a></li><li><a href="module-participateController.html">participateController</a></li><li><a href="module-trainingController.html">trainingController</a></li><li><a href="module-userController.html">userController</a></li></ul><h3>Classes</h3><ul><li><a href="Certification.html">Certification</a></li><li><a href="Participate.html">Participate</a></li><li><a href="Training.html">Training</a></li><li><a href="User.html">User</a></li></ul><h3>Global</h3><ul><li><a href="global.html">Create a certification</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.1</a> on Fri May 24 2019 16:56:57 GMT+0200 (Paris, Madrid (heure d’été))
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

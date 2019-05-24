@@ -51,13 +51,13 @@
         </div>
 
         <div *ngIf="!isSubscribe" class=" col m12">
-          <button class="subButton waves-effect beetobee-blue-dark-bg btn-flat" type="submit">
-            <a (click)="subscribe()" class="beetobee-white-text">Inscription</a>
+          <button class="subButton waves-effect beetobee-blue-dark-bg btn-flat" type="submit" (click)="subscribe()">
+            <a class="beetobee-white-text">Inscription</a>
           </button>
         </div>
         <div *ngIf="isSubscribe" class=" col m12">
-          <button class="subButton waves-effect beetobee-red-dark-bg btn-flat" type="submit">
-            <a (click)="unsubscribe()" class="beetobee-white-text">Désinscription</a>
+          <button class="subButton waves-effect beetobee-red-dark-bg btn-flat" type="submit" (click)="unsubscribe()">
+            <a class="beetobee-white-text">Désinscription</a>
           </button>
         </div>
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {TrainingService} from '../../training.service';
 import {DomSanitizer} from '@angular/platform-browser';
@@ -8,11 +8,11 @@ import {DomSanitizer} from '@angular/platform-browser';
   templateUrl: './training.component.html',
   styleUrls: ['./training.component.css']
 })
-export class TrainingComponent implements OnInit {
+export class TrainingComponent implements OnInit, OnChanges {
 
   idTraining = this.route.snapshot.params['id'];
   training = [];
-  isSubscribe = false;
+  @Output() isSubscribe = false;
 
   constructor(private route: ActivatedRoute,
               public trainingService: TrainingService,
@@ -24,6 +24,12 @@ export class TrainingComponent implements OnInit {
       this.training = training;
     });
 
+    // this.trainingService.isSubscribe((this.idTraining)).subscribe(isSubscribe => {
+    //   this.isSubscribe = isSubscribe;
+    // });
+  }
+
+  ngOnChanges(isSubscribe){
     this.trainingService.isSubscribe((this.idTraining)).subscribe(isSubscribe => {
       this.isSubscribe = isSubscribe;
     });
@@ -31,13 +37,12 @@ export class TrainingComponent implements OnInit {
 
   subscribe() {
     this.trainingService.subscribeTraining(this.idTraining).toPromise().then(participate => {
-      this.router.navigate(['/formations/detail/' + this.idTraining]);
+      console.log('participate');
     });
   }
 
   unsubscribe() {
     this.trainingService.unsubscribeTraining(this.idTraining).toPromise().then(participate => {
-      this.router.navigate(['/formations/detail/' + this.idTraining]);
       console.log('not participate');
     });
   }

@@ -96,6 +96,22 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 
 ----
+  Générer la documentation dans le fichier docs à la racine du projet:
+    
+    jsdoc /path/to/folder -d ./docs
+    
+  Générer la documentation pour les controllers
+  
+    jsdoc server/controllers/api/ -d ./docs
+
+  Générer la documentation pour les modèles   
+  
+    jsdoc server/controllers/api/database/models -d ./docs
+
+  Générer controller, modèle et route avec le plugin 
+  
+    jsdoc server/controllers/api/ server/database/models/ server/routes/ -d ./docs ./node_modules/.bin/jsdoc --configure ./jsdoc.conf
+
 * **@fileOverview** : Commentaire qui décrit le fichier entier. 
 * **@author** : Se réfère à qui a ecrit l’entité documentée. 
 * **@example** : Contient un code d’exemple illustrant comment l’entité doit être utilisée. 

@@ -1,4 +1,16 @@
 'use strict';
+
+/**
+ * Modele Participate
+ * @module Pparticipate
+ * @requires sequelize
+ * @desc Participate is a pivot table between user and training
+ * @class Participate
+ * @param {Int} `trainingId` INT(11) NOT NULL, FOREIGN KEY (`trainingId`) REFERENCES `trainings` (`id`)
+ * @param {Int} `userId` INT(11) NOT NULL - INT(11) NOT NULL, FOREIGN KEY (`userId`) REFERENCES `users` (`id`)
+ * @param {Int} description - VARCHAR(255) NOT NULL
+ * @return {Schema}
+ */
 module.exports = (sequelize, DataTypes) => {
   let Participate = sequelize.define('Participate', {
     trainingId: {
