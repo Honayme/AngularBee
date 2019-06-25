@@ -35,6 +35,7 @@ import { RegisterComponent } from './auth/register/register.component';
 import { EqualValidatorDirective } from './shared/equal-validator.directive';
 //PROFILE
 import { BecomeTrainerComponent } from './profile/components/become-trainer/become-trainer.component';
+import { AddCertificationComponent } from './certifications/components/add-certification/add-certification.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { BecomeTrainerComponent } from './profile/components/become-trainer/beco
     RegisterComponent,
     EqualValidatorDirective,
     BecomeTrainerComponent,
+    AddCertificationComponent,
   ],
   imports: [
     BrowserModule,

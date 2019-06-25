@@ -94,6 +94,15 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
     │  └── ... < src > 
     └── ...
 
+----
+   ORM 
+   
+   Migration avec Sequelize cli, se positionner dans le dossier database
+   
+    sequelize db:migrate
+   
+   
+    
 
 ----
   Générer la documentation dans le fichier docs à la racine du projet:

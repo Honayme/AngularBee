@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+declare var $: any;
 
 @Component({
   selector: 'app-certification',
@@ -10,6 +11,9 @@ export class CertificationComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    $(document).ready(function(){
+      $('.collapsible').collapsible();
+    });
   }
 
 }

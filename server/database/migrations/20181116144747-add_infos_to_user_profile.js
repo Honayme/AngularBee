@@ -2,7 +2,7 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return [
+    return Promise.all([
       queryInterface.addColumn(
       'Users',
       'university',
@@ -18,7 +18,7 @@ module.exports = {
       'levelDegree',
       Sequelize.STRING,
     ),
-    ]
+    ])
   },
 
   down: (queryInterface, Sequelize) => {

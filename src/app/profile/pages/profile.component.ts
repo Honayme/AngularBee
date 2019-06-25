@@ -86,7 +86,7 @@ export class ProfileComponent implements OnInit {
       myReader: FileReader = new FileReader();
 
     myReader.onloadend = (e) => {
-      this.picture = myReader.result;
+      this.picture = myReader.result as string;
     };
     myReader.readAsDataURL(file);
   }

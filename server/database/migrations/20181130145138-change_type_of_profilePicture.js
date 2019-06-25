@@ -11,6 +11,8 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    //TODO Find how to change column type on rollback migrations
+    return queryInterface.addConstraint('users', ['profilePicture'], {
+      type: Sequelize.STRING,
+    })
   }
 };
