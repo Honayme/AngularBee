@@ -18,8 +18,10 @@ import { CguComponent } from './core/cgu/cgu.component';
 import { TeamComponent } from './core/team/team.component';
 import { HomeComponent } from './core/home/home.component';
 //CERTIFICATIONS
+import {CertificationService} from './certifications/certification.service';
 import { CertificationComponent } from './certifications/pages/certification-page/certification.component';
 import { CertificationsComponent } from './certifications/pages/certifications-page/certifications.component';
+import {AddCertificationComponent} from './certifications/components/add-certification/add-certification.component';
 //TRAINING
 import { TrainingService } from './trainings/training.service';
 import { TrainingComponent } from './trainings/pages/training-page/training.component';
@@ -35,7 +37,6 @@ import { RegisterComponent } from './auth/register/register.component';
 import { EqualValidatorDirective } from './shared/equal-validator.directive';
 //PROFILE
 import { BecomeTrainerComponent } from './profile/components/become-trainer/become-trainer.component';
-import { AddCertificationComponent } from './certifications/components/add-certification/add-certification.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,7 @@ import { AddCertificationComponent } from './certifications/components/add-certi
     BrowserAnimationsModule,
     MaterialModule
   ],
-  providers: [HomeService, AuthService, TrainingService,
+  providers: [HomeService, AuthService, TrainingService, CertificationService,
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true},
   ], // Add the posts service
   bootstrap: [AppComponent]

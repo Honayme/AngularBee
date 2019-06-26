@@ -14,4 +14,8 @@ export class CertificationsComponent implements OnInit {
 
   }
 
+  public openModalAdd() {
+    $('#modal-add-certification').modal('open');
+  }
+
 }

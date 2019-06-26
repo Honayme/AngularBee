@@ -10,7 +10,7 @@ export class CertificationService {
   constructor(private http: HttpClient) {
   }
 
-  path = 'http://localhost:3000/api/certification';
+  path = 'http://localhost:3000/api/certifications';
 
   getAll(): Observable<Certification[]> {
     return this.http.get<Certification[]>(this.path + '/all');

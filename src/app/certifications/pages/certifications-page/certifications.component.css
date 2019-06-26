@@ -12,7 +12,9 @@
   font-size: 12px;
 }
 
-
+.certifications #add-certification {
+  bottom: 370px !important;
+}
 
 /*toggle, il faut qu'une classe soit mise sur le nav et le footer uniquement quand on arrive sur l page certification
 réduire leur largeur de 256px*/
