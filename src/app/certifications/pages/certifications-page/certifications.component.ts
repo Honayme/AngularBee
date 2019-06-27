@@ -12,10 +12,11 @@ export class CertificationsComponent implements OnInit {
 
   ngOnInit() {
 
+    $('#modal-add-certification').modal();
+
   }
 
-  public openModalAdd() {
+  public openModalAdd(){
     $('#modal-add-certification').modal('open');
   }
-
 }

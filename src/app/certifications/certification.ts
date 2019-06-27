@@ -13,9 +13,11 @@ export class Certification {
   examDetail: string;
   examDuration: Time;
   examNumber: string;
+  howToSubscribe: string;
+  usefulInfos: string;
 
 
-  constructor(id, title, editor, expertiseField, desc, validity, cost, costHt, costTtc, examDetail, examDuration, examNumber) {
+  constructor(id, title, editor, expertiseField, desc, validity, cost, costHt, costTtc, examDetail, examDuration, examNumber, howToSubscribe, usefulInfos) {
     this.id = id;
     this.title = title;
     this.editor = editor;
@@ -28,5 +30,7 @@ export class Certification {
     this.examDetail = examDetail;
     this.examDuration = examDuration;
     this.examNumber = examNumber;
+    this.howToSubscribe = howToSubscribe;
+    this.usefulInfos = usefulInfos;
   }
 }

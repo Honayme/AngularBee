@@ -23,12 +23,6 @@
                             <span *ngIf="certificationForm.get('title').errors.required">
                                 Please enter a title.
                             </span>
-                            <span *ngIf="certificationForm.get('title').errors.minlength">
-                                The title must be longer than 5 characters.
-                            </span>
-                            <span *ngIf="certificationForm.get('title').errors.maxLength">
-                                The title must be shorter than 40 characters.
-                            </span>
           </span>
 
             <label for="titleId">Titre de la certification <span class="beetobee-red-dark-text">*</span></label>
@@ -228,6 +222,40 @@
           </div>
         </div>
 
+        <!--___HOW TO SUBSCRIBE___-->
+        <div class="form-group"
+             [ngClass]="{'has-error': (certificationForm.get('howToSubscribe').touched || certificationForm.get('howToSubscribe').dirty) && !certificationForm.get('howToSubscribe').valid }">
+          <div class="input-field col s12">
+            <i class="material-icons prefix">insert_comment</i>
+            <textarea id="howToSubscribeId" class="validate form-control materialize-textarea" title="howToSubscribeId"
+                      formControlName="howToSubscribe"></textarea>
+            <label for="howToSubscribeId">Spécification de l'examen<span class="beetobee-red-dark-text">*</span></label>
+            <span class="help-block"
+                  *ngIf="(certificationForm.get('howToSubscribe').touched || certificationForm.get('howToSubscribe').dirty) && certificationForm.get('howToSubscribe').errors">
+                            <span *ngIf="certificationForm.get('howToSubscribe').errors.required">
+                                Please enter a howToSubscribe.
+                            </span>
+            </span>
+          </div>
+        </div>
+
+        <!--___HOW TO SUBSCRIBE___-->
+        <div class="form-group"
+             [ngClass]="{'has-error': (certificationForm.get('usefulInfos').touched || certificationForm.get('usefulInfos').dirty) && !certificationForm.get('usefulInfos').valid }">
+          <div class="input-field col s12">
+            <i class="material-icons prefix">insert_comment</i>
+            <textarea id="usefulInfosId" class="validate form-control materialize-textarea" title="usefulInfosId"
+                      formControlName="usefulInfos"></textarea>
+            <label for="usefulInfosId">Spécification de l'examen<span class="beetobee-red-dark-text">*</span></label>
+            <span class="help-block"
+                  *ngIf="(certificationForm.get('usefulInfos').touched || certificationForm.get('usefulInfos').dirty) && certificationForm.get('usefulInfos').errors">
+                            <span *ngIf="certificationForm.get('usefulInfos').errors.required">
+                                Please enter a usefulInfos.
+                            </span>
+            </span>
+          </div>
+        </div>
+
 
 
 
@@ -237,11 +265,16 @@
 
   <!--___SEND FORM___-->
   <div class="modal-footer">
-    <button class="modal-action modal-close waves-effect beetobee-red-dark-bg btn-flat beetobee-white-text">
-      Annuler
+    <button class="modal-action waves-effect beetobee-red-dark-bg btn-flat beetobee-white-text"
+            (click)="populateTestData()">
+      Populate
     </button>
 
-    <button class="modal-action waves-effect beetobee-blue-dark-bg btn-flat beetobee-white-text"
+    <button class="modal-action modal-close waves-effect beetobee-red-dark-bg btn-flat beetobee-white-text">
+      lol
+    </button>
+
+    <button class="modal-action modal-close waves-effect beetobee-blue-dark-bg btn-flat beetobee-white-text"
             type="submit"
             [disabled]="!certificationForm.valid"
             id="addCertification"

@@ -46,10 +46,6 @@ createCertification = (req, res) => {
     return res.status(400).json({'error': 'missing parameters'})
   }
 
-  if (title.length >= 40 || title.length <= 5) {
-    return res.status(400).json({'error': 'Title must contain min 5 and max 40 letters'})
-  }
-
   if (costTtc < 0 || costHt < 0) {
     return res.status(400).json({'error': 'Cost must be a positive'})
   }

@@ -28,10 +28,6 @@ module.exports = {
         allowNull: false,
         type: Sequelize.TEXT
       },
-      cost: {
-        allowNull: false,
-        type: Sequelize.TEXT
-      },
       costHt: {
         allowNull: true,
         type: Sequelize.INTEGER

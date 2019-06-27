@@ -99,7 +99,12 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
    
    Migration avec Sequelize cli, se positionner dans le dossier database
    
-    sequelize db:migrate
+    sequelize db:migrate        # Run pending migrations.
+    sequelize db:migrate:undo   # Revert the last migration run.
+    sequelize help              # Display this help text.
+    sequelize init              # Initializes the project.
+    sequelize migration:create  # Generates a new migration file.
+    sequelize version           # Prints the version number.
    
    
     
