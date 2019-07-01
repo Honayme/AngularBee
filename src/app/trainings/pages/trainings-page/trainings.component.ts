@@ -16,7 +16,7 @@ export class TrainingsComponent implements OnInit {
   trainings: any = [];
 
   ngOnInit() {
-    this.trainingService.getAll().subscribe(trainings =>{
+    this.trainingService.getAll().subscribe(trainings => {
       this.trainings = trainings;
       console.log(this.trainings);
     });

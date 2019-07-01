@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angula
 import {ActivatedRoute, Router} from '@angular/router';
 import {TrainingService} from '../../training.service';
 import {DomSanitizer} from '@angular/platform-browser';
+import {Training} from '../../training';
 
 @Component({
   selector: 'app-training',
@@ -12,7 +13,11 @@ export class TrainingComponent implements OnInit, OnChanges {
 
   idTraining = this.route.snapshot.params['id'];
   training = [];
-  @Output() isSubscribe = false;
+  isSubscribe = false;
+  @Input() isSubscribed: boolean;
+  @Output() isSubscribeChange = new EventEmitter<boolean>();
+  @Input() trainings: Training[];
+  @Output() trainingsChange = new EventEmitter<Training>();
 
   constructor(private route: ActivatedRoute,
               public trainingService: TrainingService,
@@ -24,12 +29,12 @@ export class TrainingComponent implements OnInit, OnChanges {
       this.training = training;
     });
 
-    // this.trainingService.isSubscribe((this.idTraining)).subscribe(isSubscribe => {
-    //   this.isSubscribe = isSubscribe;
-    // });
+    this.trainingService.isSubscribe((this.idTraining)).subscribe(isSubscribe => {
+      this.isSubscribe = isSubscribe;
+    });
   }
 
-  ngOnChanges(isSubscribe){
+  ngOnChanges(isSubscribe) {
     this.trainingService.isSubscribe((this.idTraining)).subscribe(isSubscribe => {
       this.isSubscribe = isSubscribe;
     });
@@ -37,6 +42,8 @@ export class TrainingComponent implements OnInit, OnChanges {
 
   subscribe() {
     this.trainingService.subscribeTraining(this.idTraining).toPromise().then(participate => {
+      this.trainings = [...this.trainings, participate];
+      // this.trainingsChange.emit(this.trainings);
       console.log('participate');
     });
   }

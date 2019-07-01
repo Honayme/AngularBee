@@ -86,7 +86,7 @@
                             </span>
           </span>
 
-            <label for="durationId">Durée (min) <span class="beetobee-red-dark-text">*</span></label>
+            <label for="durationId">Durée<span class="beetobee-red-dark-text">*</span></label>
           </div>
 
         </div>
@@ -257,11 +257,16 @@
 
   <!--___SEND FORM___-->
   <div class="modal-footer">
+    <button class="modal-action waves-effect beetobee-red-dark-bg btn-flat beetobee-white-text"
+            (click)="populateTestData()">
+      Populate
+    </button>
+
     <button class="modal-action modal-close waves-effect beetobee-red-dark-bg btn-flat beetobee-white-text">
       Annuler
     </button>
 
-    <button class="modal-action waves-effect beetobee-blue-dark-bg btn-flat beetobee-white-text"
+    <button class="modal-action modal-close waves-effect beetobee-blue-dark-bg btn-flat beetobee-white-text"
             type="submit"
             [disabled]="!trainingForm.valid"
             id="addFormation"

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {TrainingService} from '../../training.service';
@@ -13,6 +13,8 @@ declare var $: any;
   styleUrls: ['./add-training.component.css']
 })
 export class AddTrainingComponent implements OnInit {
+  @Input() trainings: Training[];
+  @Output() trainingsChange = new EventEmitter<Training[]>();
 
   trainingForm: FormGroup;
   Training: Training;
@@ -67,12 +69,13 @@ populateTestData(): void {
     this.trainingForm.setValue({
       name: 'NodeJs & Angular',
       description: 'Une formation qui vous permettra de saisir l\'essentiel de la stack Node et Angular',
-      duration: '4h',
+      duration: '2h',
       date: '10/10/2018',
       hour: '17:45:00',
       place: 'Ynov Aix en Provence',
-      totalSeat: '20',
-      theme: 'Développement'
+      totalSeat: 20,
+      theme: 'Développement',
+      picture: '',
     });
 }
 
@@ -80,8 +83,9 @@ save() {
     this.Training = Object.assign(this.Training, this.trainingForm.value);
     this.Training.picture = this.picture;
     if (this.update !== true) {
-      this.trainingService.createTraining(this.Training).subscribe(Training => {
-        this.router.navigate(['/formations']);
+      this.trainingService.createTraining(this.Training).subscribe(training => {
+        this.trainings = [...this.trainings, training];
+        this.trainingsChange.emit(this.trainings);
         console.log('create');
       });
     } else {

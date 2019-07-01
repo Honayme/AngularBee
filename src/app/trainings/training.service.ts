@@ -25,8 +25,8 @@ export class TrainingService {
     return this.http.get<Training[]>(this.path + '/trainingUser');
   }
 
-  createTraining(data): Observable<Training[]> {
-    return this.http.post<Training[]>(this.path + '/create', data);
+  createTraining(data): Observable<Training> {
+    return this.http.post<Training>(this.path + '/create', data);
   }
 
   updateTraining(data): Observable<Training> {
@@ -37,8 +37,8 @@ export class TrainingService {
     return this.http.delete<boolean>(this.path + '/delete/' + id);
   }
 
-  subscribeTraining(id: number): Observable<any[]> {
-    return this.http.post<any[]>(this.pathPart + '/training/subscribe/' + id, '' );
+  subscribeTraining(id: number): Observable<Training> {
+    return this.http.post<Training>(this.pathPart + '/training/subscribe/' + id, '' );
   }
 
   unsubscribeTraining(id: number): Observable<any[]> {
