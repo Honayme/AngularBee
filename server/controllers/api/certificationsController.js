@@ -35,14 +35,15 @@ createCertification = (req, res) => {
       expertiseField = req.body.expertiseField,
       desc = req.body.desc,
       validity = req.body.validity,
-      cost = req.body.cost,
       costHt = req.body.costHt,
       costTtc = req.body.costTtc,
       examDetail = req.body.examDetail,
       examDuration = req.body.examDuration,
-      examNumber = req.body.examNumber;
+      examNumber = req.body.examNumber,
+      usefulInfos = req.body.usefulInfos,
+      howToSubscribe = req.body.howToSubscribe;
 
-  if (title == null || editor == null || expertiseField == null || desc == null || validity == null || cost == null || costTtc == null || examDetail == null || examDuration == null || examNumber == null ) {
+  if (title == null || editor == null || expertiseField == null || desc == null || validity == null || costTtc == null || examDetail == null || examDuration == null || examNumber == null ) {
     return res.status(400).json({'error': 'missing parameters'})
   }
 
@@ -71,12 +72,13 @@ createCertification = (req, res) => {
           expertiseField : expertiseField,
           desc : desc,
           validity : validity,
-          cost : cost,
           costHt : costHt,
           costTtc : costTtc,
           examDetail : examDetail,
           examDuration : examDuration,
-          examNumber : examNumber
+          examNumber : examNumber,
+          usefulInfos : usefulInfos,
+          howToSubscribe : howToSubscribe
         })
           .then(function(newCertification){
             done(newCertification);
@@ -175,25 +177,12 @@ updateCertification = (req, res) => {
       expertiseField = req.body.expertiseField,
       desc = req.body.desc,
       validity = req.body.validity,
-      cost = req.body.cost,
       costHt = req.body.costHt,
       costTtc = req.body.costTtc,
       examDetail = req.body.examDetail,
       examDuration = req.body.examDuration,
       examNumber = req.body.examNumber;
 
-
-  // if (title == null || editor == null || expertiseField == null || desc == null || validity == null || cost == null || costTtc == null || examDetail == null || examDuration == null || examNumber == null ) {
-  //   return res.status(400).json({'error': 'missing parameters'})
-  // }
-  console.log(title);
-  // if (title.length >= 40 || title.length <= 5) {
-  //   return res.status(400).json({'error': 'Title must contain min 5 and max 40 letters'})
-  // }
-
-  // if (costTtc < 0 || costHt < 0) {
-  //   return res.status(400).json({'error': 'Cost must be a positive'})
-  // }
 
   asyncLib.waterfall([
     function(done){
@@ -210,7 +199,7 @@ updateCertification = (req, res) => {
     },
     function(userFound, done) {
       models.Certifications.findOne({
-      attributes: ['id', 'title', 'editor', 'expertiseField', 'desc', 'validity', 'cost', 'costHt', 'costTtc', 'examDetail', 'examDuration', 'examNumber' ],
+      attributes: ['id', 'title', 'editor', 'expertiseField', 'desc', 'validity', 'costHt', 'costTtc', 'examDetail', 'examDuration', 'examNumber' ],
       where: { id : id }
     }).then(function(certificationFound) {
         done(null, certificationFound);
@@ -227,7 +216,6 @@ updateCertification = (req, res) => {
           expertiseField: (expertiseField ? expertiseField : certificationFound.expertiseField),
           desc: (desc ? desc : certificationFound.desc),
           validity: (validity ? validity : certificationFound.validity),
-          cost: (cost ? cost : certificationFound.cost),
           costHt: (costHt ? costHt : certificationFound.costHt),
           costTtc: (costTtc ? costTtc : certificationFound.costTtc),
           examDetail: (examDetail ? examDetail : certificationFound.examDetail),
