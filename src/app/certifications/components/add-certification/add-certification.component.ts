@@ -1,9 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Certification} from '../../certification';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CertificationService} from '../../certification.service';
-import {Training} from '../../../trainings/training';
 
 @Component({
   selector: 'app-add-certification',
@@ -11,6 +10,8 @@ import {Training} from '../../../trainings/training';
   styleUrls: ['./add-certification.component.css']
 })
 export class AddCertificationComponent implements OnInit {
+  @Input() certifications: Certification[];
+  @Output() certificationsChange = new EventEmitter<Certification[]>();
 
   certificationForm: FormGroup;
   Certification: Certification;
@@ -40,7 +41,7 @@ export class AddCertificationComponent implements OnInit {
     });
 
     const id = this.route.snapshot.params['id'];
-    this.Certification = new Certification('', '', '', '', '', '', '', '', '', '', '', '', '', '');
+    this.Certification = new Certification('', '', '', '', '', '', '', '', '', '', '', '', '');
     if (id) {
       this.update = true;
       this.certificationService.getDetail(id).subscribe((certification: any) => {
@@ -85,8 +86,9 @@ export class AddCertificationComponent implements OnInit {
   save() {
     this.Certification = Object.assign(this.Certification, this.certificationForm.value);
     if (this.update !== true) {
-      this.certificationService.createCertification(this.Certification).subscribe(Certification => {
-        this.router.navigate(['/certifications']);
+      this.certificationService.createCertification(this.Certification).subscribe(certification => {
+        this.certifications = [...this.certifications, certification];
+        this.certificationsChange.emit(this.certifications);
         console.log('create');
       });
     } else {

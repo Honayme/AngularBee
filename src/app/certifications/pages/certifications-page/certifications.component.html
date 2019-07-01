@@ -1,11 +1,10 @@
 <main id="main" class="certifications">
   <div class="container">
-    <!--TODO Collapsible certif need to be in it's own component-->
-    <h2>Affichage de <strong class="beetobee-red-dark-text">8</strong> formations sur 8</h2>
 
     <!--Certification toggle-->
-    <app-certification></app-certification>
-
+    <div >
+        <app-certification *ngFor="let certification of certifications" class="col s12 m6" [certification]="certification"></app-certification>
+    </div>
     <!--Search Filters-->
 
     <div id="add-certification" class="fixed-action-btn">
@@ -15,7 +14,7 @@
          data-tooltip="Ajouter une certification"><i class="material-icons">add</i></a>
     </div>
 
-    <app-add-certification></app-add-certification>
+    <app-add-certification [(certifications)]="certifications"></app-add-certification>
     <div class="vert-padding"></div>
   </div>
 </main>

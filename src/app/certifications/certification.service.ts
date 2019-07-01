@@ -20,8 +20,8 @@ export class CertificationService {
     return this.http.get<Certification[]>(this.path + '/detail/' + id);
   }
 
-  createCertification(data): Observable<Certification[]> {
-    return this.http.post<Certification[]>(this.path + '/create', data);
+  createCertification(data): Observable<Certification> {
+    return this.http.post<Certification>(this.path + '/create', data);
   }
 
   updateCertification(data): Observable<Certification> {
