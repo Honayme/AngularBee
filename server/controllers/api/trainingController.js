@@ -153,17 +153,9 @@ getAllTraining = (req, res) =>{
  * @returns {Object} Training
  */
 getDetailTraining= (req, res) => {
-  let fields  = req.query.fields;
-  let limit   = parseInt(req.query.limit);
-  let offset  = parseInt(req.query.offset);
-  let order   = req.query.order;
   let trainingId  = req.params.id;
 
-  models.Training.findAll({
-    order:      [(order != null) ? order.split(':') : ['name', 'ASC']],
-    attributes: (fields !== '*' && fields != null) ? fields.split(',') : null,
-    limit:      (!isNaN(limit)) ? limit : null,
-    offset:     (!isNaN(offset)) ? offset : null,
+  models.Training.findOne({
     include: [{
       model: models.User,
       attributes: [ 'firstname' ]

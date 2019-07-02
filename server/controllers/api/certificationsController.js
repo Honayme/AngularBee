@@ -135,17 +135,9 @@ getAllCertifications = (req, res) => {
  * @returns {Object} Certification
  */
 getDetailCertification = (req, res) => {
-  let fields= req.query.fields,
-      limit = parseInt(req.query.limit),
-      offset = parseInt(req.query.offset),
-      order = req.query.order,
-      certificationId = req.params.id;
+  let certificationId = req.params.id;
 
-  models.Certifications.findAll({
-    order:  [(order != null) ? order.split(':') : ['title', 'ASC']],
-    attributes: (fields !== '*' && fields != null) ? fields.split(',') : null,
-    limit: (!isNaN(limit)) ? limit : null,
-    offset: (!isNaN(offset)) ? offset : null,
+  models.Certifications.findOne({
     where: {id: certificationId}
   }).then(function(certification) {
     if(certification){
@@ -242,12 +234,13 @@ updateCertification = (req, res) => {
 
 
 /**
- * @function updateCertification
+ * @function deleteCertification
  * @desc Delete a certification
  * @param req
  * @param res
  * @returns {Object} Certification
- */deleteCertification = (req, res) => {
+ */
+deleteCertification = (req, res) => {
   let headerAuth = req.headers['authorization'],
       userId     = jwtHelper.getUserId(headerAuth);
 
@@ -256,10 +249,8 @@ updateCertification = (req, res) => {
   asyncLib.waterfall([
     function(done) {
       models.Certifications.findOne({
-        attributes: ['id'],
         where: {id: certificationId}
     }).then(function(certificationFound) {
-        console.log(certificationFound);
         done(null, certificationFound)
       }).catch(function(err) {
         console.log(err);

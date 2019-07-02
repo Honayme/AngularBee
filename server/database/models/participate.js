@@ -8,7 +8,6 @@
  * @class Participate
  * @param {Int} `trainingId` INT(11) NOT NULL, FOREIGN KEY (`trainingId`) REFERENCES `trainings` (`id`)
  * @param {Int} `userId` INT(11) NOT NULL - INT(11) NOT NULL, FOREIGN KEY (`userId`) REFERENCES `users` (`id`)
- * @param {Int} description - VARCHAR(255) NOT NULL
  * @return {Schema}
  */
 module.exports = (sequelize, DataTypes) => {
@@ -18,14 +17,16 @@ module.exports = (sequelize, DataTypes) => {
       references: {
         model: 'Training',
         key: 'id'
-      }
+      },
+      onDelete: 'cascade'
     },
       userId: {
         type: DataTypes.INTEGER,
         references: {
           model: 'User',
           key: 'id'
-        }
+        },
+        onDelete: 'cascade'
       },
     isSubscribe: DataTypes.INTEGER
   }, {});
