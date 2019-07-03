@@ -16,8 +16,8 @@ export class CertificationService {
     return this.http.get<Certification[]>(this.path + '/all');
   }
 
-  getDetail(id: number): Observable<Certification[]> {
-    return this.http.get<Certification[]>(this.path + '/detail/' + id);
+  getDetail(id: number): Observable<Certification> {
+    return this.http.get<Certification>(this.path + '/detail/' + id);
   }
 
   createCertification(data): Observable<Certification> {
@@ -28,7 +28,7 @@ export class CertificationService {
     return this.http.put<Certification>(this.path + '/update', data);
   }
 
-  deleteCertification(id: number): Observable<boolean> {
-    return this.http.delete<boolean>(this.path + '/delete/' + id);
+  deleteCertification(id: number): Observable<Certification> {
+    return this.http.delete<Certification>(this.path + '/delete/' + id);
   }
 }

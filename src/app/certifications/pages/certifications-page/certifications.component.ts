@@ -12,7 +12,7 @@ export class CertificationsComponent implements OnInit {
 
   constructor(private certificationService: CertificationService) { }
 
-  certifications: any[];
+  certifications: Certification[];
   ngOnInit() {
 
     $(document).ready(function() {
@@ -23,7 +23,6 @@ export class CertificationsComponent implements OnInit {
 
     this.certificationService.getAll().subscribe(certifications => {
       this.certifications = certifications;
-      console.log(this.certifications);
     });
   }
 

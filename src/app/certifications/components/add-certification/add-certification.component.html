@@ -25,7 +25,7 @@
                             </span>
           </span>
 
-            <label for="titleId">Titre de la certification <span class="beetobee-red-dark-text">*</span></label>
+            <label for="titleId" class="active" >Titre de la certification <span class="beetobee-red-dark-text">*</span></label>
           </div>
         </div>
 
@@ -229,7 +229,7 @@
             <i class="material-icons prefix">insert_comment</i>
             <textarea id="howToSubscribeId" class="validate form-control materialize-textarea" title="howToSubscribeId"
                       formControlName="howToSubscribe"></textarea>
-            <label for="howToSubscribeId">Spécification de l'examen<span class="beetobee-red-dark-text">*</span></label>
+            <label for="howToSubscribeId">Comment s'inscrire<span class="beetobee-red-dark-text">*</span></label>
             <span class="help-block"
                   *ngIf="(certificationForm.get('howToSubscribe').touched || certificationForm.get('howToSubscribe').dirty) && certificationForm.get('howToSubscribe').errors">
                             <span *ngIf="certificationForm.get('howToSubscribe').errors.required">
@@ -246,7 +246,7 @@
             <i class="material-icons prefix">insert_comment</i>
             <textarea id="usefulInfosId" class="validate form-control materialize-textarea" title="usefulInfosId"
                       formControlName="usefulInfos"></textarea>
-            <label for="usefulInfosId">Spécification de l'examen<span class="beetobee-red-dark-text">*</span></label>
+            <label class="active" for="usefulInfosId">Informations utiles<span class="beetobee-red-dark-text">*</span></label>
             <span class="help-block"
                   *ngIf="(certificationForm.get('usefulInfos').touched || certificationForm.get('usefulInfos').dirty) && certificationForm.get('usefulInfos').errors">
                             <span *ngIf="certificationForm.get('usefulInfos').errors.required">
@@ -255,10 +255,6 @@
             </span>
           </div>
         </div>
-
-
-
-
       </div>
     </form>
   </div>

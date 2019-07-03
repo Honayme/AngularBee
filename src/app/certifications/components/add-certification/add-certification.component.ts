@@ -3,6 +3,8 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Certification} from '../../certification';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CertificationService} from '../../certification.service';
+declare var $: any;
+
 
 @Component({
   selector: 'app-add-certification',
@@ -45,21 +47,21 @@ export class AddCertificationComponent implements OnInit {
     if (id) {
       this.update = true;
       this.certificationService.getDetail(id).subscribe((certification: any) => {
-        this.Certification.id = certification[0].id;
+        this.Certification.id = certification.id;
 
         this.certificationForm.patchValue({
-          title: certification[0].title,
-          editor: certification[0].editor,
-          expertiseField: certification[0].expertiseField,
-          desc: certification[0].desc,
-          validity: certification[0].validity,
-          costHt: certification[0].costHt,
-          costTtc: certification[0].costTtc,
-          examDetail: certification[0].examDetail,
-          examDuration: certification[0].examDuration,
-          examNumber: certification[0].examNumber,
-          howToSubscribe: certification[0].howToSubscribe,
-          usefulInfos: certification[0].usefulInfos,
+          title: certification.title,
+          editor: certification.editor,
+          expertiseField: certification.expertiseField,
+          desc: certification.desc,
+          validity: certification.validity,
+          costHt: certification.costHt,
+          costTtc: certification.costTtc,
+          examDetail: certification.examDetail,
+          examDuration: certification.examDuration,
+          examNumber: certification.examNumber,
+          howToSubscribe: certification.howToSubscribe,
+          usefulInfos: certification.usefulInfos,
         });
       });
     }
