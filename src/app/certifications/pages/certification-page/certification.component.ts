@@ -11,11 +11,9 @@ declare var $: any;
   styleUrls: ['./certification.component.css']
 })
 export class CertificationComponent implements OnInit {
+  @Input() certification: Certification;
   @Input() certifications: Certification[];
   @Output() certificationsChange = new EventEmitter<Certification[]>();
-
-  idCertification = this.route.snapshot.params['id'];
-  certificationDetail: Certification;
 
   constructor(private route: ActivatedRoute,
               public certificationService: CertificationService) { }
@@ -25,16 +23,18 @@ export class CertificationComponent implements OnInit {
       $('.collapsible').collapsible();
     });
 
-      this.certificationService.getDetail((this.idCertification)).subscribe(certification => {
-            console.log('Ma certification' + certification);
-            this.certificationDetail = certification;
-        });
+    $('#modal-add-certification').modal();
+
+  }
+
+  public openModalAdd() {
+    $('#modal-add-certification').modal('open');
   }
 
   delete(idCertification) {
     this.certificationService.deleteCertification(idCertification).subscribe( certification => {
-      this.certifications = [...this.certifications, certification];
-      this.certificationsChange.emit(this.certifications);
+      // this.certifications = [...this.certifications, certification];
+      // this.certificationsChange.emit(this.certifications);
       console.log('training has been deleted');
     });
   }

@@ -12,6 +12,7 @@ declare var $: any;
   styleUrls: ['./add-certification.component.css']
 })
 export class AddCertificationComponent implements OnInit {
+  @Input() certification: Certification;
   @Input() certifications: Certification[];
   @Output() certificationsChange = new EventEmitter<Certification[]>();
 
@@ -42,7 +43,7 @@ export class AddCertificationComponent implements OnInit {
       usefulInfos: ['', [Validators.required]],
     });
 
-    const id = this.route.snapshot.params['id'];
+    const id = this.certification.id;
     this.Certification = new Certification('', '', '', '', '', '', '', '', '', '', '', '', '');
     if (id) {
       this.update = true;

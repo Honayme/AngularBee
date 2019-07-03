@@ -4,8 +4,6 @@
 
         <h3 class="content-padding">{{training.name}}</h3>
         <img *ngIf="training.picture" [src]=sanitize.bypassSecurityTrustUrl(training.picture) alt="training picture">
-        <!--<img-->
-        <!--src="https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F41204378%2F196480064855%2F1%2Foriginal.jpg?w=800&auto=compress&rect=0%2C0%2C1920%2C960&s=fb621fecdbe1f0a69ae5dbab306f3313">-->
         <div class="content-padding">
           <h4 class="training-details beetobee-purple-dark-text">Desription</h4>
           <p class="beetobee-purple-light-text">{{training.description}}</p>
