@@ -3,21 +3,17 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {TrainingService} from '../../training.service';
 import {DomSanitizer} from '@angular/platform-browser';
 import {Training} from '../../training';
+declare var $: any;
 
 @Component({
-  selector: 'app-training',
   templateUrl: './training.component.html',
   styleUrls: ['./training.component.css']
 })
-export class TrainingComponent implements OnInit, OnChanges {
+export class TrainingComponent implements OnInit {
 
   idTraining = this.route.snapshot.params['id'];
-  training = [];
+  training: Training;
   isSubscribe = false;
-  @Input() isSubscribed: boolean;
-  @Output() isSubscribeChange = new EventEmitter<boolean>();
-  @Input() trainings: Training[];
-  @Output() trainingsChange = new EventEmitter<Training>();
 
   constructor(private route: ActivatedRoute,
               public trainingService: TrainingService,
@@ -25,32 +21,43 @@ export class TrainingComponent implements OnInit, OnChanges {
               private router: Router) { }
 
   ngOnInit() {
-    this.trainingService.getDetail((this.idTraining)).toPromise().then(training => {
+    this.trainingService.getDetail((this.idTraining)).subscribe(training => {
       this.training = training;
+      console.log(training);
     });
 
     this.trainingService.isSubscribe((this.idTraining)).subscribe(isSubscribe => {
       this.isSubscribe = isSubscribe;
     });
+
+    $('#modal-add-training').modal();
   }
 
-  ngOnChanges(isSubscribe) {
-    this.trainingService.isSubscribe((this.idTraining)).subscribe(isSubscribe => {
-      this.isSubscribe = isSubscribe;
-    });
+  public openModalAdd() {
+    $('#modal-add-training').modal('open');
   }
 
   subscribe() {
-    this.trainingService.subscribeTraining(this.idTraining).toPromise().then(participate => {
-      this.trainings = [...this.trainings, participate];
+    this.trainingService.subscribeTraining(this.idTraining).subscribe(participate => {
+      this.training = participate;
+      this.isSubscribe = true;
       // this.trainingsChange.emit(this.trainings);
       console.log('participate');
     });
   }
 
   unsubscribe() {
-    this.trainingService.unsubscribeTraining(this.idTraining).toPromise().then(participate => {
+    this.trainingService.unsubscribeTraining(this.idTraining).subscribe(participate => {
+      this.training = participate;
+      this.isSubscribe = false;
       console.log('not participate');
+    });
+  }
+
+  delete() {
+    this.trainingService.deleteTraining(this.idTraining).subscribe( boolean => {
+      this.router.navigate(['/formations']);
+      console.log('training has been deleted');
     });
   }
 }

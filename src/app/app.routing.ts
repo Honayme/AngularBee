@@ -20,10 +20,12 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'formations', component: TrainingsComponent},
   {path: 'formations/detail/:id', component: TrainingComponent},
+  {path: 'formations/delete/:id', component: TrainingComponent},
   {path: 'cgu', component: CguComponent},
   {path: 'team', component: TeamComponent},
   {path: 'contact', component: ContactComponent},
   {path: 'certifications', component: CertificationsComponent},
+  {path: 'certifications/delete/:id', component: CertificationsComponent},
   {path: 'profil', component: ProfileComponent},
 
 ];

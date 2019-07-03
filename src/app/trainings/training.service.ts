@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Training } from './training';
 import 'rxjs/add/operator/map';
 import {Observable} from 'rxjs/Observable';
+import {map} from 'rxjs/operators';
 
 @Injectable()
 export class TrainingService {
@@ -17,8 +18,8 @@ export class TrainingService {
     return this.http.get<Training[]>(this.path + '/all');
   }
 
-  getDetail(id: number): Observable<Training[]> {
-    return this.http.get<Training[]>(this.path + '/detail/' + id);
+  getDetail(id: number): Observable<Training> {
+    return this.http.get<Training>(this.path + '/detail/' + id);
   }
 
   getUserTraining(): Observable<Training[]> {
@@ -41,8 +42,8 @@ export class TrainingService {
     return this.http.post<Training>(this.pathPart + '/training/subscribe/' + id, '' );
   }
 
-  unsubscribeTraining(id: number): Observable<any[]> {
-    return this.http.post<any[]>(this.pathPart + '/training/unsubscribe/' + id, '' );
+  unsubscribeTraining(id: number): Observable<Training> {
+    return this.http.post<Training>(this.pathPart + '/training/unsubscribe/' + id, '' );
   }
 
   isSubscribe(id: number): Observable<boolean> {

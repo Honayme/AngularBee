@@ -1,69 +1,70 @@
 <main class="mdl-layout__content">
   <section class="container ">
-    <div *ngFor="let train of training">
-      <div class="row z-depth-5 content">
+    <div *ngIf="training"  class="row z-depth-5 content">
 
-        <h3 class="content-padding">{{train.name}}</h3>
-        <img *ngIf="train.picture" [src]=sanitize.bypassSecurityTrustUrl(train.picture)>
+        <h3 class="content-padding">{{training.name}}</h3>
+        <img *ngIf="training.picture" [src]=sanitize.bypassSecurityTrustUrl(training.picture) alt="training picture">
         <!--<img-->
         <!--src="https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F41204378%2F196480064855%2F1%2Foriginal.jpg?w=800&auto=compress&rect=0%2C0%2C1920%2C960&s=fb621fecdbe1f0a69ae5dbab306f3313">-->
         <div class="content-padding">
           <h4 class="training-details beetobee-purple-dark-text">Desription</h4>
-          <p class="beetobee-purple-light-text">{{train.description}}</p>
+          <p class="beetobee-purple-light-text">{{training.description}}</p>
           <ul class="col m6">
             <li class="training-details beetobee-purple-dark-text">
               <i class="material-icons prefix">today</i>
-              Date : <p class="beetobee-purple-light-text">{{train.date | date}}</p>
+              Date : <p class="beetobee-purple-light-text">{{training.date | date}}</p>
 
             </li>
 
             <li class="training-details beetobee-purple-dark-text">
               <i class="material-icons prefix">access_time</i>
               Heure :
-              <p class="beetobee-purple-light-text">{{train.hour}}</p>
+              <p class="beetobee-purple-light-text">{{training.hour}}</p>
             </li>
 
             <li class="training-details beetobee-purple-dark-text">
               <i class="material-icons prefix">timer</i>
               Durée :
-              <p class="beetobee-purple-light-text">{{train.duration}}</p>
+              <p class="beetobee-purple-light-text">{{training.duration}}</p>
             </li>
           </ul>
           <ul class="col m6">
             <li class="training-details beetobee-purple-dark-text">
               <i class="material-icons prefix">event_seat</i>
               Nombre de places :
-              <p class="beetobee-purple-light-text">{{train.availableSeat}} of {{train.totalSeat}}</p>
+              <p class="beetobee-purple-light-text">{{training.availableSeat}} of {{training.totalSeat}}</p>
             </li>
 
             <li class="training-details beetobee-purple-dark-text">
               <i class="material-icons prefix">turned_in</i>
               Thème :
-              <p class="beetobee-purple-light-text">{{train.theme}}</p>
+              <p class="beetobee-purple-light-text">{{training.theme}}</p>
             </li>
 
             <li class="training-details beetobee-purple-dark-text">
               <i class="material-icons prefix">location_on</i>
               Lieu :
-              <p class="beetobee-purple-light-text">{{train.place}}</p>
+              <p class="beetobee-purple-light-text">{{training.place}}</p>
             </li>
           </ul>
         </div>
 
-        <div *ngIf="!isSubscribe" class=" col m12">
+        <a (click)="openModalAdd()" id="updateTraining" class="btn-floating halfway-fab waves-effect waves-light light-blue"><i class="material-icons">edit</i></a>
+        <a (click)="delete()" id="deleteTraining" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">delete</i></a>
+
+        <div *ngIf="!isSubscribe" class="col m12">
           <button class="subButton waves-effect beetobee-blue-dark-bg btn-flat" type="submit" (click)="subscribe()">
-            <a class="beetobee-white-text">Inscription</a>
+            <a onclick="M.toast({html: 'Inscription a bien été pris en compte, à bientôt'})" class="beetobee-white-text">Inscription</a>
           </button>
         </div>
-        <div *ngIf="isSubscribe" class=" col m12">
+        <div *ngIf="isSubscribe" class="col m12">
           <button class="subButton waves-effect beetobee-red-dark-bg btn-flat" type="submit" (click)="unsubscribe()">
-            <a class="beetobee-white-text">Désinscription</a>
+            <a onclick="M.toast({html: 'Votre desinscription a bien été pris en compte'})" class="beetobee-white-text">Désinscription</a>
           </button>
         </div>
 
       </div>
-    </div>
   </section>
 </main>
-<!--TODO TITRE class="training-details beetobee-purple-dark-text"-->
-<!--TODO TEXTE class="beetobee-purple-light-text"-->
+
+<app-add-training [(trainings)]="trainings"></app-add-training>

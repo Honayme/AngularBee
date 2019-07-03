@@ -45,21 +45,21 @@ export class AddTrainingComponent implements OnInit {
 
     if (id) {
       this.update = true;
-      this.trainingService.getDetail(id).subscribe((training:any) =>{
-        this.Training.id = training[0].id;
-        this.picture = training[0].picture;
+      this.trainingService.getDetail(id).subscribe((training:any) => {
+        this.Training.id = training.id;
+        // this.picture = training.picture;
 
         this.trainingForm.patchValue({
-          name: training[0].name,
-          description: training[0].description,
-          duration: training[0].duration,
-          date: training[0].date,
-          hour: training[0].hour,
-          place: training[0].place,
-          totalSeat: training[0].totalSeat,
-          availableSeat: training[0].totalSeat,
-          picture: training[0].picture,
-          theme: training[0].theme,
+          name: training.name,
+          description: training.description,
+          duration: training.duration,
+          date: training.date,
+          hour: training.hour,
+          place: training.place,
+          totalSeat: training.totalSeat,
+          availableSeat: training.totalSeat,
+          theme: training.theme,
+          // picture: training.picture,
         });
       });
     }
@@ -89,8 +89,9 @@ save() {
         console.log('create');
       });
     } else {
-      this.trainingService.updateTraining(this.Training).subscribe(Training => {
-        this.router.navigate(['/formations']);
+      this.trainingService.updateTraining(this.Training).subscribe(training => {
+        this.trainings = [...this.trainings, training];
+        this.trainingsChange.emit(this.trainings);
         console.log('update');
       });
     }
