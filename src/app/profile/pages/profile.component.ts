@@ -4,6 +4,9 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {ProfileService} from '../profile.service';
 import {DomSanitizer} from '@angular/platform-browser';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {TrainingService} from '../../trainings/training.service';
+import {forEach} from '@angular/router/src/utils/collection';
+declare var $: any;
 
 @Component({
   selector: 'app-profile',
@@ -20,17 +23,38 @@ export class ProfileComponent implements OnInit {
   emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   passPattern = /^(?=.*\d).{4,8}$/;
 
+  trainings: any = [];
+
 
   constructor(private route: ActivatedRoute,
               private profileService: ProfileService,
+              private trainingService: TrainingService,
               public sanitize: DomSanitizer,
               private router: Router,
               private fb: FormBuilder) { }
 
   ngOnInit() {
-    this.profileService.getProfile().toPromise().then(profile => {
+
+    $(document).ready(function(){
+      $('.tabs').tabs();
+    });
+
+    this.profileService.getProfile().subscribe(profile => {
       this.Profile = profile;
       console.log(profile);
+    });
+
+/*    this.trainingService.getUserTraining().subscribe(trainings => {
+      this.trainings = trainings;
+      console.log(this.trainings);
+    });*/
+
+    this.trainingService.userParticipateTraining().subscribe(trainings => {
+      this.trainings = trainings;
+
+      console.log(this.trainings[0].training.name);
+      console.log(this.trainings[0]);
+      console.log(this.trainings);
     });
 
     this.profileForm = this.fb.group({

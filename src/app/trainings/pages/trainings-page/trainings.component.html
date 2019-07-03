@@ -5,7 +5,7 @@
         <div *ngFor="let training of trainings" class="col s12 m6">
           <div class="card">
             <div class="card-image">
-              <img *ngIf="training.picture" [src]=sanitize.bypassSecurityTrustUrl(training.picture)>
+              <img *ngIf="training.picture" [src]=sanitize.bypassSecurityTrustUrl(training.picture) alt="training picture">
               <span class="card-title">{{training.name}}</span>
               <a [routerLink]="['/formations/detail/' + training.id]" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
             </div>

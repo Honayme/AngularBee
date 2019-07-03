@@ -1,25 +1,32 @@
 <div class="container">
-  <section class="row">
+  <div class="col s12">
+    <ul class="tabs">
+      <li  class="beetobee-blue-dark-text tab col s4"><a href="#ProfilInfo">Mon Profil</a></li>
+      <li  class="beetobee-blue-dark-text tab col s4"><a href="#myTrainings">Mes Formations</a></li>
+    </ul>
+  </div>
+  <div id="ProfilInfo" class="col s12">
+  <section *ngIf="Profile" class="row">
+    <header>
+      <h3 class="beetobee-blue-dark-text">Informations personnelles</h3>
+    </header>
+
     <form class="form-group row"
           novalidate
           (ngSubmit)="save()"
           [formGroup]="profileForm">
 
-    <header>
-      <h3 class="beetobee-blue-dark-text">Informations personnelles</h3>
-    </header>
       <!--___PROFILE PICTURE___-->
       <div class="col s12">
-        <h4 class="beetobee-red-dark-text"><i class="material-icons">accessibility</i> Identité</h4>
         <div class="row">
           <div class="form-group">
             <!--<img *ngIf="Profile.profilePicture" [src]=sanitize.bypassSecurityTrustUrl(Profile.profilePicture) class="avatar">-->
 
-            <div id="avatar-container" class="file-field input-field col l12 center">
+            <div id="avatar-container" class="file-field input-field push-l4 col l4 center">
 
-              <div class="z-depth-1">
-                  <i class="material-icons beetobee-purple-dark-text">edit</i>
-                  <img *ngIf="picture" [src]=sanitize.bypassSecurityTrustUrl(picture)>
+              <div class="">
+                  <i *ngIf="!picture" class="material-icons beetobee-purple-dark-text">edit</i>
+                  <img *ngIf="picture" class="circle responsive-img" [src]=sanitize.bypassSecurityTrustUrl(picture) alt="Profile Picture">
                   <input class="validate form-control"
                          id="pictureId"
                          type="file"
@@ -30,7 +37,7 @@
                 </div>
 
 
-              <h5 id="username" class="beetobee-blue-dark-text">hola</h5>
+              <h5 id="username" class="beetobee-blue-dark-text">Profile</h5>
             </div>
           </div>
         </div>
@@ -58,8 +65,7 @@
                                 Invalid Email.
                             </span>
               </span>
-
-              <label id="labelEmail" for="emailProfileId">Email</label>
+                <label id="labelEmail" for="emailProfileId" [ngClass]="(Profile.email) ? 'active' : '' " >Email</label>
             </div>
 
           </div>
@@ -77,7 +83,7 @@
                      formControlName="lastname"
                      value="{{Profile.lastname}}">
 
-              <label id="labelEmail" for="lastnameProfileId">Nom</label>
+              <label class="active" id="labelName" for="lastnameProfileId" [ngClass]="(Profile.lastname) ? 'active' : '' " >Nom</label>
             </div>
 
           </div>
@@ -100,7 +106,7 @@
                      formControlName="firstname"
                      value="{{Profile.firstname}}">
 
-              <label id="labelFirstname" for="firstnameProfileId">Prénom</label>
+              <label class="active" id="labelFirstname" for="firstnameProfileId" [ngClass]="(Profile.lastname) ? 'active' : '' " >Prénom</label>
             </div>
 
           </div>
@@ -116,9 +122,9 @@
                      type="text"
                      name="birthDateId"
                      formControlName="birthdate"
-                     value="{{Profile.birthdate | date}}">
+                     value="{{Profile.birthdate | date:'y MMM d, j:mm'}}">
 
-              <label id="labelBirthDate" for="birthDateProfileId">Date de naissance (aaaa-mm-jj)</label>
+              <label id="labelBirthDate" for="birthDateProfileId" [ngClass]="(Profile.birthdate) ? 'active' : '' " >Date de naissance (aaaa-mm-jj)</label>
             </div>
 
           </div>
@@ -150,7 +156,7 @@
                             </span>
               </span>
 
-              <label for="passwordProfileId">Mot de passe</label>
+              <label for="passwordProfileId" [ngClass]="(Profile.password) ? 'active' : '' " >Mot de passe</label>
             </div>
 
           </div>
@@ -175,7 +181,7 @@
                             </span>
               </span>
 
-              <label for="passwordConfirmProfileId">Confirmation</label>
+              <label for="passwordConfirmProfileId" [ngClass]="(Profile.password) ? 'active' : '' " >Confirmation</label>
             </div>
 
           </div>
@@ -201,7 +207,7 @@
                      formControlName="city"
                      value="{{Profile.city}}">
 
-              <label id="labelCity" for="cityProfileId">Ville</label>
+              <label id="labelCity" for="cityProfileId" [ngClass]="(Profile.city) ? 'active' : '' " >Ville</label>
             </div>
 
           </div>
@@ -218,7 +224,7 @@
                      formControlName="university"
                      value="{{Profile.university}}">
 
-              <label id="labelUniversity" for="universityProfileId">Université</label>
+              <label id="labelUniversity" for="universityProfileId" [ngClass]="(Profile.university) ? 'active' : '' " >Université</label>
             </div>
 
           </div>
@@ -239,7 +245,7 @@
                      formControlName="speciality"
                      value="{{Profile.speciality}}">
 
-              <label id="labelGrade" for="specialityProfileId">Spécialité</label>
+              <label id="labelGrade" for="specialityProfileId" [ngClass]="(Profile.speciality) ? 'active' : '' " >Spécialité</label>
             </div>
 
           </div>
@@ -256,7 +262,7 @@
                      formControlName="levelDegree"
                      value="{{Profile.levelDegree}}">
 
-              <label id="labelLevelDegree" for="levelDegreeProfileId">Niveau d'études</label>
+              <label id="labelLevelDegree" for="levelDegreeProfileId" [ngClass]="(Profile.levelDegree) ? 'active' : '' " >Niveau d'études</label>
             </div>
 
           </div>
@@ -283,6 +289,30 @@
 </div>
 <app-become-trainer></app-become-trainer>
 
+  <div id="myTrainings" class="col s12">
+    <section id="trainingProfile" class="template-section">
+      <div class="container" id="formations">
+        <div class="row">
+          <div *ngFor="let training of trainings" class="col s12 m6">
+            <div class="card">
+              <div class="card-image">
+                <img *ngIf="training.training.picture" [src]=sanitize.bypassSecurityTrustUrl(training.training.picture)
+                     alt="Training Picture">
+                <span class="card-title">{{training.training.name}}</span>
+                <a [routerLink]="['/formations/detail/' + training.training.id]"
+                   class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+              </div>
+              <div class="card-content">
+                <p>{{training.training.description}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  </div>
 
 <!--<div class="vert-padding"></div>-->
 <!--<h4 class="beetobee-red-dark-text"><i class="material-icons">phone</i> Contact</h4>-->

@@ -1,4 +1,6 @@
 'use strict';
+// import {Training} from "../../../src/app/trainings/training";
+
 /**
  * Participate Controller
  * @module participateController
@@ -6,17 +8,18 @@
  * @require models
  * @require asyncLib
  */
-//TODO User the isSubscribe attribute in DB to know who is participating and who has canceled
+//TODO Use the isSubscribe attribute in DB to know who is participating and who has canceled
 const
   jwtHelper   = require('../../helpers/jwtHelper'),
   models     = require('../../database/models'),
   asyncLib   = require('async'),
   unsubscribe = 0,
-  subscribe    = 1;
+  subscribe   = 1;
 
 let subscribeTraining,
     unsubscribeTraining,
-    isParticipateTraining;
+    isParticipateTraining,
+    ParticipateUserTraining;
 
 /**
  * @function subscribeTraining
@@ -304,8 +307,39 @@ isParticipateTraining = (req, res) => {
   )
 };
 
+/**
+ * @function unsubscribeTraining
+ * @desc Send back the training for which the user have been subscribed
+ * @param req
+ * @param res
+ * @returns {Object} Training
+ */
+ParticipateUserTraining = (req, res) => {
+  // Getting auth header
+  let headerAuth = req.headers['authorization'],
+      userId = jwtHelper.getUserId(headerAuth);
+
+      models.Participate.findAll({
+        include: [{
+          model: models.Training, as: 'training',
+        }],
+        where: {userId: userId}
+      }).then(function(training) {
+        if (training) {
+          res.status(200).json(training);
+        } else {
+          res.status(404).json({ "error": "no Training found" });
+        }
+      }).catch(function(err) {
+        console.log(err);
+        res.status(500).json({ "error": "invalid fields" });
+      });
+
+};
+
 module.exports = {
   subscribeTraining,
   unsubscribeTraining,
-  isParticipateTraining
+  isParticipateTraining,
+  ParticipateUserTraining
 };

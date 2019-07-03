@@ -1,5 +1,4 @@
 /* ---- Id ---- */
-
 #avatar-container {
   position: relative;
 }
@@ -9,6 +8,13 @@
 }
 
 /* ---- Class ---- */
+.tabs .tab a:focus, .tabs .tab a:focus.active{
+  background-color: #2c3664 !important;
+}
+.tabs .tab a:hover, .tabs .tab a.active{
+  background-color: #2c3664;
+  color: #fff
+}
 
 .profile h3 {
   font-size: 3.8vh;

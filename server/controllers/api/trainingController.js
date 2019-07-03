@@ -175,7 +175,7 @@ getDetailTraining= (req, res) => {
 
 /**
  * @function getUserTraining
- * @desc Get a specific training and the users who have subscribed to it.
+ * @desc Get trainings who have been created by the connected user.
  * @param req
  * @param res
  * @returns {Object} Training

@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Training } from './training';
 import 'rxjs/add/operator/map';
 import {Observable} from 'rxjs/Observable';
-import {map} from 'rxjs/operators';
 
 @Injectable()
 export class TrainingService {
@@ -48,5 +47,9 @@ export class TrainingService {
 
   isSubscribe(id: number): Observable<boolean> {
     return this.http.get<boolean>(this.pathPart + '/training/issubscribe/' + id);
+  }
+
+  userParticipateTraining(): Observable<any> {
+    return this.http.get<any>(this.pathPart + '/training/userTraining');
   }
 }
