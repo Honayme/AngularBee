@@ -48,9 +48,9 @@ h6 {
 
 .albums img {
   justify-self: center;
-  width: 220px;
-  height: 220px;
-
+  width: 650px;
+  height: 800px;
+  margin-top: 70px;
 }
 
 .album__details {

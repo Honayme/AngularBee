@@ -1,7 +1,11 @@
-.contact{
-  background-color: var(--beetobee-blue-dark);
+main {
+  margin-top: 50px !important;
+  margin-bottom: 50px !important;
 }
 
+.container{
+  margin: 8px auto !important;
+}
 
 h1 {
   padding: 20px;

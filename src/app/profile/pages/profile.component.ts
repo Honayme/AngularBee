@@ -51,10 +51,6 @@ export class ProfileComponent implements OnInit {
 
     this.trainingService.userParticipateTraining().subscribe(trainings => {
       this.trainings = trainings;
-
-      console.log(this.trainings[0].training.name);
-      console.log(this.trainings[0]);
-      console.log(this.trainings);
     });
 
     this.profileForm = this.fb.group({
