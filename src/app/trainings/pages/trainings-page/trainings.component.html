@@ -6,7 +6,7 @@
           <div class="card">
             <div class="card-image">
               <img *ngIf="training.picture" [src]=sanitize.bypassSecurityTrustUrl(training.picture) alt="training picture">
-              <span class="card-title">{{training.name}}</span>
+<!--              <span class="card-title">{{training.name}}</span>-->
               <a [routerLink]="['/formations/detail/' + training.id]" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
             </div>
             <div class="card-content">
@@ -22,13 +22,13 @@
       <a (click)="openModalAdd()"
          class="btn-floating btn-large waves-effect waves-light beetobee-blue-elec-bg tooltipped"
          data-position="left"
-         data-tooltip="Ajouter une formation"><i class="material-icons">group_add</i></a>
+         data-tooltip="Ajouter une formation"><i class="material-icons">add</i></a>
     </div>
-    <div id="ask-for-training" class="fixed-action-btn">
+    <!--<div id="ask-for-training" class="fixed-action-btn">
       <a (click)="openModalAsk()"
          class="btn-floating btn-large waves-effect waves-light beetobee-red-dark-bg tooltipped"
          data-position="left" data-tooltip="Demander une formation"><i class="material-icons">add</i></a>
-    </div>
+    </div>-->
 
     <!-- Modal for ask a training-->
     <app-ask-training></app-ask-training>
