@@ -2,8 +2,9 @@
   <div class="container">
 
     <!--Certification toggle-->
-    <div >
-        <app-certification *ngFor="let certification of certifications" class="col s12 m6" [certification]="certification" ></app-certification>
+    <div *ngFor="let certification of certifications" class="col s12 m6">
+        <app-certification  [certification]="certification"></app-certification>
+        <app-update-certification [certification]="certification"></app-update-certification>
     </div>
     <!--Search Filters-->
 
@@ -15,6 +16,7 @@
     </div>
 
     <app-add-certification [(certifications)]="certifications"></app-add-certification>
+
     <div class="vert-padding"></div>
   </div>
 </main>

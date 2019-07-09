@@ -20,6 +20,7 @@ export class CertificationsComponent implements OnInit {
     });
 
     $('#modal-add-certification').modal();
+    $('#modal-update-certification').modal();
 
     this.certificationService.getAll().subscribe(certifications => {
       this.certifications = certifications;
@@ -28,5 +29,8 @@ export class CertificationsComponent implements OnInit {
 
   public openModalAdd() {
     $('#modal-add-certification').modal('open');
+  }
+  public openModalUpdate() {
+    $('#modal-update-certification').modal('open');
   }
 }

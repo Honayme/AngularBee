@@ -1,0 +1,294 @@
+<div id="modal-update-certification" class="modal modal-fixed-footer">
+  <div class="modal-content">
+    <h4 class="beetobee-purple-dark-text">Mettre à jours une certification</h4>
+    <div class="vert-padding"></div>
+    <form class="form-group row"
+          novalidate
+          (ngSubmit)="update()"
+          [formGroup]="certificationForm">
+      <div class="row">
+        <!--___TITLE___-->
+        <div class="form-group"
+             [ngClass]="{'has-error': (certificationForm.get('title').touched || certificationForm.get('title').dirty) && !certificationForm.get('title').valid }">
+          <div class="input-field col s6">
+            <i class="material-icons prefix">bookmark</i>
+
+            <input class="validate form-control"
+                   id="titleId"
+                   type="text"
+                   title="titleId"
+                   formControlName="title">
+            <span class="help-block"
+                  *ngIf="(certificationForm.get('title').touched || certificationForm.get('title').dirty) && certificationForm.get('title').errors">
+                            <span *ngIf="certificationForm.get('title').errors.required">
+                                Please enter a title.
+                            </span>
+          </span>
+
+            <label for="titleId" [ngClass]="(certification.title) ? 'active' : '' " >Titre de la certification <span class="beetobee-red-dark-text">*</span></label>
+          </div>
+        </div>
+
+        <!--___EDITOR___-->
+        <div class="form-group"
+             [ngClass]="{'has-error': (certificationForm.get('editor').touched || certificationForm.get('editor').dirty) && !certificationForm.get('editor').valid }">
+          <div class="input-field col s6">
+            <i class="material-icons prefix">edit</i>
+
+            <input class="validate form-control"
+                   id="editorId"
+                   type="text"
+                   title="editorId"
+                   formControlName="editor">
+            <span class="help-block"
+                  *ngIf="(certificationForm.get('editor').touched || certificationForm.get('editor').dirty) && certificationForm.get('editor').errors">
+                            <span *ngIf="certificationForm.get('editor').errors.required">
+                                Please enter a editor.
+                            </span>
+                            <span *ngIf="certificationForm.get('editor').errors.minlength">
+                                The editor must be longer than 5 characters.
+                            </span>
+                            <span *ngIf="certificationForm.get('editor').errors.maxLength">
+                                The editor must be shorter than 500 characters.
+                            </span>
+          </span>
+
+            <label for="editorId" [ngClass]="(certification.editor) ? 'active' : '' " >Éditeur de la certification <span class="beetobee-red-dark-text">*</span></label>
+          </div>
+        </div>
+
+        <!--___EXPERTISE FIELD___-->
+        <div class="form-group"
+             [ngClass]="{'has-error': (certificationForm.get('expertiseField').touched || certificationForm.get('expertiseField').dirty) && !certificationForm.get('expertiseField').valid }">
+          <div class="input-field col s12">
+            <i class="material-icons prefix">school</i>
+
+            <input class="validate form-control"
+                   id="expertiseFieldId"
+                   type="text"
+                   title="expertiseFieldId"
+                   formControlName="expertiseField">
+            <span class="help-block"
+                  *ngIf="(certificationForm.get('expertiseField').touched || certificationForm.get('expertiseField').dirty) && certificationForm.get('expertiseField').errors">
+                            <span *ngIf="certificationForm.get('expertiseField').errors.required">
+                                Please enter a expertiseField.
+                            </span>
+          </span>
+
+            <label for="expertiseFieldId" [ngClass]="(certification.expertiseField) ? 'active' : '' " >Domaine de la certification<span class="beetobee-red-dark-text">*</span></label>
+          </div>
+        </div>
+
+        <!--___DESCRIPTION___-->
+        <div class="form-group"
+             [ngClass]="{'has-error': (certificationForm.get('desc').touched || certificationForm.get('desc').dirty) && !certificationForm.get('desc').valid }">
+
+          <div class="input-field col s12">
+            <i class="material-icons prefix">description</i>
+            <textarea id="descId" class="validate form-control materialize-textarea" title="descId"
+                      formControlName="desc"></textarea>
+
+            <span class="help-block"
+                  *ngIf="(certificationForm.get('desc').touched || certificationForm.get('desc').dirty) && certificationForm.get('desc').errors">
+                            <span *ngIf="certificationForm.get('desc').errors.required">
+                                Please enter a description.
+                            </span>
+            </span>
+
+            <label for="descId" [ngClass]="(certification.desc) ? 'active' : '' ">Description de la certification<span class="beetobee-red-dark-text" >*</span></label>
+          </div>
+        </div>
+
+
+        <!--___VALIDITY___-->
+        <div class="form-group"
+             [ngClass]="{'has-error': (certificationForm.get('validity').touched || certificationForm.get('validity').dirty) && !certificationForm.get('validity').valid }">
+
+          <div class="input-field col s12">
+            <i class="material-icons prefix">check</i>
+            <textarea id="validityId" class="validate form-control materialize-textarea" title="validityId"
+                      formControlName="validity"></textarea>
+
+            <span class="help-block"
+                  *ngIf="(certificationForm.get('validity').touched || certificationForm.get('validity').dirty) && certificationForm.get('validity').errors">
+                            <span *ngIf="certificationForm.get('validity').errors.required">
+                                Please enter a validity.
+                            </span>
+            </span>
+
+            <label for="validityId" [ngClass]="(certification.validity) ? 'active' : '' " >Description de la certification<span class="beetobee-red-dark-text" >*</span></label>
+          </div>
+        </div>
+
+        <!--___COST HT___-->
+        <div class="form-group"
+             [ngClass]="{'has-error': (certificationForm.get('costHt').touched || certificationForm.get('costHt').dirty) && !certificationForm.get('costHt').valid }">
+          <div class="input-field col s6">
+            <i class="material-icons prefix">money_off</i>
+
+            <input class="validate form-control"
+                   id="costHtId"
+                   type="text"
+                   title="costHtId"
+                   formControlName="costHt">
+            <span class="help-block"
+                  *ngIf="(certificationForm.get('costHt').touched || certificationForm.get('costHt').dirty) && certificationForm.get('costHt').errors">
+                            <span *ngIf="certificationForm.get('costHt').errors.required">
+                                Please enter a costHt.
+                            </span>
+          </span>
+
+            <label for="costHtId" [ngClass]="(certification.costHt) ? 'active' : '' " >Coùt hors taxe <span class="beetobee-red-dark-text" >*</span></label>
+          </div>
+        </div>
+
+        <!--___COST TTC___-->
+        <div class="form-group"
+             [ngClass]="{'has-error': (certificationForm.get('costTtc').touched || certificationForm.get('costTtc').dirty) && !certificationForm.get('costTtc').valid }">
+          <div class="input-field col s6">
+            <i class="material-icons prefix">attach_money</i>
+
+            <input class="validate form-control"
+                   id="costTtcId"
+                   type="text"
+                   title="costTtcId"
+                   formControlName="costTtc">
+            <span class="help-block"
+                  *ngIf="(certificationForm.get('costTtc').touched || certificationForm.get('costTtc').dirty) && certificationForm.get('costTtc').errors">
+                            <span *ngIf="certificationForm.get('costTtc').errors.required">
+                                Please enter a costTtc.
+                            </span>
+          </span>
+
+            <label for="costTtcId" [ngClass]="(certification.costTtc) ? 'active' : '' " >Coût TTC <span class="beetobee-red-dark-text">*</span></label>
+          </div>
+        </div>
+
+        <!--___EXAM DETAIL___-->
+        <div class="form-group"
+             [ngClass]="{'has-error': (certificationForm.get('examDetail').touched || certificationForm.get('examDetail').dirty) && !certificationForm.get('examDetail').valid }">
+          <div class="input-field col s12">
+            <i class="material-icons prefix">insert_comment</i>
+            <textarea id="examDetailId" class="validate form-control materialize-textarea" title="examDetailId"
+                      formControlName="examDetail"></textarea>
+
+            <span class="help-block"
+                  *ngIf="(certificationForm.get('examDetail').touched || certificationForm.get('examDetail').dirty) && certificationForm.get('examDetail').errors">
+                            <span *ngIf="certificationForm.get('examDetail').errors.required">
+                                Please enter a examDetail.
+                            </span>
+            </span>
+
+            <label for="examDetailId" [ngClass]="(certification.examDetail) ? 'active' : '' " >Spécification de l'examen<span class="beetobee-red-dark-text" >*</span></label>
+          </div>
+        </div>
+
+
+        <!--___EXAM DURATION___-->
+        <div class="form-group"
+             [ngClass]="{'has-error': (certificationForm.get('examDuration').touched || certificationForm.get('examDuration').dirty) && !certificationForm.get('examDuration').valid }">
+          <div class="input-field col s6">
+            <i class="material-icons prefix">hourglass_empty</i>
+
+            <input class="validate form-control"
+                   id="examDurationId"
+                   type="text"
+                   title="examDurationId"
+                   formControlName="examDuration">
+            <span class="help-block"
+                  *ngIf="(certificationForm.get('examDuration').touched || certificationForm.get('examDuration').dirty) && certificationForm.get('examDuration').errors">
+                            <span *ngIf="certificationForm.get('examDuration').errors.required">
+                                Please enter a examDuration.
+                            </span>
+          </span>
+
+            <label for="examDurationId" [ngClass]="(certification.examDuration) ? 'active' : '' " >Durée de l'examen <span class="beetobee-red-dark-text" >*</span></label>
+          </div>
+        </div>
+
+        <!--___EXAM NUMBER___-->
+        <div class="form-group"
+             [ngClass]="{'has-error': (certificationForm.get('examNumber').touched || certificationForm.get('examNumber').dirty) && !certificationForm.get('examNumber').valid }">
+          <div class="input-field col s6">
+            <i class="material-icons prefix">assignment</i>
+
+            <input class="validate form-control"
+                   id="examNumberId"
+                   type="text"
+                   title="examNumberId"
+                   formControlName="examNumber">
+            <span class="help-block"
+                  *ngIf="(certificationForm.get('examNumber').touched || certificationForm.get('examNumber').dirty) && certificationForm.get('examNumber').errors">
+                            <span *ngIf="certificationForm.get('examNumber').errors.required">
+                                Please enter a examNumber.
+                            </span>
+          </span>
+
+            <label for="examNumberId" [ngClass]="(certification.examNumber) ? 'active' : '' " >Exam préfix <span class="beetobee-red-dark-text" >*</span></label>
+          </div>
+        </div>
+
+        <!--___HOW TO SUBSCRIBE___-->
+        <div class="form-group"
+             [ngClass]="{'has-error': (certificationForm.get('howToSubscribe').touched || certificationForm.get('howToSubscribe').dirty) && !certificationForm.get('howToSubscribe').valid }">
+          <div class="input-field col s12">
+            <i class="material-icons prefix">insert_comment</i>
+            <textarea id="howToSubscribeId" class="validate form-control materialize-textarea" title="howToSubscribeId"
+                      formControlName="howToSubscribe"></textarea>
+
+            <span class="help-block"
+                  *ngIf="(certificationForm.get('howToSubscribe').touched || certificationForm.get('howToSubscribe').dirty) && certificationForm.get('howToSubscribe').errors">
+                            <span *ngIf="certificationForm.get('howToSubscribe').errors.required">
+                                Please enter a howToSubscribe.
+                            </span>
+            </span>
+
+            <label for="howToSubscribeId" [ngClass]="(certification.howToSubscribe) ? 'active' : '' " >Comment s'inscrire<span class="beetobee-red-dark-text" >*</span></label>
+          </div>
+        </div>
+
+        <!--___HOW TO SUBSCRIBE___-->
+        <div class="form-group"
+             [ngClass]="{'has-error': (certificationForm.get('usefulInfos').touched || certificationForm.get('usefulInfos').dirty) && !certificationForm.get('usefulInfos').valid }">
+          <div class="input-field col s12">
+            <i class="material-icons prefix">insert_comment</i>
+            <textarea id="usefulInfosId" class="validate form-control materialize-textarea" title="usefulInfosId"
+                      formControlName="usefulInfos"></textarea>
+
+            <span class="help-block"
+                  *ngIf="(certificationForm.get('usefulInfos').touched || certificationForm.get('usefulInfos').dirty) && certificationForm.get('usefulInfos').errors">
+                            <span *ngIf="certificationForm.get('usefulInfos').errors.required">
+                                Please enter a usefulInfos.
+                            </span>
+            </span>
+
+            <label [ngClass]="(certification.usefulInfos) ? 'active' : '' "  for="usefulInfosId">Informations utiles<span class="beetobee-red-dark-text" >*</span></label>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <!--___SEND FORM___-->
+  <div class="modal-footer">
+    <button class="modal-action waves-effect beetobee-red-dark-bg btn-flat beetobee-white-text"
+            (click)="populateTestData()">
+      Populate
+    </button>
+
+    <button class="modal-action modal-close waves-effect beetobee-red-dark-bg btn-flat beetobee-white-text">
+      Annuler
+    </button>
+
+    <button class="modal-action modal-close waves-effect beetobee-blue-dark-bg btn-flat beetobee-white-text"
+            type="submit"
+            [disabled]="!certificationForm.valid"
+            id="addCertification"
+            (click)="update()">
+      Envoyer
+    </button>
+  </div>
+
+</div>
+
+

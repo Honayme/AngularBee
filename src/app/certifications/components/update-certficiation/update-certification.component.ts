@@ -1,31 +1,27 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Component, Input, OnInit} from '@angular/core';
 import {Certification} from '../../certification';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
 import {CertificationService} from '../../certification.service';
-declare var $: any;
-
 
 @Component({
-  selector: 'app-add-certification',
-  templateUrl: './add-certification.component.html',
-  styleUrls: ['./add-certification.component.css']
+  selector: 'app-update-certification',
+  templateUrl: './update-certification.component.html',
+  styleUrls: ['./update-certification.component.css']
 })
-export class AddCertificationComponent implements OnInit {
-  @Input() certifications: Certification[];
-  @Output() certificationsChange = new EventEmitter<Certification[]>();
+export class UpdateCertificationComponent implements OnInit {
+  @Input() certification: Certification;
 
   certificationForm: FormGroup;
   Certification: Certification;
-  update = false;
 
   constructor(private route: ActivatedRoute,
               private fb: FormBuilder,
               private certificationService: CertificationService) {
   }
 
-
   ngOnInit(): void {
+
     this.certificationForm = this.fb.group({
       title: ['', [Validators.required]],
       editor: ['', [Validators.required]],
@@ -41,7 +37,31 @@ export class AddCertificationComponent implements OnInit {
       usefulInfos: ['', [Validators.required]],
     });
 
+    const id = this.certification.id;
     this.Certification = new Certification('', '', '', '', '', '', '', '', '', '', '', '', '');
+
+    if (id) {
+      this.certificationService.getDetail(id).subscribe((certification: Certification) => {
+        this.Certification.id = certification.id;
+
+        this.certificationForm.patchValue({
+          title: certification.title,
+          editor: certification.editor,
+          expertiseField: certification.expertiseField,
+          desc: certification.desc,
+          validity: certification.validity,
+          costHt: certification.costHt,
+          costTtc: certification.costTtc,
+          examDetail: certification.examDetail,
+          examDuration: certification.examDuration,
+          examNumber: certification.examNumber,
+          howToSubscribe: certification.howToSubscribe,
+          usefulInfos: certification.usefulInfos,
+        });
+      });
+
+      console.log(this.Certification);
+    }
   }
 
   populateTestData(): void {
@@ -61,12 +81,13 @@ export class AddCertificationComponent implements OnInit {
     });
   }
 
-  save() {
+  update() {
     this.Certification = Object.assign(this.Certification, this.certificationForm.value);
-    this.certificationService.createCertification(this.Certification).subscribe(certification => {
-      this.certifications = [...this.certifications, certification];
-      this.certificationsChange.emit(this.certifications);
-      console.log('create');
-    });
+
+    this.certificationService.updateCertification(this.Certification).subscribe(certification => {
+        console.log(certification);
+      location.reload();
+      console.log('update');
+      });
   }
 }
