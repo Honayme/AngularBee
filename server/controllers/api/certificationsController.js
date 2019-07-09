@@ -173,7 +173,9 @@ updateCertification = (req, res) => {
       costTtc = req.body.costTtc,
       examDetail = req.body.examDetail,
       examDuration = req.body.examDuration,
-      examNumber = req.body.examNumber;
+      examNumber = req.body.examNumber,
+      usefulInfos = req.body.usefulInfos,
+      howToSubscribe = req.body.howToSubscribe;
 
 
   asyncLib.waterfall([
@@ -191,7 +193,7 @@ updateCertification = (req, res) => {
     },
     function(userFound, done) {
       models.Certifications.findOne({
-      attributes: ['id', 'title', 'editor', 'expertiseField', 'desc', 'validity', 'costHt', 'costTtc', 'examDetail', 'examDuration', 'examNumber' ],
+      attributes: ['id', 'title', 'editor', 'expertiseField', 'desc', 'validity', 'costHt', 'costTtc', 'examDetail', 'examDuration', 'examNumber', 'usefulInfos', 'howToSubscribe' ],
       where: { id : id }
     }).then(function(certificationFound) {
         done(null, certificationFound);
@@ -213,6 +215,8 @@ updateCertification = (req, res) => {
           examDetail: (examDetail ? examDetail : certificationFound.examDetail),
           examDuration: (examDuration ? examDuration : certificationFound.examDuration),
           examNumber: (examNumber ? examNumber : certificationFound.examNumber),
+          usefulInfos: (usefulInfos ? usefulInfos : certificationFound.usefulInfos),
+          howToSubscribe: (howToSubscribe ? howToSubscribe : certificationFound.howToSubscribe),
         }).then(function(){
           done(certificationFound);
         }).catch(function(err){
